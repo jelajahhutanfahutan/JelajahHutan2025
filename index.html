@@ -742,6 +742,29 @@ footer{
   }
 }
 
+.leaf-burst {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* efek klik di depan */
+}
+
+.leaf-burst span {
+  position: absolute;
+  animation: burstAnim 1s ease-out forwards;
+}
+
+@keyframes burstAnim {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1397,6 +1420,34 @@ footer{
 <!-- Efek Daun Emoji -->
 <div id="falling-leaves"></div>
 
+<!-- Efek daun saat klik -->
+<script>
+document.addEventListener("pointerdown", function(e) {
+  const burst = document.createElement("div");
+  burst.classList.add("leaf-burst");
+
+  // posisi efek sesuai titik sentuh / klik
+  burst.style.left = e.clientX + "px";
+  burst.style.top = e.clientY + "px";
+
+  // jumlah daun yang muncul saat klik
+  for (let i = 0; i < 8; i++) {
+    const leaf = document.createElement("span");
+    leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+    leaf.style.fontSize = (10 + Math.random() * 10) + "px";
+    leaf.style.opacity = 0.8;
+
+    // arah acak percikan daun
+    leaf.style.setProperty("--x", (Math.random() - 0.5) * 200 + "px");
+    leaf.style.setProperty("--y", (Math.random() - 0.5) * 200 + "px");
+
+    burst.appendChild(leaf);
+  }
+
+  document.body.appendChild(burst);
+  setTimeout(() => burst.remove(), 1000);
+});
+</script>
 
 <!-- ========== JAVASCRIPT ========== -->
 <script>
@@ -1607,6 +1658,7 @@ function createLeaf() {
 
 // Buat daun terus-menerus
 setInterval(createLeaf, 3000);
+
 
 </script>
 </body>
