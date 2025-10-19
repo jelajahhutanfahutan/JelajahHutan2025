@@ -320,6 +320,64 @@ nav{
   font-size:clamp(24px,4vw,32px);
 }
 
+/* ========== COUNTDOWN TIMER ========== */
+.countdown-container {
+  background: linear-gradient(135deg, rgba(27,119,63,0.15), rgba(11,61,32,0.15));
+  border: 2px solid var(--leaf);
+  border-radius: 20px;
+  padding: 30px 20px;
+  margin: 30px auto;
+  max-width: 600px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.countdown-title {
+  color: var(--gold);
+  font-size: clamp(20px, 3vw, 26px);
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.time-box {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  border: 2px solid var(--leaf);
+  border-radius: 15px;
+  padding: 15px 20px;
+  min-width: 90px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.time-box:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.time-number {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 800;
+  color: var(--gold);
+  text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.time-label {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 /* ========== CONTENT POPUP ========== */
 .content{
   position:fixed; 
@@ -476,6 +534,10 @@ nav{
   text-align:center;
 }
 
+#artikel5 p {
+  text-align: center;
+}
+
 /* ========== GALLERY MERCHANDISE ========== */
 .gallery{ 
   display:flex; 
@@ -624,6 +686,96 @@ nav{
   display:block;
 }
 
+/* ========== LIVE STREAM ========== */
+.livestream-section {
+  background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(139,0,0,0.1));
+  border: 2px solid rgba(255,0,0,0.3);
+  border-radius: 20px;
+  padding: 24px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.livestream-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #ff0000, #cc0000);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(255,0,0,0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255,0,0,0.4);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(255,0,0,0.7);
+  }
+}
+
+.livestream-badge .live-dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  margin: 20px 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 16px;
+}
+
+.watch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255,0,0,0.3);
+  margin-top: 16px;
+  text-decoration: none;
+}
+
+.watch-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(255,0,0,0.5);
+  background: linear-gradient(135deg, #cc0000, #990000);
+}
+
+.watch-btn i {
+  font-size: 20px;
+}
+
 /* ========== FOOTER ========== */
 footer{ 
   padding:20px 6vw; 
@@ -689,7 +841,7 @@ footer{
 
 @media (max-width:600px){
   .cta-cards{
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    grid-template-columns:repeat(auto-fit,minmin(140px,1fr));
   }
   
   .card img{
@@ -702,6 +854,19 @@ footer{
   
   .gallery .item{
     width:180px;
+  }
+  
+  .time-box {
+    min-width: 70px;
+    padding: 12px 15px;
+  }
+  
+  .time-number {
+    font-size: 24px;
+  }
+  
+  .time-label {
+    font-size: 12px;
   }
 }
 
@@ -721,7 +886,7 @@ footer{
 .leaf {
   position: absolute;
   top: -50px;
-  opacity: 0.6; /* default transparan */
+  opacity: 0.6;
   animation: fall linear forwards;
 }
 
@@ -746,7 +911,7 @@ footer{
   position: fixed;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  z-index: 9999; /* efek klik di depan */
+  z-index: 9999;
 }
 
 .leaf-burst span {
@@ -765,8 +930,18 @@ footer{
   }
 }
 
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
 </style>
+
 </head>
+
 <body>
 
 <!-- ========== HEADER ========== -->
@@ -832,6 +1007,30 @@ footer{
 <!-- ========== UPCOMING EVENTS ========== -->
 <section class="upcoming-events">
   <h2>Acara Mendatang 🌿</h2>
+  
+  <!-- Countdown Timer -->
+  <div class="countdown-container">
+    <div class="countdown-title">⏰ Hitung Mundur PRA-Jelajah Hutan</div>
+    <div id="countdown">
+      <div class="time-box">
+        <div class="time-number">0</div>
+        <div class="time-label">Hari</div>
+      </div>
+      <div class="time-box">
+        <div class="time-number">0</div>
+        <div class="time-label">Jam</div>
+      </div>
+      <div class="time-box">
+        <div class="time-number">0</div>
+        <div class="time-label">Menit</div>
+      </div>
+      <div class="time-box">
+        <div class="time-number">0</div>
+        <div class="time-label">Detik</div>
+      </div>
+    </div>
+  </div>
+
   <div class="info-event">
     <div class="info-box" onclick="showArticle('event1')">
       <i class="fa-solid fa-calendar-days"></i>
@@ -1315,13 +1514,36 @@ footer{
       <div class="slide active">
         <h1>PRA-Jelajah Hutan</h1>
         <img src="images/Maskot.jpg" alt="PRA Jelajah Hutan" width="400px">
-        <p>PRA-Jelajah Hutan merupakan kegiatan persiapan sebelum pelaksanaan Jelajah Hutan yang sesungguhnya. Pada tahap ini, peserta akan mendapatkan pembekalan materi, pengenalan nilai-nilai dasar rimbawan, serta persiapan mental dan fisik untuk menghadapi tantangan di lapangan. Kegiatan ini sangat penting untuk memastikan semua peserta siap dan memahami tujuan serta makna dari Jelajah Hutan 2025.</p>
+        <p>PRA-Jelajah Hutan merupakan tahap persiapan dan pembekalan sebelum kegiatan inti. Peserta akan mendapatkan berbagai informasi penting dan persiapan yang diperlukan.</p>
+        
+        <!-- Live Stream Section -->
+        <div class="livestream-section">
+          <div class="livestream-badge">
+            <span class="live-dot"></span>
+            <span>LIVE STREAMING</span>
+          </div>
+          <h3 style="color: var(--gold); margin-bottom: 12px;">Saksikan Langsung Acara PRA-Jelajah Hutan</h3>
+          <p style="margin-bottom: 20px;">Tanggal: 6 Desember 2025 | Waktu: 08:00 WIB</p>
+          
+          <div class="video-container">
+            <iframe 
+              src="https://www.youtube.com/embed/LIVE_VIDEO_ID" 
+              title="Live Stream PRA-Jelajah Hutan 2025" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          
+          <a href="https://youtube.com/@channelname/live" target="_blank" class="watch-btn">
+            <i class="fa-brands fa-youtube"></i>
+            Tonton di YouTube
+          </a>
+        </div>
       </div>
       <div class="slide">
         <h1>PRA-Jelajah Hutan - Persiapan</h1>
         <img src="images/Maskot.jpg" alt="Persiapan" width="400px">
-        <p>Pada sesi persiapan, peserta akan dibekali dengan pengetahuan tentang survival di hutan, first aid, orienteering, serta etika dan tata cara dalam menjaga kelestarian alam.</p>
-        <p>Semua peserta diharapkan mengikuti dengan penuh semangat dan tanggung jawab.</p>
+        <p>Persiapan yang matang adalah kunci kesuksesan. Pastikan semua perlengkapan dan mental sudah siap untuk mengikuti rangkaian kegiatan Jelajah Hutan 2025.</p>
       </div>
     </div>
     <div style="margin-top:16px; display:flex; justify-content:center; gap:10px;">
@@ -1342,6 +1564,30 @@ footer{
         <img src="images/Maskot.jpg" alt="Hari 1" width="400px">
         <p>Hari pertama dimulai dengan upacara pembukaan dan pelepasan peserta. Perjalanan menuju lokasi akan dimulai dengan penuh semangat dan antusiasme. Peserta akan merasakan pengalaman pertama memasuki kawasan hutan dan belajar beradaptasi dengan lingkungan alam.</p>
         <p>Kegiatan hari pertama fokus pada pengenalan medan, pembentukan kelompok, dan pembekalan awal di lapangan.</p>
+        
+        <!-- Live Stream Section -->
+        <div class="livestream-section">
+          <div class="livestream-badge">
+            <span class="live-dot"></span>
+            <span>LIVE STREAMING HARI 1</span>
+          </div>
+          <h3 style="color: var(--gold); margin-bottom: 12px;">Saksikan Pembukaan Jelajah Hutan 2025</h3>
+          <p style="margin-bottom: 20px;">Tanggal: 12 Desember 2025 | Waktu: 07:00 WIB</p>
+          
+          <div class="video-container">
+            <iframe 
+              src="https://www.youtube.com/embed/LIVE_VIDEO_ID" 
+              title="Live Stream Jelajah Hutan 2025 - Hari 1" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          
+          <a href="https://youtube.com/@channelname/live" target="_blank" class="watch-btn">
+            <i class="fa-brands fa-youtube"></i>
+            Tonton di YouTube
+          </a>
+        </div>
       </div>
       <div class="slide">
         <h1>Hari-H Jelajah Hutan</h1>
@@ -1349,6 +1595,30 @@ footer{
         <img src="images/Maskot.jpg" alt="Hari 2" width="400px">
         <p>Hari kedua merupakan inti dari kegiatan Jelajah Hutan. Peserta akan melakukan eksplorasi hutan, mempelajari flora dan fauna, teknik survival, dan berbagai kegiatan outdoor yang menantang.</p>
         <p>Peserta juga akan mengikuti sesi pembelajaran tentang ekosistem hutan, konservasi, dan pentingnya menjaga kelestarian alam untuk generasi mendatang.</p>
+        
+        <!-- Live Stream Section -->
+        <div class="livestream-section">
+          <div class="livestream-badge">
+            <span class="live-dot"></span>
+            <span>LIVE STREAMING HARI 2</span>
+          </div>
+          <h3 style="color: var(--gold); margin-bottom: 12px;">Saksikan Petualangan Hari Kedua</h3>
+          <p style="margin-bottom: 20px;">Tanggal: 13 Desember 2025 | Waktu: 08:00 WIB</p>
+          
+          <div class="video-container">
+            <iframe 
+              src="https://www.youtube.com/embed/LIVE_VIDEO_ID" 
+              title="Live Stream Jelajah Hutan 2025 - Hari 2" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          
+          <a href="https://youtube.com/@channelname/live" target="_blank" class="watch-btn">
+            <i class="fa-brands fa-youtube"></i>
+            Tonton di YouTube
+          </a>
+        </div>
       </div>
       <div class="slide">
         <h1>Hari-H Jelajah Hutan</h1>
@@ -1356,6 +1626,30 @@ footer{
         <img src="images/Maskot.jpg" alt="Hari 3" width="400px">
         <p>Hari terakhir diisi dengan kegiatan refleksi, evaluasi, dan penutupan. Peserta akan berbagi pengalaman, pembelajaran, dan komitmen untuk menjadi rimbawan yang bertanggung jawab.</p>
         <p>Upacara penutupan akan menjadi momen bersejarah yang menandai perjalanan baru sebagai bagian dari keluarga besar Fakultas Kehutanan Instiper.</p>
+        
+        <!-- Live Stream Section -->
+        <div class="livestream-section">
+          <div class="livestream-badge">
+            <span class="live-dot"></span>
+            <span>LIVE STREAMING PENUTUPAN</span>
+          </div>
+          <h3 style="color: var(--gold); margin-bottom: 12px;">Saksikan Upacara Penutupan</h3>
+          <p style="margin-bottom: 20px;">Tanggal: 14 Desember 2025 | Waktu: 14:00 WIB</p>
+          
+          <div class="video-container">
+            <iframe 
+              src="https://www.youtube.com/embed/LIVE_VIDEO_ID" 
+              title="Live Stream Jelajah Hutan 2025 - Penutupan" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          
+          <a href="https://youtube.com/@channelname/live" target="_blank" class="watch-btn">
+            <i class="fa-brands fa-youtube"></i>
+            Tonton di YouTube
+          </a>
+        </div>
       </div>
     </div>
     <div style="margin-top:16px; display:flex; justify-content:center; gap:10px;">
@@ -1375,6 +1669,30 @@ footer{
         <img src="images/Maskot.jpg" alt="Pasca Jelajah" width="400px">
         <p>Pasca-Jelajah Hutan merupakan kegiatan follow-up untuk mengevaluasi dan merefleksikan pengalaman selama Jelajah Hutan. Peserta akan berkumpul kembali untuk berbagi cerita, pembelajaran, dan pengalaman yang telah didapat.</p>
         <p>Kegiatan ini juga menjadi ajang untuk mempererat tali persaudaraan dan membangun networking antar peserta serta senior.</p>
+        
+        <!-- Live Stream Section -->
+        <div class="livestream-section">
+          <div class="livestream-badge">
+            <span class="live-dot"></span>
+            <span>LIVE STREAMING</span>
+          </div>
+          <h3 style="color: var(--gold); margin-bottom: 12px;">Saksikan Acara Pasca-Jelajah Hutan</h3>
+          <p style="margin-bottom: 20px;">Tanggal: 20 Desember 2025 | Waktu: 09:00 WIB</p>
+          
+          <div class="video-container">
+            <iframe 
+              src="https://www.youtube.com/embed/LIVE_VIDEO_ID" 
+              title="Live Stream Pasca-Jelajah Hutan 2025" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          
+          <a href="https://youtube.com/@channelname/live" target="_blank" class="watch-btn">
+            <i class="fa-brands fa-youtube"></i>
+            Tonton di YouTube
+          </a>
+        </div>
       </div>
       <div class="slide">
         <h1>Pasca-Jelajah Hutan - Komitmen</h1>
@@ -1420,51 +1738,117 @@ footer{
 <!-- Efek Daun Emoji -->
 <div id="falling-leaves"></div>
 
-<!-- Efek daun saat klik -->
+<!-- ========== JAVASCRIPT ========== -->
 <script>
+// ========== Daftar Emoji Daun ==========
+const leafEmojis = ["🍃", "🍂", "🍁", "🌿", "🍀"];
+const leafContainer = document.getElementById('falling-leaves');
+
+// ========== Efek Daun Jatuh ==========
+function createLeaf() {
+  const leaf = document.createElement('div');
+  leaf.classList.add('leaf');
+  leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+  leaf.style.left = Math.random() * 100 + 'vw';
+  leaf.style.fontSize = (10 + Math.random() * 7) + 'px';
+
+  const duration = 5 + Math.random() * 8;
+  leaf.style.animationDuration = duration + 's';
+
+  const direction = Math.random() < 0.5 ? -1 : 1;
+  const sway = 30 + Math.random() * 50;
+
+  leaf.animate(
+    [
+      { transform: `translateX(0px) translateY(-50px) rotate(0deg)` },
+      { transform: `translateX(${direction * sway}px) translateY(50vh) rotate(180deg)` },
+      { transform: `translateX(${direction * -sway}px) translateY(110vh) rotate(360deg)` }
+    ],
+    {
+      duration: duration * 1000,
+      easing: 'linear',
+      fill: 'forwards'
+    }
+  );
+
+  leafContainer.appendChild(leaf);
+  setTimeout(() => leaf.remove(), duration * 1000);
+}
+
+setInterval(createLeaf, 3000);
+
+// ========== Efek Daun Saat Klik ==========
 document.addEventListener("pointerdown", function(e) {
   const burst = document.createElement("div");
   burst.classList.add("leaf-burst");
-
-  // posisi efek sesuai titik sentuh / klik
   burst.style.left = e.clientX + "px";
   burst.style.top = e.clientY + "px";
 
-  // jumlah daun yang muncul saat klik
   for (let i = 0; i < 8; i++) {
     const leaf = document.createElement("span");
     leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
     leaf.style.fontSize = (10 + Math.random() * 10) + "px";
     leaf.style.opacity = 0.8;
-
-    // arah acak percikan daun
     leaf.style.setProperty("--x", (Math.random() - 0.5) * 200 + "px");
     leaf.style.setProperty("--y", (Math.random() - 0.5) * 200 + "px");
-
     burst.appendChild(leaf);
   }
 
   document.body.appendChild(burst);
   setTimeout(() => burst.remove(), 1000);
 });
-</script>
 
-<!-- ========== JAVASCRIPT ========== -->
-<script>
-// Show Article/Event Popup
+// ========== Countdown Timer ==========
+function countdown() {
+  const targetDate = new Date("2025-12-06T00:00:00").getTime();
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance < 0) {
+    document.getElementById("countdown").innerHTML = "<div class='time-box'><div class='time-number'>ACARA DIMULAI!</div></div>";
+    clearInterval(countdownInterval);
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = `
+    <div class="time-box">
+      <div class="time-number">${days}</div>
+      <div class="time-label">Hari</div>
+    </div>
+    <div class="time-box">
+      <div class="time-number">${hours}</div>
+      <div class="time-label">Jam</div>
+    </div>
+    <div class="time-box">
+      <div class="time-number">${minutes}</div>
+      <div class="time-label">Menit</div>
+    </div>
+    <div class="time-box">
+      <div class="time-number">${seconds}</div>
+      <div class="time-label">Detik</div>
+    </div>
+  `;
+}
+
+const countdownInterval = setInterval(countdown, 1000);
+countdown();
+
+// ========== Show/Close Article/Event Popup ==========
 function showArticle(id){
   const el = document.getElementById(id);
   if(el){
     el.style.display='block';
     setTimeout(()=> el.classList.add('active'),50);
     document.body.style.overflow='hidden';
-    
-    // Add entry to browser history
     history.pushState({popup: id}, '', `#${id}`);
   }
 }
 
-// Close Article/Event Popup
 function closeArticle(){
   document.querySelectorAll('.content.active').forEach(el=>{
     el.classList.remove('active');
@@ -1472,13 +1856,12 @@ function closeArticle(){
   });
   document.body.style.overflow='auto';
   
-  // Remove hash from URL if present
   if(window.location.hash){
     history.pushState('', document.title, window.location.pathname);
   }
 }
 
-// Handle browser back button
+// ========== Handle Browser Back Button ==========
 window.addEventListener('popstate', (event)=>{
   const activePopup = document.querySelector('.content.active');
   if(activePopup){
@@ -1492,7 +1875,7 @@ window.addEventListener('popstate', (event)=>{
   }
 });
 
-// Slide Navigation - Next
+// ========== Slide Navigation ==========
 function nextSlide(id){
   const container = document.querySelector('#'+id+' .slide-container');
   if(!container) return;
@@ -1505,7 +1888,6 @@ function nextSlide(id){
   slides[nextIndex].classList.add('active');
 }
 
-// Slide Navigation - Previous
 function prevSlide(id){
   const container = document.querySelector('#'+id+' .slide-container');
   if(!container) return;
@@ -1518,7 +1900,7 @@ function prevSlide(id){
   slides[prevIndex].classList.add('active');
 }
 
-// Order Merchandise
+// ========== Order Merchandise ==========
 let currentItem = '';
 
 function order(item){
@@ -1551,14 +1933,13 @@ function submitOrder(){
   window.open(url,'_blank');
   closeForm();
   
-  // Reset form
   document.getElementById('buyerName').value = '';
   document.getElementById('buyerClass').value = '';
   document.getElementById('buyerYear').value = '';
   document.getElementById('buyerQty').value = '1';
 }
 
-// Share Website
+// ========== Share Website ==========
 document.getElementById('shareWebsiteBtn').addEventListener('click', function(e){
   e.preventDefault();
   const url = window.location.href.split('#')[0];
@@ -1579,7 +1960,7 @@ document.getElementById('shareWebsiteBtn').addEventListener('click', function(e)
   }
 });
 
-// Check for hash on page load
+// ========== Check Hash on Page Load ==========
 window.addEventListener('DOMContentLoaded', ()=>{
   if(window.location.hash){
     const id = window.location.hash.substring(1);
@@ -1590,76 +1971,25 @@ window.addEventListener('DOMContentLoaded', ()=>{
   }
 });
 
-// Close popup when clicking outside
+// ========== Close Popup When Clicking Outside ==========
 document.addEventListener('click', (e)=>{
   if(e.target.classList.contains('content')){
     closeArticle();
   }
 });
 
-// Prevent closing when clicking inside popup
 document.querySelectorAll('.content .inner').forEach(inner => {
   inner.addEventListener('click', (e)=>{
     e.stopPropagation();
   });
 });
 
-// Close order form when clicking outside
 document.getElementById('orderForm').addEventListener('click', (e)=>{
   if(e.target.id === 'orderForm'){
     closeForm();
   }
 });
-
-// Daftar emoji daun
-const leafEmojis = ["🍃", "🍂", "🍁", "🌿", "🍀"];
-const leafContainer = document.getElementById('falling-leaves');
-
-function createLeaf() {
-  const leaf = document.createElement('div');
-  leaf.classList.add('leaf');
-
-  // Pilih emoji acak
-  leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
-
-  // Posisi horizontal acak
-  leaf.style.left = Math.random() * 100 + 'vw';
-
-  // Ukuran acak (pakai font-size)
-  leaf.style.fontSize = (10 + Math.random() * 7) + 'px';
-
-  // Durasi jatuh acak
-  const duration = 5 + Math.random() * 8;
-  leaf.style.animationDuration = duration + 's';
-
-  // Gerak angin kiri/kanan
-  const direction = Math.random() < 0.5 ? -1 : 1;
-  const sway = 30 + Math.random() * 50;
-
-  // Animasi sway manual
-  leaf.animate(
-    [
-      { transform: `translateX(0px) translateY(-50px) rotate(0deg)` },
-      { transform: `translateX(${direction * sway}px) translateY(50vh) rotate(180deg)` },
-      { transform: `translateX(${direction * -sway}px) translateY(110vh) rotate(360deg)` }
-    ],
-    {
-      duration: duration * 1000,
-      easing: 'linear',
-      fill: 'forwards'
-    }
-  );
-
-  leafContainer.appendChild(leaf);
-
-  // Hapus setelah jatuh
-  setTimeout(() => leaf.remove(), duration * 1000);
-}
-
-// Buat daun terus-menerus
-setInterval(createLeaf, 3000);
-
-
 </script>
+
 </body>
 </html>
