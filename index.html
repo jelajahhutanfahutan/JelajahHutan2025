@@ -437,9 +437,15 @@
       transition: transform 0.3s;
     }
 
-    .content img:hover { 
+     .content img:hover { 
       transform: scale(1.03); 
     }
+    
+    .content video {
+      text-align: center;
+    }
+
+   
 
     /* ========== BUTTONS ========== */
     .back-btn { 
@@ -833,6 +839,28 @@
         font-size: 12px;
       }
     }
+
+.video-container {
+  display: flex;
+  flex-direction: column; /* Susun video & caption secara vertikal */
+  align-items: center;     /* Pusatkan ke tengah */
+  margin: 20px 0;
+}
+
+.video-container video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.video-caption {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #f0f0f0;
+  font-style: italic;
+  text-align: center;
+}
+
   </style>
 </head>
 
@@ -868,8 +896,12 @@
         <p>Program Pengkaderan Untuk Mahasiswa Baru Fakultas Kehutanan Instiper Yogyakarta.</p>
 
         <video autoplay muted controls loop playsinline>
-          <source src="vid.webm" type="video/webm">
-        </video>
+          <source src="vid" type="video/mp4"> </video> 
+
+          <h3>“PENGKADERAN BUKAN AJANG PERPELONCOAN MELAINKAN LANGKAH AWAL MENJADI SEORANG RIMBAWAN : SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN”</h3>
+          <br>
+          <br>
+          <br>
 
         <div class="cta-cards">
           <div class="card" onclick="showArticle('artikel1')">
@@ -936,7 +968,7 @@
       <div class="info-box" onclick="showArticle('event1')">
         <i class="fa-solid fa-calendar-days"></i>
         <h4>PRA-Jelajah Hutan</h4>
-        <div class="tanggal-item">6 Des 2025</div>
+        <div class="tanggal-item">6-7 Des 2025</div>
       </div>
 
       <div class="info-box" onclick="showArticle('event2')">
@@ -1028,13 +1060,24 @@
 
   <!-- ========== ARTIKEL 5: MATERI SURVIVAL ========== -->
   <div id="artikel5" class="content">
-    <div class="inner">
-      <h1>Materi Survival</h1>
-      <img src="" alt="Materi Survival" width="400">
-      <p style="text-align: center;"><strong>Materi Survival</strong></p>
-      <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
+  <div class="inner">
+    <h1>Materi Survival</h1>
+    <img src="" alt="Materi Survival" width="400">
+    <p style="text-align: center;"><strong>Materi Survival</strong></p>
+
+    <!-- Video + Caption -->
+    <div class="video-container">
+      <video autoplay muted controls loop playsinline>
+        <source src="vid.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video.
+      </video>
+      <p class="video-caption">📽️ Video materi cara bertahan hidup di hutan.</p>
     </div>
+
+    <p>Materi tambahan di sini...</p>
+    <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
   </div>
+</div>
 
   <!-- ========== ARTIKEL 6: SUSUNAN KEPANITIAAN ========== -->
   <div id="artikel6" class="content">
@@ -1779,3 +1822,4 @@
   </script>
 </body>
 </html>
+
