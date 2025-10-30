@@ -21,6 +21,8 @@
       --card: #ffffff;
       --shadow: 0 10px 30px rgba(2,20,8,0.45);
       --radius: 18px;
+      --completed: #888888;
+      --ongoing: #ff9800;
     }
 
     /* ========== RESET & BASE ========== */
@@ -364,6 +366,7 @@
       margin-bottom: 30px;
       font-weight: 800;
       text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
     }
 
     #countdown {
@@ -425,12 +428,72 @@
       cursor: pointer;
       transition: all 0.4s ease;
       border: 2px solid rgba(147,209,124,0.2);
+      position: relative;
+    }
+
+    .info-box.completed {
+      background: linear-gradient(135deg, rgba(136,136,136,0.2), rgba(85,85,85,0.15));
+      border-color: var(--completed);
+      color: var(--completed);
+    }
+
+    .info-box.ongoing {
+      background: linear-gradient(135deg, rgba(255,152,0,0.2), rgba(255,152,0,0.15));
+      border-color: var(--ongoing);
+      color: var(--ongoing);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    .info-box.completed::after {
+      content: '✓ SELESAI';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--completed);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .info-box.ongoing::after {
+      content: '🔥 BERLANGSUNG';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--ongoing);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: bold;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.7; }
     }
 
     .info-box:hover {
       transform: translateY(-10px) scale(1.05);
       box-shadow: 0 18px 45px rgba(0,0,0,0.5);
       border-color: var(--leaf);
+    }
+
+    .info-box.completed:hover {
+      border-color: var(--completed);
+    }
+
+    .info-box.ongoing:hover {
+      border-color: var(--ongoing);
     }
 
     .info-box i { 
@@ -440,11 +503,27 @@
       filter: drop-shadow(0 4px 10px rgba(244,208,63,0.4));
     }
 
+    .info-box.completed i {
+      color: var(--completed);
+    }
+
+    .info-box.ongoing i {
+      color: var(--ongoing);
+    }
+
     .info-box h4 { 
       color: var(--muted); 
       margin: 15px 0;
       font-size: 17px;
       font-weight: 700;
+    }
+
+    .info-box.completed h4 {
+      color: var(--completed);
+    }
+
+    .info-box.ongoing h4 {
+      color: var(--ongoing);
     }
 
     .tanggal-item { 
@@ -456,6 +535,16 @@
       color: var(--bg-deep);
       font-weight: 700;
       box-shadow: 0 6px 20px rgba(147,209,124,0.4);
+    }
+
+    .info-box.completed .tanggal-item {
+      background: linear-gradient(135deg, var(--completed), #666666);
+      box-shadow: 0 6px 20px rgba(136,136,136,0.4);
+    }
+
+    .info-box.ongoing .tanggal-item {
+      background: linear-gradient(135deg, var(--ongoing), #ff5722);
+      box-shadow: 0 6px 20px rgba(255,152,0,0.4);
     }
 
     /* ========== CONTENT POPUP ========== */
@@ -981,7 +1070,6 @@
         min-width: 80px;
         padding: 18px 20px;
       }
-
       .time-number {
         font-size: 32px;
       }
@@ -1014,14 +1102,13 @@
     }
 
     .blink-text {
-      color: red;
-      font-weight: bold;
+      color: #ff9800 !important;
       animation: blink 1s infinite;
     }
 
     @keyframes blink {
       0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
+      25%, 75% { opacity: 0.7; }
     }
   </style>
 </head>
@@ -1056,7 +1143,8 @@
       <p>Program Pengkaderan Untuk Mahasiswa Baru Fakultas Kehutanan Instiper Yogyakarta.</p>
 
       <video autoplay muted controls loop playsinline>
-        <source src="" type="video/mp4">
+        <source src="videos/promosi.mp4" type="video/mp4">
+        Browser Anda tidak mendukung pemutaran video.
       </video>
 
       <h3>"PENGKADERAN BUKAN AJANG PERPELONCOAN MELAINKAN LANGKAH AWAL MENJADI SEORANG RIMBAWAN : SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN"</h3>
@@ -1093,7 +1181,7 @@
     
     <!-- Countdown Timer -->
     <div class="countdown-container">
-      <div class="countdown-title">⏰ Hitung Mundur PRA-Jelajah Hutan</div>
+      <div class="countdown-title">⏰ Hitung Mundur Sosialisasi Jelajah Hutan</div>
       <div id="countdown">
         <div class="time-box">
           <div class="time-number">0</div>
@@ -1115,7 +1203,7 @@
     </div>
 
     <div class="info-event">
-      <div class="info-box" onclick="showArticle('event1')">
+      <div class="info-box" id="event-sosialisasi" onclick="showArticle('event1')">
         <i class="fa-solid fa-calendar-days"></i>
         <h4>Sosialisasi Jelajah Hutan</h4>
         <div class="tanggal-item">3 Nov 2025</div>
@@ -1123,19 +1211,19 @@
     </div>
 
     <div class="info-event">
-      <div class="info-box" onclick="showArticle('event2')">
+      <div class="info-box" id="event-pra" onclick="showArticle('event2')">
         <i class="fa-solid fa-calendar-days"></i>
         <h4>PRA-Jelajah Hutan</h4>
         <div class="tanggal-item">6-7 Des 2025</div>
       </div>
 
-      <div class="info-box" onclick="showArticle('event3')">
+      <div class="info-box" id="event-harih" onclick="showArticle('event3')">
         <i class="fa-solid fa-calendar-days"></i>
         <h4>Hari-H Jelajah Hutan</h4>
         <div class="tanggal-item">12-14 Des 2025</div>
       </div>
 
-      <div class="info-box" onclick="showArticle('event4')">
+      <div class="info-box" id="event-pasca" onclick="showArticle('event4')">
         <i class="fa-solid fa-calendar-days"></i>
         <h4>Pasca-Jelajah Hutan</h4>
         <div class="tanggal-item">20 Des 2025</div>
@@ -1148,17 +1236,17 @@
     <div class="inner">
       <h1>Visi & Misi</h1>
       <img src="images/Visi&Misi.png" alt="Visi Misi" width="400">
-      <p><strong>Visi:</strong><br>VISI.</p>
+      <p><strong>Visi:</strong><br>Mewujudkan generasi rimbawan yang berkarakter, berintegritas, dan berwawasan lingkungan melalui proses pengkaderan yang bermakna.</p>
       <p><strong>Misi:</strong></p>
-      <p>Misi1.</p>
-      <p>Misi2.</p>
-      <p>Misi3.</p>
+      <p>1. Membangun solidaritas dan kekompakan antar mahasiswa kehutanan</p>
+      <p>2. Menanamkan nilai-nilai konservasi dan kelestarian hutan</p>
+      <p>3. Mengembangkan keterampilan survival dan leadership di alam bebas</p>
       <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
     </div>
   </div>
 
   <!-- ========== ARTIKEL 2: FILOSOFI MASKOT ========== -->
-  <div id="artikel12" class="content">
+  <div id="artikel2" class="content">
     <div class="inner">
       <h1>Filosofi Maskot 2025</h1>
       <img src="images/Maskot.png" alt="Maskot" width="400">
@@ -1225,16 +1313,23 @@
   <div id="artikel3" class="content">
     <div class="inner">
       <h1>Materi Survival</h1>
-      <p style="text-align: center;"><strong>Materi Survival</strong></p>
+      <p style="text-align: center;"><strong>Materi Survival Dasar untuk Petualangan di Hutan</strong></p>
 
       <div class="video-container">
         <video autoplay muted controls loop playsinline>
-          <source src="vid.mp4" type="video/mp4">
+          <source src="videos/survival.mp4" type="video/mp4">
+          Browser Anda tidak mendukung pemutaran video.
         </video>
         <p class="video-caption">📽️ Video materi cara bertahan hidup di hutan.</p>
       </div>
 
-      <p>Coming Soon...</p>
+      <h2>Teknik Dasar Survival</h2>
+      <p>1. <strong>Mencari Sumber Air</strong>: Pelajari cara menemukan dan memurnikan air di alam bebas</p>
+      <p>2. <strong>Membangun Shelter</strong>: Teknik membuat tempat berlindung darurat</p>
+      <p>3. <strong>Membuat Api</strong>: Metode tradisional dan modern untuk membuat api</p>
+      <p>4. <strong>Navigasi Alam</strong>: Menggunakan kompas dan tanda alam untuk menentukan arah</p>
+      <p>5. <strong>Pertolongan Pertama</strong>: Penanganan dasar untuk luka dan keadaan darurat</p>
+      
       <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
     </div>
   </div>
@@ -1250,7 +1345,7 @@
         <h2>Ketua Panitia</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Ketua">
+            <img src="images/ketua.jpg" alt="Ketua">
             <h4>Ketua</h4>
             <p>Ahmad Arif Maulana</p>
           </div>
@@ -1262,14 +1357,14 @@
         <h2>Sekretaris</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Sekretaris I">
+            <img src="images/sekretaris1.jpg" alt="Sekretaris I">
             <h4>Sekretaris I</h4>
             <p>Moch Hardian Bima</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Sekretaris II">
+            <img src="images/sekretaris2.jpg" alt="Sekretaris II">
             <h4>Sekretaris II</h4>
             <p>Fitriani</p>
           </div>
@@ -1281,14 +1376,14 @@
         <h2>Bendahara</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Bendahara I">
+            <img src="images/bendahara1.jpg" alt="Bendahara I">
             <h4>Bendahara I</h4>
             <p>Jessica Mery Salim</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Bendahara II">
+            <img src="images/bendahara2.jpg" alt="Bendahara II">
             <h4>Bendahara II</h4>
             <p>Delima Sitorus</p>
           </div>
@@ -1300,24 +1395,24 @@
         <h2>Divisi SC</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Koordinator SC">
+            <img src="images/koordinator-sc.jpg" alt="Koordinator SC">
             <h4>Koordinator</h4>
             <p>Adiweno Iza Mashuri</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota SC">
+            <img src="images/anggota-sc1.jpg" alt="Anggota SC">
             <h4>Anggota</h4>
             <p>Brendy Suranta G.S.</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota SC">
+            <img src="images/anggota-sc2.jpg" alt="Anggota SC">
             <h4>Anggota</h4>
             <p>Pedro Leonard Siregar</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota SC">
+            <img src="images/anggota-sc3.jpg" alt="Anggota SC">
             <h4>Anggota</h4>
             <p>Adrian Wiza Syaputra</p>
           </div>
@@ -1329,24 +1424,24 @@
         <h2>Divisi Acara</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Koordinator Acara">
+            <img src="images/koordinator-acara.jpg" alt="Koordinator Acara">
             <h4>Koordinator</h4>
             <p>Bryan hanief</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-acara1.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Yosua Marulitua S.</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-acara2.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Dwi Angeline</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-acara3.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Rubi Angrid br Manullang</p>
           </div>
@@ -1358,22 +1453,22 @@
         <h2>Divisi Korlab</h2>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Korlab I">
+            <img src="images/korlab1.jpg" alt="Korlab I">
             <h4>Korlab I</h4>
             <p>Firman</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Korlab II">
+            <img src="images/korlab2.jpg" alt="Korlab II">
             <h4>Korlab II</h4>
             <p>Cello</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Korlab III">
+            <img src="images/korlab3.jpg" alt="Korlab III">
             <h4>Korlab III</h4>
             <p>Mangihut Pandopatan Simbolon </p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Korlab IV">
+            <img src="images/korlab4.jpg" alt="Korlab IV">
             <h4>Korlab IV</h4>
             <p>Christian</p>
           </div>
@@ -1385,29 +1480,29 @@
         <h2>Divisi PDD</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Koordinator PDD">
+            <img src="images/koordinator-pdd.jpg" alt="Koordinator PDD">
             <h4>Koordinator</h4>
             <p>Muhammad Daffa Nugraha</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-pdd1.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Ahmad Zulkifli</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-pdd2.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Niccolas Gultom</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-pdd3.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Frederick Hasan</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-pdd4.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Delima Klaudia T.</p>
           </div>
@@ -1419,24 +1514,24 @@
         <h2>Divisi Humas</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Koordinator Humas">
+            <img src="images/koordinator-humas.jpg" alt="Koordinator Humas">
             <h4>Koordinator</h4>
             <p>Taufik</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-humas1.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Pram</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-humas2.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Dafid Joko Purwanto</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-humas3.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Alfa Sunu Pranata Aji</p>
           </div>
@@ -1448,29 +1543,29 @@
         <h2>Divisi Konsumsi</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Koordinator Konsumsi">
+            <img src="images/koordinator-konsumsi.jpg" alt="Koordinator Konsumsi">
             <h4>Koordinator</h4>
             <p>Iffah Nuring Sanuminu</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-konsumsi1.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Tiara Dwi Jelita</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-konsumsi2.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Dina Rizky Arfiyanti </p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-konsumsi3.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Sean Adelar S.</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-konsumsi4.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Humprey Ignatius P.</p>
           </div>
@@ -1482,29 +1577,29 @@
         <h2>Divisi Timkes</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Koordinator Timkes">
+            <img src="images/koordinator-timkes.jpg" alt="Koordinator Timkes">
             <h4>Koordinator</h4>
             <p>Syadza Salsabillah Putri</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-timkes1.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Jeremia Juranza S.</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-timkes2.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Timothy Petra Yabes M.</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-timkes3.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Rafael Butar-butar</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-timkes4.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Ade Setiawan</p>
           </div>
@@ -1516,39 +1611,39 @@
         <h2>Divisi Perkab</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Koordinator Perkab">
+            <img src="images/koordinator-perkab.jpg" alt="Koordinator Perkab">
             <h4>Koordinator</h4>
             <p>Wahyu</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-perkab1.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Fawaz Abyan Syah </p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-perkab2.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Sandro</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-perkab3.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Sulaiman</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-perkab4.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Juan Kenith Umbu Wunu Sabatudung </p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-perkab5.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Syukeal Leonardo </p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-perkab6.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Muh Verda Muzaffar Tsaqib</p>
           </div>
@@ -1560,24 +1655,24 @@
         <h2>Divisi USDA</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/acara1.jpg" alt="Koordinator USDA">
+            <img src="images/koordinator-usda.jpg" alt="Koordinator USDA">
             <h4>Koordinator</h4>
             <p>Dwi Cahya Ajeng Lestari</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-usda1.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Gina</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-usda2.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Elia Mangara Tua P.</p>
           </div>
           <div class="item">
-            <img src="images/acara2.jpg" alt="Anggota">
+            <img src="images/anggota-usda3.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Henjelina Sagala</p>
           </div>
@@ -1595,26 +1690,26 @@
       <p style="text-align: center; font-size: 18px;">Berbagai merchandise resmi Jelajah Hutan 2025 Akan Segera Hadir!🌲</p>
       <div class="gallery">
         <div class="item">
-          <img src="Kaos" alt="">
-          <h4>Coming Soon</h4>
+          <img src="images/kaos.jpg" alt="Kaos Jelajah Hutan">
+          <h4>Coming Soon!!!.</h4>
           <p>-</p>
           <button class="buy-btn" onclick="order('Kaos Jelajah Hutan')">🛒 Beli Sekarang</button>
         </div>
         <div class="item">
-          <img src="Topi" alt="">
-          <h4>Coming Soon</h4>
+          <img src="images/topi.jpg" alt="Topi Petualang">
+          <h4>Coming Soon!!!.</h4>
           <p>-</p>
           <button class="buy-btn" onclick="order('Topi Petualang')">🛒 Beli Sekarang</button>
         </div>
         <div class="item">
-          <img src="images/tumbler.jpg" alt="">
-          <h4>Coming Soon</h4>
+          <img src="images/tumbler.jpg" alt="Tumbler Ramah Lingkungan">
+          <h4>Coming Soon!!!.</h4>
           <p>-</p>
           <button class="buy-btn" onclick="order('Tumbler Ramah Lingkungan')">🛒 Beli Sekarang</button>
         </div>
         <div class="item">
-          <img src="images/pin1.jpg" alt="">
-          <h4>Coming Soon</h4>
+          <img src="images/pin.jpg" alt="Coming Soon!!!.">
+          <h4>Coming Soon!!!.</h4>
           <p>-</p>
           <button class="buy-btn" onclick="order('Pin Eksklusif')">🛒 Beli Sekarang</button>
         </div>
@@ -1623,13 +1718,15 @@
     </div>
   </div>
 
-  <!-- ========== EVENT 1-3 ========== -->
+  <!-- ========== EVENT 1-4 ========== -->
 <div id="event1" class="content">
     <div class="inner">
       <div class="slide-container">
         <div class="slide active">
           <h1>Sosialisasi Jelajah Hutan</h1>
-          <img src="images/Maskot.jpg" alt="PRA Jelajah Hutan" width="400">
+          <img src="images/sosialisasi1.jpg" alt="Sosialisasi Jelajah Hutan" width="400">
+          <p><strong>Tanggal:</strong> 3 November 2025</p>
+          <p><strong>Lokasi:</strong> Fakultas Kehutanan</p>
           <p>Coming Soon!!!.</p>
         </div>
       </div>
@@ -1646,12 +1743,14 @@
       <div class="slide-container">
         <div class="slide active">
           <h1>PRA-Jelajah Hutan</h1>
-          <img src="images/Maskot.jpg" alt="PRA Jelajah Hutan" width="400">
+          <img src="images/pra-jelajah1.jpg" alt="PRA Jelajah Hutan" width="400">
+          <p><strong>Tanggal:</strong> 6-7 Desember 2025</p>
+          <p><strong>Lokasi:</strong> Kampus dan Sekitar Yogyakarta</p>
           <p>Coming Soon!!!.</p>
         </div>
         <div class="slide">
           <h1>PRA-Jelajah Hutan - Persiapan</h1>
-          <img src="images/Maskot.jpg" alt="Persiapan" width="400">
+          <img src="images/pra-jelajah2.jpg" alt="Persiapan" width="400">
           <p>Coming Soon!!!.</p>
         </div>
       </div>
@@ -1669,19 +1768,22 @@
         <div class="slide active">
           <h1>Hari-H Jelajah Hutan</h1>
           <h2>Hari ke-1: Pembukaan & Perjalanan</h2>
-          <img src="images/Maskot.jpg" alt="Hari 1" width="400">
+          <img src="images/hari1.jpg" alt="Hari 1" width="400">
+          <p><strong>Tanggal:</strong> 12 Desember 2025</p>
           <p>Coming Soon!!!.</p>
         </div>
         <div class="slide">
           <h1>Hari-H Jelajah Hutan</h1>
           <h2>Hari ke-2: Eksplorasi & Pembelajaran</h2>
-          <img src="images/Maskot.jpg" alt="Hari 2" width="400">
+          <img src="images/hari2.jpg" alt="Hari 2" width="400">
+          <p><strong>Tanggal:</strong> 13 Desember 2025</p>
           <p>Coming Soon!!!.</p>
         </div>
         <div class="slide">
           <h1>Hari-H Jelajah Hutan</h1>
           <h2>Hari ke-3: Refleksi & Penutupan</h2>
-          <img src="images/Maskot.jpg" alt="Hari 3" width="400">
+          <img src="images/hari3.jpg" alt="Hari 3" width="400">
+          <p><strong>Tanggal:</strong> 14 Desember 2025</p>
           <p>Coming Soon!!!.</p>
         </div>
       </div>
@@ -1698,12 +1800,14 @@
       <div class="slide-container">
         <div class="slide active">
           <h1>Pasca-Jelajah Hutan</h1>
-          <img src="images/Maskot.jpg" alt="Pasca Jelajah" width="400">
-          <p>Coming Soon!!!</p>
+          <img src="images/pasca1.jpg" alt="Pasca Jelajah" width="400">
+          <p><strong>Tanggal:</strong> 20 Desember 2025</p>
+          <p><strong>Lokasi:</strong> Kampus Fakultas Kehutanan</p>
+          <p><strong>Deskripsi:</strong> Coming Soon!!!.</p>
         </div>
         <div class="slide">
           <h1>Pasca-Jelajah Hutan - Komitmen</h1>
-          <img src="Panitia/" alt="Komitmen" width="400">
+          <img src="images/pasca2.jpg" alt="Komitmen" width="400">
           <p>Coming Soon!!!.</p>
         </div>
       </div>
@@ -1809,22 +1913,54 @@
       setTimeout(() => burst.remove(), 1200);
     });
 
-    // ========== COUNTDOWN TIMER ==========
+    // ========== COUNTDOWN TIMER YANG MENYESUAIKAN DENGAN ACARA ==========
     function countdown() {
-      const targetDate = new Date("2025-11-03T15:00:00").getTime();
       const now = new Date().getTime();
-      const distance = targetDate - now;
+      
+      // Daftar acara dan tanggalnya
+      const events = [
+        { id: 'sosialisasi', date: new Date("2025-11-03T15:00:00"), name: "Sosialisasi Jelajah Hutan" },
+        { id: 'pra', date: new Date("2025-12-06T08:00:00"), name: "PRA-Jelajah Hutan" },
+        { id: 'harih', date: new Date("2025-12-12T08:00:00"), name: "Hari-H Jelajah Hutan" },
+        { id: 'pasca', date: new Date("2025-12-20T15:00:00"), name: "Pasca-Jelajah Hutan" }
+      ];
 
-      if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "<div class='time-box'><div class='time-number'>ACARA DIMULAI!</div></div>";
+      // Cari acara berikutnya yang belum dimulai
+      let nextEvent = null;
+      let nextEventIndex = -1;
+
+      for (let i = 0; i < events.length; i++) {
+        if (events[i].date.getTime() > now) {
+          nextEvent = events[i];
+          nextEventIndex = i;
+          break;
+        }
+      }
+
+      // Jika semua acara sudah lewat
+      if (!nextEvent) {
+        document.getElementById("countdown").innerHTML = `
+          <div class="time-box" style="min-width: 250px;">
+            <div class="time-number">SELESAI</div>
+            <div class="time-label">Semua Acara Telah Berakhir</div>
+          </div>
+        `;
+        document.querySelector('.countdown-title').textContent = "🎉 Semua Acara Jelajah Hutan 2025 Telah Selesai!";
         return;
       }
+
+      const targetDate = nextEvent.date.getTime();
+      const distance = targetDate - now;
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+      // Update judul countdown
+      document.querySelector('.countdown-title').textContent = `⏰ Hitung Mundur ${nextEvent.name}`;
+
+      // Update timer
       document.getElementById("countdown").innerHTML = `
         <div class="time-box">
           <div class="time-number">${days}</div>
@@ -1843,10 +1979,79 @@
           <div class="time-label">Detik</div>
         </div>
       `;
+
+      // Jika acara akan dimulai dalam 24 jam, tambahkan efek berkedip
+      if (distance < 24 * 60 * 60 * 1000) {
+        document.querySelector('.countdown-title').classList.add('blink-text');
+      } else {
+        document.querySelector('.countdown-title').classList.remove('blink-text');
+      }
     }
 
-    setInterval(countdown, 1000);
-    countdown();
+    // ========== CHECK EVENT STATUS YANG LEBIH AKURAT ==========
+    function checkEventStatus() {
+      const now = new Date();
+      
+      // Sosialisasi - 3 Nov 2025
+      const sosialisasiStart = new Date("2025-11-03T15:00:00");
+      const sosialisasiEnd = new Date("2025-11-03T18:00:00");
+      const sosialisasiElement = document.getElementById('event-sosialisasi');
+      
+      if (now >= sosialisasiStart && now <= sosialisasiEnd) {
+        sosialisasiElement.classList.add('ongoing');
+        sosialisasiElement.classList.remove('completed');
+      } else if (now > sosialisasiEnd) {
+        sosialisasiElement.classList.add('completed');
+        sosialisasiElement.classList.remove('ongoing');
+      } else {
+        sosialisasiElement.classList.remove('ongoing', 'completed');
+      }
+      
+      // PRA Jelajah - 6-7 Des 2025 (2 hari)
+      const praStart = new Date("2025-12-06T08:00:00");
+      const praEnd = new Date("2025-12-07T23:59:59");
+      const praElement = document.getElementById('event-pra');
+      
+      if (now >= praStart && now <= praEnd) {
+        praElement.classList.add('ongoing');
+        praElement.classList.remove('completed');
+      } else if (now > praEnd) {
+        praElement.classList.add('completed');
+        praElement.classList.remove('ongoing');
+      } else {
+        praElement.classList.remove('ongoing', 'completed');
+      }
+      
+      // Hari-H - 12-14 Des 2025 (3 hari)
+      const harihStart = new Date("2025-12-12T08:00:00");
+      const harihEnd = new Date("2025-12-14T23:59:59");
+      const harihElement = document.getElementById('event-harih');
+      
+      if (now >= harihStart && now <= harihEnd) {
+        harihElement.classList.add('ongoing');
+        harihElement.classList.remove('completed');
+      } else if (now > harihEnd) {
+        harihElement.classList.add('completed');
+        harihElement.classList.remove('ongoing');
+      } else {
+        harihElement.classList.remove('ongoing', 'completed');
+      }
+      
+      // Pasca - 20 Des 2025
+      const pascaStart = new Date("2025-12-20T15:00:00");
+      const pascaEnd = new Date("2025-12-20T18:00:00");
+      const pascaElement = document.getElementById('event-pasca');
+      
+      if (now >= pascaStart && now <= pascaEnd) {
+        pascaElement.classList.add('ongoing');
+        pascaElement.classList.remove('completed');
+      } else if (now > pascaEnd) {
+        pascaElement.classList.add('completed');
+        pascaElement.classList.remove('ongoing');
+      } else {
+        pascaElement.classList.remove('ongoing', 'completed');
+      }
+    }
 
     // ========== ARTICLE/POPUP FUNCTIONS ==========
     function showArticle(id) {
@@ -1976,6 +2181,9 @@
           setTimeout(() => showArticle(id), 100);
         }
       }
+      
+      // Check event status on page load
+      checkEventStatus();
     });
 
     // ========== CLOSE ON BACKGROUND CLICK ==========
@@ -1996,7 +2204,12 @@
         closeForm();
       }
     });
+
+    // Jalankan fungsi countdown dan status event
+    setInterval(countdown, 1000);
+    setInterval(checkEventStatus, 60000); // Cek status setiap menit
+    countdown();
+    checkEventStatus();
   </script>
 </body>
 </html>
-
