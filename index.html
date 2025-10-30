@@ -192,8 +192,8 @@
     }
 
     .home-center-logo img {
-      width: 160px;
-      height: 160px;
+      width: 300px;
+      height: 300px;
       object-fit: cover;
       border-radius: 30px;
       box-shadow: 
@@ -303,18 +303,28 @@
       border-color: var(--leaf);
     }
 
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 18px;
-      margin-bottom: 18px;
-      transition: transform 0.4s ease;
-      border: 2px solid rgba(147,209,124,0.2);
+    /* ========== CARD ICONS ========== */
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--leaf), var(--forest));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 32px;
+      color: var(--bg-deep);
+      box-shadow: 0 8px 25px rgba(147,209,124,0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 3px solid rgba(255,255,255,0.2);
     }
 
-    .card:hover img {
-      transform: scale(1.08) rotate(2deg);
+    .card:hover .card-icon {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 12px 35px rgba(147,209,124,0.6);
+      background: linear-gradient(135deg, var(--gold), #f1c40f);
+      color: var(--bg-deep);
     }
 
     .card h4 {
@@ -323,6 +333,53 @@
       font-size: 18px;
       font-weight: 700;
       text-shadow: 0 2px 10px rgba(244,208,63,0.3);
+    }
+
+    /* Remove old card image styles */
+    .card img {
+      display: none;
+    }
+
+    /* ========== SPONSOR SECTION ========== */
+    .sponsor-section {
+      margin: 40px 0 30px;
+      text-align: center;
+    }
+
+    .sponsor-title {
+      color: var(--gold);
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(244,208,63,0.3);
+    }
+
+    .sponsor-logos {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .sponsor-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      padding: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(147,209,124,0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .sponsor-logo:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(147,209,124,0.5);
+      border-color: var(--leaf);
+      background: rgba(255,255,255,0.15);
     }
 
     /* ========== UPCOMING EVENTS ========== */
@@ -543,7 +600,7 @@
     }
 
     .info-box.ongoing .tanggal-item {
-      background: linear-gradient(135deg, var(--ongoing), #ff5722);
+      background: linear-gradient(135deg, var(--ongoing), #ff2222);
       box-shadow: 0 6px 20px rgba(255,152,0,0.4);
     }
 
@@ -1062,8 +1119,10 @@
         padding: 18px;
       }
 
-      .card img {
-        height: 140px;
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
       }
 
       .time-box {
@@ -1102,7 +1161,7 @@
     }
 
     .blink-text {
-      color: #ff9800 !important;
+      color: #ff0000 !important;
       animation: blink 1s infinite;
     }
 
@@ -1126,7 +1185,7 @@
     <nav>
       <div class="extra-logos">
         <img src="images/BEM.jpg" alt="Logo BEM">
-        <img src="images/SENAT.jpg" alt="Logo SENAT">
+        <img src="images/SMH.png" alt="Logo SENAT">
         <img src="images/HMJ.jpg" alt="Logo HMJ">
       </div>
     </nav>
@@ -1149,25 +1208,52 @@
 
       <h3>"PENGKADERAN BUKAN AJANG PERPELONCOAN MELAINKAN LANGKAH AWAL MENJADI SEORANG RIMBAWAN : SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN"</h3>
 
+<!-- ========== SPONSOR SECTION ========== -->
+      <div class="sponsor-section">
+        <div class="sponsor-title">Didukung Oleh</div>
+        <div class="sponsor-logos">
+          <img src="images/sponsor1.jpg" alt="Sponsor 1" class="sponsor-logo" onclick="window.open('https://instagram.com/sponsor1', '_blank')">
+          <img src="images/sponsor2.jpg" alt="Sponsor 2" class="sponsor-logo" onclick="window.open('https://instagram.com/sponsor2', '_blank')">
+          <img src="images/sponsor3.jpg" alt="Sponsor 3" class="sponsor-logo" onclick="window.open('https://instagram.com/sponsor3', '_blank')">
+          <img src="images/sponsor4.jpg" alt="Sponsor 4" class="sponsor-logo" onclick="window.open('https://instagram.com/sponsor4', '_blank')">
+        </div>
+      </div>
+
       <div class="cta-cards">
         <div class="card" onclick="showArticle('artikel1')">
-          <img src="images/Visi&Misi.png" alt="Visi & Misi">
-          <h4>Visi & Misi</h4>
+          <div class="card-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h4>Tema</h4>
         </div>
         <div class="card" onclick="showArticle('artikel2')">
-          <img src="images/Maskot.png" alt="Filosofi Maskot">
+          <div class="card-icon">
+            <i class="fas fa-kiwi-bird"></i>
+          </div>
           <h4>Filosofi Maskot 2025</h4>
         </div>
         <div class="card" onclick="showArticle('artikel3')">
-          <img src="images/Jelajah.png" alt="Materi">
+          <div class="card-icon">
+            <i class="fas fa-compass"></i>
+          </div>
           <h4>Materi Survival</h4>
         </div>
         <div class="card" onclick="showArticle('artikel4')">
-          <img src="images/Panitia.png" alt="Panitia">
-          <h4>Susunan Kepanitiaan</h4>
+          <div class="card-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <h4>Peraturan & Perlengkapan</h4>
         </div>
         <div class="card" onclick="showArticle('artikel5')">
-          <img src="images/Merchandise.png" alt="Merchandise">
+          <div class="card-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h4>Susunan Kepanitiaan</h4>
+        </div>
+        <div class="card" onclick="showArticle('artikel6')">
+          <div class="card-icon">
+            <i class="fas fa-tshirt"></i>
+          </div>
           <h4>Merchandise🛒</h4>
         </div>
       </div>
@@ -1231,16 +1317,19 @@
     </div>
   </section>
 
-  <!-- ========== ARTIKEL 1: VISI & MISI ========== -->
+  <!-- ========== ARTIKEL 1: TEMA ========== -->
   <div id="artikel1" class="content">
     <div class="inner">
-      <h1>Visi & Misi</h1>
-      <img src="images/Visi&Misi.png" alt="Visi Misi" width="400">
-      <p><strong>Visi:</strong><br>Mewujudkan generasi rimbawan yang berkarakter, berintegritas, dan berwawasan lingkungan melalui proses pengkaderan yang bermakna.</p>
-      <p><strong>Misi:</strong></p>
-      <p>1. Membangun solidaritas dan kekompakan antar mahasiswa kehutanan</p>
-      <p>2. Menanamkan nilai-nilai konservasi dan kelestarian hutan</p>
-      <p>3. Mengembangkan keterampilan survival dan leadership di alam bebas</p>
+      <h1>Tema Jelajah Hutan 2025</h1>
+      <img src="images/Tema.png" alt="Tema" width="400">
+      <h2>“SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN”</h2>
+      <p><strong>Pohon</strong> menjadi simbol rimbawan karena memiliki akar, batang, dan daun yang saling menguatkan.
+      <br>
+      <br><strong>Solid di Akar → </strong>Melambangkan dasar kuat berupa persaudaraan, nilai-nilai kehutanan (9 Nilai Dasar Rimbawan), dan integritas moral.
+      <br>
+      <br><strong>Kuat di Batang → </strong>Mencerminkan tanggung jawab, disiplin, dan keteguhan dalam menghadapi tantangan.
+      <br>
+      <br><strong>Lestari di Daun → </strong>Simbol hasil dan pengabdian yang bermanfaat bagi lingkungan serta keberlanjutan hidup.Tema ini menegaskan bahwa pengkaderan bukan sekadar pembentukan individu, tetapi proses menumbuhkan nilai ekologis, solidaritas, dan kepemimpinan demi lahirnya rimbawan yang tangguh dan berjiwa lestari.</p>
       <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
     </div>
   </div>
@@ -1334,8 +1423,207 @@
     </div>
   </div>
 
-<!-- ========== ARTIKEL 4: SUSUNAN KEPANITIAAN ========== -->
-  <div id="artikel4" class="content">
+<!-- ========== ARTIKEL 4: PERATURAN & PERLENGKAPAN ========== -->
+<div id="artikel4" class="content">
+  <div class="inner">
+    <h1>Peraturan & Perlengkapan Peserta</h1>
+    <p style="text-align: center;">Ketentuan yang harus dipatuhi dan perlengkapan yang perlu disiapkan untuk mengikuti Jelajah Hutan 2025</p>
+
+    <!-- PERATURAN PRA DAN PASCA -->
+    <h2>📋 Peraturan Saat Pra dan Pasca Jelajah Hutan</h2>
+    <div style="background: linear-gradient(135deg, rgba(147,209,124,0.1), rgba(27,119,63,0.08)); padding: 25px; border-radius: 20px; margin: 20px 0; border-left: 5px solid var(--gold);">
+      <ul style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-clock" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Datang 10 menit sebelum acara dimulai</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-tshirt" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Memakai baju Fakultas, Sepatu, dan Celana kain hitam (Tidak robek-robek)</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-ban" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Dilarang menggunakan aksesoris (anting, tindik, gelang, kalung)</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-smoking-ban" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Dilarang merokok selama kegiatan</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-calendar-check" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Wajib mengikuti kegiatan dari awal sampai akhir</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-mobile-alt" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Dilarang menggunakan HP (HP Wajib di Silent)</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-door-open" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Peserta dilarang meninggalkan ruangan tanpa izin dari panitia</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-user-check" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Peserta diwajibkan berlaku sopan dan menjaga ketertiban</strong>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PERATURAN HARI-H -->
+    <h2>🌲 Peraturan Saat Hari-H Jelajah Hutan</h2>
+    <div style="background: linear-gradient(135deg, rgba(147,209,124,0.1), rgba(27,119,63,0.08)); padding: 25px; border-radius: 20px; margin: 20px 0; border-left: 5px solid var(--forest);">
+      <ul style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-clock" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Datang 10 menit sebelum acara dimulai</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-tshirt" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Memakai baju Fakultas, Sepatu, dan Celana kain hitam (Tidak robek-robek)</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-ban" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Dilarang menggunakan aksesoris (anting, tindik, gelang, kalung, make up)</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-times-circle" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Dilarang membawa: rokok, vape, korek api, skincare (kecuali sunscreen), parfum, Hp/kelompok satu HP, alat elektronik lainnya</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-calendar-check" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Wajib mengikuti kegiatan dari awal sampai akhir</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-door-open" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Peserta dilarang meninggalkan kegiatan tanpa izin dari panitia</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-user-check" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Peserta diwajibkan berlaku sopan dan menjaga ketertiban</strong>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PERLENGKAPAN PRA -->
+    <h2>🎒 Perlengkapan Pra Jelajah Hutan</h2>
+    <div style="background: linear-gradient(135deg, rgba(244,208,63,0.1), rgba(244,208,63,0.05)); padding: 25px; border-radius: 20px; margin: 20px 0; border-left: 5px solid var(--gold);">
+      <ul style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-pencil-alt" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Alat tulis</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-book" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Buku</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-wine-bottle" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Botol Minum</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-candy-cane" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Permen (tidak boleh permen karet)</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-tshirt" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Baju Fakultas Kehutanan INSTIPER Yogyakarta</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-user" style="position: absolute; left: 0; color: var(--gold);"></i>
+          <strong>Celana bahan panjang hitam</strong>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PERLENGKAPAN HARI-H -->
+    <h2>🌿 Perlengkapan Hari-H Jelajah Hutan</h2>
+    <div style="background: linear-gradient(135deg, rgba(27,119,63,0.1), rgba(11,61,32,0.08)); padding: 25px; border-radius: 20px; margin: 20px 0; border-left: 5px solid var(--forest);">
+      <ul style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-pencil-alt" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Alat tulis</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-book" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Buku</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-wine-bottle" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Botol Minum</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-tshirt" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Baju Fakultas Kehutanan INSTIPER Yogyakarta</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-user" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Celana bahan panjang hitam</strong>
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+          <i class="fas fa-info-circle" style="position: absolute; left: 0; color: var(--forest);"></i>
+          <strong>Perlengkapan lainnya akan diinformasikan lebih lanjut</strong>
+        </li>
+      </ul>
+    </div>
+
+    <!-- TUGAS PESERTA -->
+    <h2>📝 Tugas Peserta</h2>
+    
+    <h3>Tugas Kelompok</h3>
+    <div style="background: linear-gradient(135deg, rgba(123,79,47,0.1), rgba(90,58,34,0.08)); padding: 20px; border-radius: 18px; margin: 15px 0; border-left: 5px solid var(--earth);">
+      <ul style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+          <i class="fas fa-users" style="position: absolute; left: 0; color: var(--earth);"></i>
+          <strong>Membuat Yel-yel Angkatan</strong> - Dibuat oleh satu angkatan dan minimal 5 yang memimpin yel-yel angkatan
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+          <i class="fas fa-microphone" style="position: absolute; left: 0; color: var(--earth);"></i>
+          <strong>Membuat Yel-yel di tiap kelompok</strong>
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+          <i class="fas fa-file-powerpoint" style="position: absolute; left: 0; color: var(--earth);"></i>
+          <strong>Membuat essay filosofi dari nama kelompok di buat Powerpoint</strong>
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+          <i class="fas fa-recycle" style="position: absolute; left: 0; color: var(--earth);"></i>
+          <strong>Membuat dan menghias pot dari bahan daur ulang</strong>
+        </li>
+      </ul>
+    </div>
+
+    <h3>Tugas Individu</h3>
+    <div style="background: linear-gradient(135deg, rgba(147,209,124,0.1), rgba(93,167,76,0.08)); padding: 20px; border-radius: 18px; margin: 15px 0; border-left: 5px solid var(--leaf);">
+      <ul style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+          <i class="fas fa-signature" style="position: absolute; left: 0; color: var(--leaf);"></i>
+          <strong>Tanda Tangan Angkatan:</strong>
+          <br>- Angkatan 21, 20, 19, 18 (15 tanda tangan)
+          <br>- Angkatan 22 (15 tanda tangan regular dan 15 tanda tangan RAPP)
+          <br>- Angkatan 23 (15 tanda tangan regular dan 15 tanda tangan RAPP)
+          <br>- Angkatan 24 (15 tanda tangan regular dan 15 tanda tangan RAPP)
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+          <i class="fas fa-id-card" style="position: absolute; left: 0; color: var(--leaf);"></i>
+          <strong>Membuat Biodata seluruh individu Angkatan 25:</strong>
+          <br>Foto, Nama, Asal daerah, Tempat dan tanggal lahir, Cita cita, Hobi, Motto hidup
+        </li>
+        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+          <i class="fas fa-clipboard-list" style="position: absolute; left: 0; color: var(--leaf);"></i>
+          <strong>Menyatat materi pra Jelajah Hutan dan materi saat kegiatan hari-H jelajah hutan</strong>
+        </li>
+      </ul>
+    </div>
+
+    <div style="background: linear-gradient(135deg, rgba(244,208,63,0.15), rgba(244,208,63,0.08)); padding: 20px; border-radius: 18px; margin: 25px 0; text-align: center; border: 2px solid rgba(244,208,63,0.3);">
+      <h3 style="color: var(--gold); margin-bottom: 10px;">📢 Informasi Penting</h3>
+      <p style="margin: 0; font-weight: 500;">Segala peraturan dan ketentuan di atas wajib dipatuhi oleh seluruh peserta Jelajah Hutan 2025. Pelanggaran terhadap peraturan dapat berakibat pada sanksi sesuai ketentuan yang berlaku.</p>
+    </div>
+
+    <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
+  </div>
+</div>
+  
+<!-- ========== ARTIKEL 5: SUSUNAN KEPANITIAAN ========== -->
+  <div id="artikel5" class="content">
     <div class="inner">
       <h1>Susunan Kepanitiaan Jelajah Hutan 2025</h1>
       <p style="text-align: center;">Berikut susunan panitia Jelajah Hutan 2025 berdasarkan divisi masing-masing 🌿</p>
@@ -1345,7 +1633,7 @@
         <h2>Ketua Panitia</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/ketua.jpg" alt="Ketua">
+            <img src="FotoPanitia/poto panitia  - Arif Maulana.jpg" alt="Ketua">
             <h4>Ketua</h4>
             <p>Ahmad Arif Maulana</p>
           </div>
@@ -1357,14 +1645,14 @@
         <h2>Sekretaris</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/sekretaris1.jpg" alt="Sekretaris I">
+            <img src="FotoPanitia/1761398390672 - Hardian bima.JPG" alt="Sekretaris I">
             <h4>Sekretaris I</h4>
             <p>Moch Hardian Bima</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/sekretaris2.jpg" alt="Sekretaris II">
+            <img src="FotoPanitia/Poto pitrii - FITRIANI ANI.JPG" alt="Sekretaris II">
             <h4>Sekretaris II</h4>
             <p>Fitriani</p>
           </div>
@@ -1376,14 +1664,14 @@
         <h2>Bendahara</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/bendahara1.jpg" alt="Bendahara I">
+            <img src="FotoPanitia/IMG-20251025-WA0065 - jessica salim.jpg" alt="Bendahara I">
             <h4>Bendahara I</h4>
             <p>Jessica Mery Salim</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/bendahara2.jpg" alt="Bendahara II">
+            <img src="FotoPanitia/DEL - delima sitorus.jpg" alt="Bendahara II">
             <h4>Bendahara II</h4>
             <p>Delima Sitorus</p>
           </div>
@@ -1395,24 +1683,24 @@
         <h2>Divisi SC</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/koordinator-sc.jpg" alt="Koordinator SC">
+            <img src="FotoPanitia/1761378095338 - Adiweno Iza Mashuri.jpg" alt="Koordinator SC">
             <h4>Koordinator</h4>
             <p>Adiweno Iza Mashuri</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/anggota-sc1.jpg" alt="Anggota SC">
+            <img src="FotoPanitia/brendy" alt="Anggota SC">
             <h4>Anggota</h4>
             <p>Brendy Suranta G.S.</p>
           </div>
           <div class="item">
-            <img src="images/anggota-sc2.jpg" alt="Anggota SC">
+            <img src="FotoPanitia/F754C89F-16CB-424B-A916-5BC675BB1195 - Pedro Leonard Siregar.jpeg" alt="Anggota SC">
             <h4>Anggota</h4>
             <p>Pedro Leonard Siregar</p>
           </div>
           <div class="item">
-            <img src="images/anggota-sc3.jpg" alt="Anggota SC">
+            <img src="FotoPanitia/IMG_3086 - Adrian Wiza saputra.jpeg" alt="Anggota SC">
             <h4>Anggota</h4>
             <p>Adrian Wiza Syaputra</p>
           </div>
@@ -1424,24 +1712,24 @@
         <h2>Divisi Acara</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/koordinator-acara.jpg" alt="Koordinator Acara">
+            <img src="FotoPanitia/IMG-20250927-WA0088 - Bryan Hanief.jpg" alt="Koordinator Acara">
             <h4>Koordinator</h4>
             <p>Bryan hanief</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/anggota-acara1.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG_2581 - Yoshua Tanggang.JPG" alt="Anggota">
             <h4>Anggota</h4>
             <p>Yosua Marulitua S.</p>
           </div>
           <div class="item">
-            <img src="images/anggota-acara2.jpg" alt="Anggota">
+            <img src="FotoPanitia/dwi" alt="Anggota">
             <h4>Anggota</h4>
             <p>Dwi Angeline</p>
           </div>
           <div class="item">
-            <img src="images/anggota-acara3.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG-20251025-WA0034 - Rubi Manullang.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Rubi Angrid br Manullang</p>
           </div>
@@ -1453,22 +1741,22 @@
         <h2>Divisi Korlab</h2>
         <div class="anggota">
           <div class="item">
-            <img src="images/korlab1.jpg" alt="Korlab I">
+            <img src="FotoPanitia/" alt="Korlab I">
             <h4>Korlab I</h4>
             <p>Firman</p>
           </div>
           <div class="item">
-            <img src="images/korlab2.jpg" alt="Korlab II">
+            <img src="FotoPanitia/cel" alt="Korlab II">
             <h4>Korlab II</h4>
             <p>Cello</p>
           </div>
           <div class="item">
-            <img src="images/korlab3.jpg" alt="Korlab III">
+            <img src="FotoPanitia/IMG-20251025-WA0020 - Mangihut Simbolon12.jpg" alt="Korlab III">
             <h4>Korlab III</h4>
             <p>Mangihut Pandopatan Simbolon </p>
           </div>
           <div class="item">
-            <img src="images/korlab4.jpg" alt="Korlab IV">
+            <img src="FotoPanitia/chris" alt="Korlab IV">
             <h4>Korlab IV</h4>
             <p>Christian</p>
           </div>
@@ -1480,7 +1768,7 @@
         <h2>Divisi PDD</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/koordinator-pdd.jpg" alt="Koordinator PDD">
+            <img src="FotoPanitia/1761296890087 - Muhammad Daffa.jpg" alt="Koordinator PDD">
             <h4>Koordinator</h4>
             <p>Muhammad Daffa Nugraha</p>
           </div>
@@ -1492,17 +1780,17 @@
             <p>Ahmad Zulkifli</p>
           </div>
           <div class="item">
-            <img src="images/anggota-pdd2.jpg" alt="Anggota">
+            <img src="FotoPanitia/" alt="Anggota">
             <h4>Anggota</h4>
             <p>Niccolas Gultom</p>
           </div>
           <div class="item">
-            <img src="images/anggota-pdd3.jpg" alt="Anggota">
+            <img src="FotoPanitia/foto - Frederick Hasan.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Frederick Hasan</p>
           </div>
           <div class="item">
-            <img src="images/anggota-pdd4.jpg" alt="Anggota">
+            <img src="FotoPanitia/del" alt="Anggota">
             <h4>Anggota</h4>
             <p>Delima Klaudia T.</p>
           </div>
@@ -1514,24 +1802,24 @@
         <h2>Divisi Humas</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/koordinator-humas.jpg" alt="Koordinator Humas">
+            <img src="FotoPanitia/1000577499 - Muhammad Taufik.jpg" alt="Koordinator Humas">
             <h4>Koordinator</h4>
             <p>Taufik</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/anggota-humas1.jpg" alt="Anggota">
+            <img src="FotoPanitia/" alt="Anggota">
             <h4>Anggota</h4>
             <p>Pram</p>
           </div>
           <div class="item">
-            <img src="images/anggota-humas2.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG-20251024-WA0016 - Dafid Joko.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Dafid Joko Purwanto</p>
           </div>
           <div class="item">
-            <img src="images/anggota-humas3.jpg" alt="Anggota">
+            <img src="FotoPanitia/" alt="Anggota">
             <h4>Anggota</h4>
             <p>Alfa Sunu Pranata Aji</p>
           </div>
@@ -1543,29 +1831,29 @@
         <h2>Divisi Konsumsi</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/koordinator-konsumsi.jpg" alt="Koordinator Konsumsi">
+            <img src="FotoPanitia/IMG-20250710-WA0548 - Iffah Nuring.jpg" alt="Koordinator Konsumsi">
             <h4>Koordinator</h4>
             <p>Iffah Nuring Sanuminu</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/anggota-konsumsi1.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG_2096 - Tiara Dwi.jpeg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Tiara Dwi Jelita</p>
           </div>
           <div class="item">
-            <img src="images/anggota-konsumsi2.jpg" alt="Anggota">
+            <img src="FotoPanitia/20251019_144124 - Dina Rizky Arfiyanti.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Dina Rizky Arfiyanti </p>
           </div>
           <div class="item">
-            <img src="images/anggota-konsumsi3.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG_0942 - Sean Adelar Siahaan.jpeg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Sean Adelar S.</p>
           </div>
           <div class="item">
-            <img src="images/anggota-konsumsi4.jpg" alt="Anggota">
+            <img src="FotoPanitia/Screenshot_2025-10-26-21-15-51-311_com.miui.gallery - Humphrey Ignatius.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Humprey Ignatius P.</p>
           </div>
@@ -1577,29 +1865,29 @@
         <h2>Divisi Timkes</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/koordinator-timkes.jpg" alt="Koordinator Timkes">
+            <img src="FotoPanitia/64da1d4c-e02a-4869-b0f5-15ba6130628d - Syadza Salsabillah Putri.jpeg" alt="Koordinator Timkes">
             <h4>Koordinator</h4>
             <p>Syadza Salsabillah Putri</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/anggota-timkes1.jpg" alt="Anggota">
+            <img src="FotoPanitia/jer" alt="Anggota">
             <h4>Anggota</h4>
             <p>Jeremia Juranza S.</p>
           </div>
           <div class="item">
-            <img src="images/anggota-timkes2.jpg" alt="Anggota">
+            <img src="FotoPanitia/A29832BC-9D78-4163-8AC4-FB85C5DBF37C - Timothy Manurung.jpeg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Timothy Petra Yabes M.</p>
           </div>
           <div class="item">
-            <img src="images/anggota-timkes3.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG_1974 - Rafael Butar.heic" alt="Anggota">
             <h4>Anggota</h4>
             <p>Rafael Butar-butar</p>
           </div>
           <div class="item">
-            <img src="images/anggota-timkes4.jpg" alt="Anggota">
+            <img src="FotoPanitia/ade" alt="Anggota">
             <h4>Anggota</h4>
             <p>Ade Setiawan</p>
           </div>
@@ -1611,39 +1899,39 @@
         <h2>Divisi Perkab</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/koordinator-perkab.jpg" alt="Koordinator Perkab">
+            <img src="FotoPanitia/wahy" alt="Koordinator Perkab">
             <h4>Koordinator</h4>
             <p>Wahyu</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/anggota-perkab1.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG_3049 - fawaz abyan.jpeg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Fawaz Abyan Syah </p>
           </div>
           <div class="item">
-            <img src="images/anggota-perkab2.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG-20250210-WA0061 - Sandro Wadha.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Sandro</p>
           </div>
           <div class="item">
-            <img src="images/anggota-perkab3.jpg" alt="Anggota">
+            <img src="FotoPanitia/Screenshot_2025-10-20-23-35-47-986_com.miui.videoplayer - Sulaiman rasabou.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Sulaiman</p>
           </div>
           <div class="item">
-            <img src="images/anggota-perkab4.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG_20251026_192834_411 - Juan Umbu.webp" alt="Anggota">
             <h4>Anggota</h4>
             <p>Juan Kenith Umbu Wunu Sabatudung </p>
           </div>
           <div class="item">
-            <img src="images/anggota-perkab5.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG-20250906-WA0057 - Sukeal Leonardo.jpg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Syukeal Leonardo </p>
           </div>
           <div class="item">
-            <img src="images/anggota-perkab6.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG_1141 - Verda Muzaffarr.jpeg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Muh Verda Muzaffar Tsaqib</p>
           </div>
@@ -1655,24 +1943,24 @@
         <h2>Divisi USDA</h2>
         <div class="koordinator">
           <div class="item">
-            <img src="images/koordinator-usda.jpg" alt="Koordinator USDA">
+            <img src="FotoPanitia/IMG_3848 - Dwi cahya Ajeng lestari.JPG" alt="Koordinator USDA">
             <h4>Koordinator</h4>
             <p>Dwi Cahya Ajeng Lestari</p>
           </div>
         </div>
         <div class="anggota">
           <div class="item">
-            <img src="images/anggota-usda1.jpg" alt="Anggota">
+            <img src="FotoPanitia/gina" alt="Anggota">
             <h4>Anggota</h4>
             <p>Gina</p>
           </div>
           <div class="item">
-            <img src="images/anggota-usda2.jpg" alt="Anggota">
+            <img src="FotoPanitia/elia" alt="Anggota">
             <h4>Anggota</h4>
             <p>Elia Mangara Tua P.</p>
           </div>
           <div class="item">
-            <img src="images/anggota-usda3.jpg" alt="Anggota">
+            <img src="FotoPanitia/IMG_0965 - Henjelina Sagala.jpeg" alt="Anggota">
             <h4>Anggota</h4>
             <p>Henjelina Sagala</p>
           </div>
@@ -1683,8 +1971,8 @@
     </div>
   </div>
 
-  <!-- ========== ARTIKEL 5: MERCHANDISE ========== -->
-  <div id="artikel5" class="content">
+  <!-- ========== ARTIKEL 6: MERCHANDISE ========== -->
+  <div id="artikel6" class="content">
     <div class="inner">
       <h1>Merchandise Resmi</h1>
       <p style="text-align: center; font-size: 18px;">Berbagai merchandise resmi Jelajah Hutan 2025 Akan Segera Hadir!🌲</p>
@@ -2053,6 +2341,31 @@
       }
     }
 
+// ========== SPONSOR DATA ==========
+  const sponsors = [
+    { name: "Sponsor 1", logo: "images/sponsor1.jpg", ig: "https://instagram.com/sponsor1" },
+    { name: "Sponsor 2", logo: "images/sponsor2.jpg", ig: "https://instagram.com/sponsor2" },
+    { name: "Sponsor 3", logo: "images/sponsor3.jpg", ig: "https://instagram.com/sponsor3" },
+    { name: "Sponsor 4", logo: "images/sponsor4.jpg", ig: "https://instagram.com/sponsor4" }
+  ];
+
+  function renderSponsors() {
+    const sponsorContainer = document.querySelector('.sponsor-logos');
+    sponsorContainer.innerHTML = '';
+    
+    sponsors.forEach(sponsor => {
+      const sponsorLogo = document.createElement('img');
+      sponsorLogo.src = sponsor.logo;
+      sponsorLogo.alt = sponsor.name;
+      sponsorLogo.className = 'sponsor-logo';
+      sponsorLogo.onclick = () => window.open(sponsor.ig, '_blank');
+      sponsorContainer.appendChild(sponsorLogo);
+    });
+  }
+
+// Panggil fungsi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', renderSponsors);
+
     // ========== ARTICLE/POPUP FUNCTIONS ==========
     function showArticle(id) {
       const el = document.getElementById(id);
@@ -2213,4 +2526,3 @@
   </script>
 </body>
 </html>
-
