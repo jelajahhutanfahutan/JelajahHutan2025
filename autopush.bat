@@ -10,6 +10,6 @@ git add .
 git commit -m "Auto update from VS Code"
 git push origin main
 echo ✅ Perubahan sudah dikirim ke GitHub.
-echo ⏳ Menunggu 60 detik untuk update berikutnya...
-timeout /t 60 >nul
+echo ⏳ Menunggu 30 detik untuk update berikutnya...
+timeout /t 30 >nul
 goto loop
