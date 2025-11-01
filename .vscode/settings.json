@@ -1,11 +1,3 @@
 {
-  "saveAndRun": {
-    "commands": [
-      {
-        "match": ".*",
-        "cmd": "bash -c \"if ! git diff --quiet; then git add . && git commit -m 'auto update $(date +\"%Y-%m-%d %H:%M:%S\")' && git push; else echo 'No changes to commit'; fi\"",
-        "silent": true
-      }
-    ]
-  }
+    "liveServer.settings.port": 5502
 }
