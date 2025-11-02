@@ -1,0 +1,2681 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jelajah Hutan 2025</title>
+
+  <!-- FONT + ICONS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ========== CSS VARIABLES ========== */
+    :root {
+      --bg-deep: #0b3d20;
+      --forest: #1b773f;
+      --leaf: #93d17c;
+      --earth: #7b4f2f;
+      --gold: #f4d03f;
+      --muted: #ecf6ea;
+      --card: #ffffff;
+      --shadow: 0 10px 30px rgba(2,20,8,0.45);
+      --radius: 18px;
+      --completed: #888888;
+      --ongoing: #ff9800;
+    }
+
+    /* ========== RESET & BASE ========== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%; 
+      font-family: 'Poppins', sans-serif; 
+      line-height: 1.6; 
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(180deg, #0a2818 0%, #0b3d20 30%, #0c3d23 70%, #072412 100%);
+      color: var(--muted);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(147,209,124,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(27,119,63,0.08) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      position:sticky; 
+      top: 0; 
+      left: 0;
+      width: 100%;
+      z-index: 1200;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(7,36,18,0.95), rgba(7,36,18,0.85));
+      border-bottom: 1px solid rgba(147,209,124,0.2);
+      padding: 16px 28px;
+      display: flex; 
+      align-items: center; 
+      gap: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .brand { 
+      display: flex; 
+      align-items: center; 
+      gap: 14px; 
+    }
+
+    .brand .logo { 
+      width: 68px; 
+      height: 68px; 
+      border-radius: 16px; 
+      object-fit: cover;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .brand .logo:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .brand h1 { 
+      font-size: 20px; 
+      color: var(--gold); 
+      margin: 0; 
+      font-weight: 800; 
+      letter-spacing: 1.5px;
+      text-align: left;
+      text-shadow: 0 2px 10px rgba(244,208,63,0.4);
+    }
+
+    .brand p { 
+      margin: 0; 
+      font-size: 13px; 
+      color: rgba(255,255,255,0.85);
+      text-align: left;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    nav { 
+      margin-left: auto; 
+      display: flex; 
+      gap: 10px; 
+      align-items: center; 
+    }
+
+    .extra-logos { 
+      display: flex; 
+      gap: 10px; 
+      align-items: center; 
+    }
+
+    .extra-logos img { 
+      width: 62px; 
+      height: 62px; 
+      object-fit: cover; 
+      border-radius: 50%; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: 2px solid rgba(147,209,124,0.3);
+    }
+
+    .extra-logos img:hover { 
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(147,209,124,0.5);
+    }
+
+    /* ========== HOME SECTION ========== */
+    .home {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 140px 6vw 60px;
+      overflow: hidden;
+    }
+
+    .home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at center top, rgba(147,209,124,0.1) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(27,119,63,0.08) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .home-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1100px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      padding: 50px 40px;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(147,209,124,0.2);
+      transition: transform 0.4s ease;
+    }
+
+    .home-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+    }
+
+    .home-center-logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .home-center-logo img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 30px;
+      box-shadow: 
+        0 15px 40px rgba(0,0,0,0.5),
+        0 0 40px rgba(147,209,124,0.3);
+      transition: transform 0.4s ease;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .home-center-logo img:hover {
+      transform: scale(1.08) rotate(5deg);
+    }
+
+    .home-content h2 {
+      color: var(--gold);
+      font-size: clamp(36px, 5.5vw, 52px);
+      margin: 0 0 20px;
+      font-weight: 800;
+      line-height: 1.2;
+      text-shadow: 
+        0 6px 24px rgba(0,0,0,0.6),
+        0 0 30px rgba(244,208,63,0.3);
+    }
+
+    .home-content h2 span {
+      color: var(--muted);
+      display: block;
+      margin-top: 10px;
+    }
+
+    .home-content > p {
+      color: rgba(236,246,234,0.95);
+      margin-bottom: 30px;
+      font-size: 19px;
+      line-height: 1.8;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+
+    .home-content video {
+      border-radius: 20px;
+      width: 100%;
+      max-width: 700px;
+      margin: 30px auto;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+      border: 3px solid rgba(147,209,124,0.3);
+    }
+
+    .home-content h3 {
+      background: linear-gradient(135deg, rgba(147,209,124,0.15), rgba(27,119,63,0.1));
+      border-left: 5px solid var(--gold);
+      padding: 25px 35px;
+      margin: 40px auto;
+      border-radius: 18px;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--muted);
+      font-weight: 500;
+      line-height: 1.8;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* ========== CTA CARDS ========== */
+    .cta-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      border-radius: 25px;
+      padding: 25px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+      border: 2px solid rgba(147,209,124,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(147,209,124,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      border-color: var(--leaf);
+    }
+
+    /* ========== CARD ICONS ========== */
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--leaf), var(--forest));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 32px;
+      color: var(--bg-deep);
+      box-shadow: 0 8px 25px rgba(147,209,124,0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 3px solid rgba(255,255,255,0.2);
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 12px 35px rgba(147,209,124,0.6);
+      background: linear-gradient(135deg, var(--gold), #f1c40f);
+      color: var(--bg-deep);
+    }
+
+    .card h4 {
+      color: var(--gold);
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(244,208,63,0.3);
+    }
+
+    /* Remove old card image styles */
+    .card img {
+      display: none;
+    }
+
+    /* ========== SPONSOR SECTION ========== */
+    .sponsor-section {
+      margin: 40px 0 30px;
+      text-align: center;
+    }
+
+    .sponsor-title {
+      color: var(--gold);
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(244,208,63,0.3);
+    }
+
+    .sponsor-logos {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .sponsor-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      padding: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(147,209,124,0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .sponsor-logo:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(147,209,124,0.5);
+      border-color: var(--leaf);
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ========== UPCOMING EVENTS ========== */
+    .upcoming-events {
+      padding: 100px 6vw;
+      text-align: center;
+      position: relative;
+    }
+
+    .upcoming-events h2 {
+      color: var(--gold);
+      margin-bottom: 15px;
+      font-size: clamp(36px, 5.5vw, 52px);
+      font-weight: 800;
+      text-shadow: 
+        0 6px 24px rgba(0,0,0,0.5),
+        0 0 30px rgba(244,208,63,0.3);
+    }
+
+    .upcoming-events h3 {
+      color: var(--leaf);
+      margin-bottom: 50px;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 600;
+    }
+
+    /* ========== COUNTDOWN TIMER ========== */
+    .countdown-container {
+      background: linear-gradient(135deg, rgba(147,209,124,0.2), rgba(27,119,63,0.15));
+      border: 3px solid var(--leaf);
+      border-radius: 25px;
+      padding: 50px 30px;
+      margin: 50px auto;
+      max-width: 750px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+    }
+
+    .countdown-title {
+      color: var(--gold);
+      font-size: clamp(24px, 3.5vw, 32px);
+      margin-bottom: 30px;
+      font-weight: 800;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .time-box {
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));
+      border: 3px solid var(--gold);
+      border-radius: 20px;
+      padding: 25px 30px;
+      min-width: 110px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .time-box:hover {
+      transform: translateY(-10px) scale(1.08);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .time-number {
+      font-size: clamp(36px, 6.5vw, 52px);
+      font-weight: 800;
+      color: var(--gold);
+      text-shadow: 
+        0 4px 15px rgba(0,0,0,0.5),
+        0 0 25px rgba(244,208,63,0.4);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .time-label {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .info-event {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      padding: 30px 25px;
+      border-radius: 22px;
+      width: 240px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      border: 2px solid rgba(147,209,124,0.2);
+      position: relative;
+    }
+
+    .info-box.completed {
+      background: linear-gradient(135deg, rgba(136,136,136,0.2), rgba(85,85,85,0.15));
+      border-color: var(--completed);
+      color: var(--completed);
+    }
+
+    .info-box.ongoing {
+      background: linear-gradient(135deg, rgba(255,152,0,0.2), rgba(255,152,0,0.15));
+      border-color: var(--ongoing);
+      color: var(--ongoing);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    .info-box.completed::after {
+      content: '✓ SELESAI';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--completed);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .info-box.ongoing::after {
+      content: '🔥 BERLANGSUNG';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--ongoing);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: bold;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.7; }
+    }
+
+    .info-box:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.5);
+      border-color: var(--leaf);
+    }
+
+    .info-box.completed:hover {
+      border-color: var(--completed);
+    }
+
+    .info-box.ongoing:hover {
+      border-color: var(--ongoing);
+    }
+
+    .info-box i { 
+      color: var(--gold); 
+      font-size: 36px;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 4px 10px rgba(244,208,63,0.4));
+    }
+
+    .info-box.completed i {
+      color: var(--completed);
+    }
+
+    .info-box.ongoing i {
+      color: var(--ongoing);
+    }
+
+    .info-box h4 { 
+      color: var(--muted); 
+      margin: 15px 0;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .info-box.completed h4 {
+      color: var(--completed);
+    }
+
+    .info-box.ongoing h4 {
+      color: var(--ongoing);
+    }
+
+    .tanggal-item { 
+      background: linear-gradient(135deg, var(--leaf), var(--forest));
+      padding: 12px 20px;
+      border-radius: 16px;
+      display: inline-block;
+      font-size: 15px;
+      color: var(--bg-deep);
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(147,209,124,0.4);
+    }
+
+    .info-box.completed .tanggal-item {
+      background: linear-gradient(135deg, var(--completed), #666666);
+      box-shadow: 0 6px 20px rgba(136,136,136,0.4);
+    }
+
+    .info-box.ongoing .tanggal-item {
+      background: linear-gradient(135deg, var(--ongoing), #ff2222);
+      box-shadow: 0 6px 20px rgba(255,152,0,0.4);
+    }
+
+    /* ========== CONTENT POPUP ========== */
+    .content {
+      position: fixed; 
+      inset: 0; 
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(8px);
+      padding: 0; 
+      overflow-y: auto; 
+      display: none; 
+      z-index: 2000; 
+      transition: all 0.4s ease;
+    }
+
+    .content .inner {
+      max-width: 100%; 
+      min-height: 100vh;
+      margin: 0; 
+      color: var(--muted);
+      background: linear-gradient(135deg, rgba(11,61,32,0.95), rgba(7,36,18,0.98));
+      border-radius: 0; 
+      padding: 80px 40px 40px; 
+      box-shadow: none;
+      border: none;
+      backdrop-filter: blur(10px);
+      opacity: 0; 
+      transform: translateY(30px); 
+      transition: all 0.5s ease;
+      position: relative;
+    }
+
+    .content.active {
+      display: block;
+    }
+
+    .content.active .inner { 
+      opacity: 1; 
+      transform: translateY(0);
+    }
+
+    .content h1 { 
+      color: var(--gold); 
+      margin-bottom: 25px; 
+      font-size: clamp(28px, 4vw, 40px); 
+      font-weight: 800; 
+      text-shadow: 
+        0 6px 20px rgba(0,0,0,0.6),
+        0 0 30px rgba(244,208,63,0.3);
+      text-align: center;
+    }
+
+    .content h2 {
+      color: var(--leaf);
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .content h3 {
+      color: var(--gold);
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .content p { 
+      line-height: 1.9; 
+      font-size: 17px; 
+      margin-bottom: 20px; 
+      color: rgba(236,246,234,0.95); 
+      text-align: justify;
+    }
+
+    .content img { 
+      max-width: 100%; 
+      border-radius: 18px; 
+      margin: 25px auto; 
+      display: block;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.5); 
+      transition: transform 0.3s;
+      border: 3px solid rgba(147,209,124,0.3);
+    }
+
+    .content img:hover { 
+      transform: scale(1.02); 
+    }
+
+    /* ========== BUTTONS ========== */
+   .back-btn { 
+      background: linear-gradient(135deg, var(--leaf), var(--forest)); 
+      color: var(--bg-deep); 
+      border: 0; 
+      padding: 16px 32px; 
+      border-radius: 18px; 
+      cursor: pointer; 
+      font-weight: 800; 
+      font-size: 16px; 
+      box-shadow: 0 10px 30px rgba(147,209,124,0.4); 
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      display: inline-block;
+    }
+
+    .back-btn:hover { 
+      transform: translateY(-4px) scale(1.05); 
+      box-shadow: 0 15px 40px rgba(147,209,124,0.6); 
+    }
+
+    .buy-btn { 
+      background: linear-gradient(135deg, var(--leaf), var(--forest)); 
+      color: var(--bg-deep); 
+      border: 0; 
+      padding: 12px 24px; 
+      border-radius: 14px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      transition: all 0.3s ease; 
+      box-shadow: 0 8px 25px rgba(147,209,124,0.4);
+      font-size: 15px;
+    }
+
+    .buy-btn:hover { 
+      transform: translateY(-3px) scale(1.06); 
+      box-shadow: 0 12px 35px rgba(147,209,124,0.6); 
+    }
+
+    /* ========== DIVISI SECTION ========== */
+    .divisi {
+      margin-bottom: 50px;
+    }
+
+    .divisi h2 {
+      color: var(--gold);
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+    }
+
+    .divisi .koordinator {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .divisi .anggota {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .divisi .item {
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 2px solid var(--leaf);
+      color: var(--muted);
+      border-radius: 20px;
+      padding: 18px;
+      width: 210px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .divisi .item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .divisi .item img {
+      width: 100%;
+      height: 140px;
+      border-radius: 14px;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 2px solid rgba(147,209,124,0.3);
+    }
+
+    .divisi .item h4 {
+      color: var(--gold);
+      margin: 10px 0 6px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .divisi .item p {
+      color: var(--muted);
+      margin: 4px 0;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* ========== GALLERY MERCHANDISE ========== */
+    .gallery { 
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 30px; 
+      justify-content: center; 
+      margin-top: 40px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery .item { 
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)); 
+      color: var(--muted); 
+      border-radius: 25px; 
+      padding: 25px; 
+      box-shadow: 0 15px 45px rgba(0,0,0,0.4); 
+      text-align: center; 
+      transition: transform 0.4s, box-shadow 0.4s;
+      border: 2px solid rgba(147,209,124,0.2);
+    }
+
+    .gallery .item:hover { 
+      transform: translateY(-12px) scale(1.03); 
+      box-shadow: 0 20px 55px rgba(0,0,0,0.6);
+      border-color: var(--leaf);
+    }
+
+    .gallery .item img { 
+      width: 100%; 
+      height: 200px; 
+      object-fit: cover; 
+      border-radius: 18px; 
+      margin-bottom: 18px;
+      border: 2px solid rgba(147,209,124,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery .item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery .item h4 { 
+      margin: 15px 0 10px; 
+      font-size: 19px; 
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .gallery .item p { 
+      font-weight: 800; 
+      color: var(--leaf); 
+      margin-bottom: 18px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    /* ========== ORDER FORM ========== */
+    #orderForm {
+      display: none; 
+      position: fixed; 
+      inset: 0; 
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 3000; 
+      justify-content: center; 
+      align-items: center;
+    }
+
+    #orderForm .form-inner {
+      background: linear-gradient(135deg, var(--bg-deep), #072412); 
+      padding: 40px; 
+      border-radius: 25px; 
+      max-width: 450px; 
+      width: 90%; 
+      color: var(--muted);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.7);
+      border: 3px solid rgba(147,209,124,0.3);
+    }
+
+    #orderForm h3 { 
+      color: var(--gold); 
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    #orderForm input { 
+      width: 100%; 
+      margin-bottom: 15px; 
+      padding: 14px; 
+      border-radius: 12px; 
+      border: 2px solid rgba(147,209,124,0.3);
+      background: rgba(255,255,255,0.1);
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    #orderForm input:focus {
+      outline: none;
+      border-color: var(--leaf);
+      background: rgba(255,255,255,0.15);
+    }
+
+    #orderForm button { 
+      padding: 14px 28px; 
+      border-radius: 14px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      transition: all 0.3s;
+      border: none;
+      font-size: 15px;
+    }
+
+    #orderForm .btn-send { 
+      background: linear-gradient(135deg, var(--leaf), var(--forest)); 
+      color: var(--bg-deep); 
+    }
+
+    #orderForm .btn-send:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(147,209,124,0.5);
+    }
+
+    #orderForm .btn-cancel { 
+      background: linear-gradient(135deg, var(--earth), #5a3a22); 
+      color: #fff; 
+    }
+
+    #orderForm .btn-cancel:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(123,79,47,0.5);
+    }
+
+    /* ========== SLIDER ========== */
+    .slide-container { 
+      position: relative; 
+    }
+
+    .slide { 
+      display: none; 
+    }
+
+    .slide.active { 
+      display: block; 
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide img { 
+      max-width: 100%; 
+      border-radius: 18px; 
+      margin: 25px auto;
+      display: block;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+      border: 3px solid rgba(147,209,124,0.3);
+    }
+
+    /* ========== FOOTER ========== */
+    footer { 
+      padding: 50px 6vw; 
+      text-align: center; 
+      background: linear-gradient(180deg, rgba(3,28,11,0.8), rgba(3,28,11,0.95)); 
+      color: rgba(255,255,255,0.85);
+      border-top: 2px solid rgba(147,209,124,0.2);
+    }
+
+    footer > div:first-child {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .social-row a { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      width: 55px; 
+      height: 55px; 
+      border-radius: 50%; 
+      background: linear-gradient(135deg, rgba(147,209,124,0.2), rgba(27,119,63,0.15)); 
+      transition: all 0.3s; 
+      font-size: 26px; 
+      color: var(--gold);
+      border: 2px solid rgba(147,209,124,0.3);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .social-row a:hover { 
+      transform: translateY(-5px) scale(1.12); 
+      background: linear-gradient(135deg, var(--leaf), var(--forest)); 
+      color: var(--bg-deep); 
+      box-shadow: 0 12px 35px rgba(147,209,124,0.5);
+    }
+
+    /* ========== FALLING LEAVES EFFECT ========== */
+    #falling-leaves {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .leaf {
+      position: absolute;
+      top: -50px;
+      opacity: 0.7;
+      font-size: 18px;
+    }
+
+    .video-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 30px 0;
+    }
+
+    .video-container video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+      border: 3px solid rgba(147,209,124,0.3);
+    }
+
+    .video-caption {
+      margin-top: 15px;
+      font-size: 15px;
+      color: var(--muted);
+      font-style: italic;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* ========== CONTENT LAYOUT IMPROVEMENTS ========== */
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 30px 0;
+    }
+
+    .content-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 2px solid rgba(147,209,124,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      border-color: var(--leaf);
+    }
+
+    .content-card h3 {
+      color: var(--gold);
+      margin-bottom: 15px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .content-card ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .content-card li {
+      margin-bottom: 12px;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .content-card li:before {
+      content: '🌿';
+      position: absolute;
+      left: 0;
+      color: var(--leaf);
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(244,208,63,0.15), rgba(244,208,63,0.08));
+      border-left: 5px solid var(--gold);
+      padding: 25px;
+      border-radius: 18px;
+      margin: 25px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .info-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .info-list li {
+      margin-bottom: 15px;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .info-list li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--leaf);
+      font-weight: bold;
+    }
+
+    /* ========== RESPONSIVE DESIGN ========== */
+    @media (max-width: 980px) {
+      header {
+        padding: 14px 20px;
+      }
+
+      .home {
+        padding: 120px 5vw 50px;
+      }
+
+      .home-content {
+        padding: 40px 30px;
+      }
+
+      .home-center-logo img {
+        width: 130px;
+        height: 130px;
+      }
+
+      .cta-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+      }
+
+      .upcoming-events {
+        padding: 80px 5vw;
+      }
+
+      .info-event {
+        gap: 20px;
+      }
+
+      .info-box {
+        width: 200px;
+      }
+
+      .content .inner {
+        padding: 70px 25px 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 12px 16px;
+        gap: 12px;
+      }
+
+      .brand .logo {
+        width: 56px;
+        height: 56px;
+      }
+
+      .brand h1 {
+        font-size: 16px;
+      }
+
+      .brand p {
+        font-size: 11px;
+      }
+
+      .extra-logos img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .home {
+        padding: 100px 4vw 40px;
+      }
+
+      .home-content {
+        padding: 30px 20px;
+      }
+
+      .home-center-logo img {
+        width: 110px;
+        height: 110px;
+      }
+
+      .cta-cards {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+
+      .time-box {
+        min-width: 80px;
+        padding: 18px 20px;
+      }
+      .time-number {
+        font-size: 32px;
+      }
+
+      .time-label {
+        font-size: 12px;
+      }
+
+      .info-box {
+        width: 170px;
+        padding: 22px 18px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 22px;
+      }
+
+      .divisi .item {
+        width: 190px;
+      }
+
+      .content .inner {
+        padding: 60px 20px 25px;
+      }
+
+      #orderForm .form-inner {
+        padding: 30px 25px;
+      }
+
+      .back-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+        top: 15px;
+        left: 15px;
+      }
+    }
+
+    .blink-text {
+      color: #ff0000 !important;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0.7; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="brand">
+      <img src="images/logo-instiper-removebg-preview.png" alt="logo" class="logo" />
+      <div>
+        <h1>JELAJAH HUTAN 2025</h1>
+        <p>KEHUTANAN</p>
+      </div>
+    </div>
+    <nav>
+      <div class="extra-logos">
+        <img src="images/BEM.jpg" alt="Logo BEM">
+        <img src="images/SMH.png" alt="Logo SENAT">
+        <img src="images/HMJ.jpg" alt="Logo HMJ">
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== HOME SECTION ========== -->
+  <section class="home" id="home">
+    <div class="home-content">
+      <div class="home-center-logo">
+        <img src="images/Maskot.jpg" alt="Logo Tengah" />
+      </div>
+
+      <h2>Selamat Datang Di<span>"Jelajah Hutan 2025"</span></h2>
+      <p>Program Pengkaderan Untuk Mahasiswa Baru Fakultas Kehutanan Instiper Yogyakarta.</p>
+
+      <video autoplay muted controls loop playsinline>
+        <source src="videos/promosi.mp4" type="video/mp4">
+        Browser Anda tidak mendukung pemutaran video.
+      </video>
+
+      <h3>"PENGKADERAN BUKAN AJANG PERPELONCOAN MELAINKAN LANGKAH AWAL MENJADI SEORANG RIMBAWAN : SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN"</h3>
+
+<!-- ========== SPONSOR SECTION ========== -->
+      <div class="sponsor-section">
+        <div class="sponsor-title">Didukung Oleh</div>
+        <div class="sponsor-logos">
+          <img src="images/sponsor1.jpg" alt="Sponsor 1" class="sponsor-logo" onclick="window.open('https://instagram.com/sponsor1', '_blank')">
+          <img src="images/sponsor2.jpg" alt="Sponsor 2" class="sponsor-logo" onclick="window.open('https://instagram.com/sponsor2', '_blank')">
+          <img src="images/sponsor3.jpg" alt="Sponsor 3" class="sponsor-logo" onclick="window.open('https://instagram.com/sponsor3', '_blank')">
+          <img src="images/sponsor4.jpg" alt="Sponsor 4" class="sponsor-logo" onclick="window.open('https://instagram.com/sponsor4', '_blank')">
+        </div>
+      </div>
+
+      <div class="cta-cards">
+        <div class="card" onclick="showArticle('artikel1')">
+          <div class="card-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h4>Tema</h4>
+        </div>
+        <div class="card" onclick="showArticle('artikel2')">
+          <div class="card-icon">
+            <i class="fas fa-kiwi-bird"></i>
+          </div>
+          <h4>Filosofi Maskot 2025</h4>
+        </div>
+        <div class="card" onclick="showArticle('artikel3')">
+          <div class="card-icon">
+            <i class="fas fa-compass"></i>
+          </div>
+          <h4>Materi Survival</h4>
+        </div>
+        <div class="card" onclick="showArticle('artikel4')">
+          <div class="card-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <h4>Peraturan, Perlengkapan & Tugas Peserta</h4>
+        </div>
+        <div class="card" onclick="showArticle('artikel5')">
+          <div class="card-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h4>Susunan Kepanitiaan</h4>
+        </div>
+        <div class="card" onclick="showArticle('artikel6')">
+          <div class="card-icon">
+            <i class="fas fa-tshirt"></i>
+          </div>
+          <h4>Merchandise🛒</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== UPCOMING EVENTS SECTION ========== -->
+  <section class="upcoming-events">
+    <h2>Jelajah Hutan 2025 🌿</h2>
+    <h3>Coming Soon...</h3>
+    
+    <!-- Countdown Timer -->
+    <div class="countdown-container">
+      <div class="countdown-title">⏰ Hitung Mundur Sosialisasi Jelajah Hutan</div>
+      <div id="countdown">
+        <div class="time-box">
+          <div class="time-number">0</div>
+          <div class="time-label">Hari</div>
+        </div>
+        <div class="time-box">
+          <div class="time-number">0</div>
+          <div class="time-label">Jam</div>
+        </div>
+        <div class="time-box">
+          <div class="time-number">0</div>
+          <div class="time-label">Menit</div>
+        </div>
+        <div class="time-box">
+          <div class="time-number">0</div>
+          <div class="time-label">Detik</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-event">
+      <div class="info-box" id="event-sosialisasi" onclick="showArticle('event1')">
+        <i class="fa-solid fa-calendar-days"></i>
+        <h4>Sosialisasi Jelajah Hutan</h4>
+        <div class="tanggal-item">3 Nov 2025</div>
+      </div>
+    </div>
+
+    <div class="info-event">
+      <div class="info-box" id="event-pra" onclick="showArticle('event2')">
+        <i class="fa-solid fa-calendar-days"></i>
+        <h4>PRA-Jelajah Hutan</h4>
+        <div class="tanggal-item">6-7 Des 2025</div>
+      </div>
+
+      <div class="info-box" id="event-harih" onclick="showArticle('event3')">
+        <i class="fa-solid fa-calendar-days"></i>
+        <h4>Hari-H Jelajah Hutan</h4>
+        <div class="tanggal-item">12-14 Des 2025</div>
+      </div>
+
+      <div class="info-box" id="event-pasca" onclick="showArticle('event4')">
+        <i class="fa-solid fa-calendar-days"></i>
+        <h4>Pasca-Jelajah Hutan</h4>
+        <div class="tanggal-item">20 Des 2025</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ARTIKEL 1: TEMA ========== -->
+  <div id="artikel1" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <h1>Tema Jelajah Hutan 2025</h1>
+        <div style="text-align: center; margin-bottom: 30px;">
+          <img src="images/Tema.png" alt="Tema" width="400">
+        </div>
+        
+        <div class="highlight-box">
+          <h2 style="text-align: center; margin-bottom: 20px;">"SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN"</h2>
+        </div>
+        
+        <div class="content-grid">
+          <div class="content-card">
+            <h3>Solid di Akar</h3>
+            <p>Melambangkan dasar kuat berupa persaudaraan, nilai-nilai kehutanan (9 Nilai Dasar Rimbawan), dan integritas moral.</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Kuat di Batang</h3>
+            <p>Mencerminkan tanggung jawab, disiplin, dan keteguhan dalam menghadapi tantangan.</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Lestari di Daun</h3>
+            <p>Simbol hasil dan pengabdian yang bermanfaat bagi lingkungan serta keberlanjutan hidup.</p>
+          </div>
+        </div>
+        
+        <p style="text-align: center; font-size: 18px; margin-top: 30px;">
+          <strong>Pohon</strong> menjadi simbol rimbawan karena memiliki akar, batang, dan daun yang saling menguatkan. 
+          Tema ini menegaskan bahwa pengkaderan bukan sekadar pembentukan individu, tetapi proses menumbuhkan nilai ekologis, 
+          solidaritas, dan kepemimpinan demi lahirnya rimbawan yang tangguh dan berjiwa lestari.
+        </p>
+      </div>
+      <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
+    </div>
+  </div>
+
+  <!-- ========== ARTIKEL 2: FILOSOFI MASKOT ========== -->
+  <div id="artikel21" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <h1>Filosofi Maskot 2025</h1>
+        <div style="text-align: center; margin-bottom: 30px;">
+          <img src="images/Maskot.png" alt="Maskot" width="400">
+        </div>
+
+        <!-- ========= Latar Belakang ========= -->
+        <h2>Latar Belakang</h2>
+        <div class="content-card">
+          <ul class="info-list">
+            <li>Kakatua merupakan hewan endemik Indonesia yang sudah dilindungi menurut PERMENLHK 2018 Tentang Jenis Tumbuhan dan Satwa Dilindungi</li>
+            <li>Dalam IUCN (International Union For Conservation Of Nature) menyebutkan kakatua maluku kedalam status Endangered species</li>
+            <li>Dalam CITES (Conservation On International Trade In Endangered Species) mengkategorikan kakatua maluku kedalam CITES 1 artinya tidak boleh dipergadangkan dalam perdagangan international</li>
+            <li>Termasuk dalam kategori umbrella species lokal yang ketika menjaganya dalam melindungi lanskap hutannya yang khas</li>
+            <li>Jenis kakatua endemik (Wallacea region) yang hanya ada dipulai seram dan tidak dapat ditemukan ditempat lain memiliki peran ekologis yang vital sebagai agen dispersal melalui berbagai macam biji dan buah yang dimakan menjadi indikator kesehatan hutan</li>
+          </ul>
+        </div>
+
+        <!-- ========= Makna Fisiologis ========= -->
+        <h2>Makna Fisiologis</h2>
+        <div class="content-grid">
+          <div class="content-card">
+            <h3>Bulu</h3>
+            <p>Bulu Putih Bersih Melambangkan kesucian, ketulusan, kejujuran, dan semangat murni</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Jambul</h3>
+            <p>Jambul orange Cerah Menjadi simbol semangat, optimisme, dan keunikan identitas angkatan. Jambul yang dapat ditegakkan juga berarti siap tampil, berani bersuara, dan bangga dengan jati diri</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Paruh</h3>
+            <p>Paruh Hitam Kuat dan Melengkung Melambangkan keteguhan, kemampuan berpikir tajam, serta kekuatan menghadapi tantangan. Dan juga simbol ketegasan dalam mengambil keputusan.</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Mata</h3>
+            <p>Mata Hitam Tajam Melambangkan kecerdasan, fokus, dan kemampuan membaca situasi</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Kaki</h3>
+            <p>Kaki Abu Gelap dan Cakar yang Kuat menjadi simbol dari kestabilan, kerja keras, dan keteguhan berpijak</p>
+          </div>
+        </div>
+
+        <!-- ========= Makna Karakter ========= -->
+        <h2>Makna Karakter</h2>
+        <div class="content-grid">
+          <div class="content-card">
+            <h3>Cerdas</h3>
+            <p>Kakatua maluku termasuk kedalam hewan yang cerdas yang akan melambangkan para rimbawan baru dapat cerdas, cepat tanggap, memecahkan segala masalah, kritis, dalam melihat sesuatu</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Agen Dispersal</h3>
+            <p>Kakatua maluku dapat menjadi agen dispersal dari buah dan biji yang dimakan. feses yang dikeluarkan dapat tumbuh menjadi bibit dilantai hutan dan akan berdampak baik bagi hutan. Melambangkan para rimbawan dalam ruang lingkup sosial akan selalu berdampak positif dan memberikan selalu memberikan cerita manis yang selalu membekas</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Suara Yang Keras</h3>
+            <p>Kakatua maluku memiliki suara keras yang melengking dan dapat menirukan berbagai macam suara bahkan suara manusia. melambangkan para rimbawan dapat selalu aktif, fleksibel, mau menyesuaikan diri dengan keadaan baru, bersuara kritis dan dapat menyampaikan pesan dengan amanah</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Hewan Sosial Yang Romantis</h3>
+            <p>Kakatua sering beteriak untuk berkomunikasi satu sama lain Saling melindungi dan bekerja sama Kakatua hidup berkelompok dan saling memberi tanda bahaya. melambangkan para rimbawan selalu kerjasama, solidaritas, berkomunikasi dan berinteraksi sesama dalam segala hal yang terjadi</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Sensitif</h3>
+            <p>Jika marah, terkejut atau ingin menarik perhatian, kakatua maluku akan menegakan badan, bulu serta jambulnya dengan indah. melambangkan para rimbawan merupakan seseorang yang selalu berdiri paling depan dalam menghadapi persoalan dengan terampil, dan selalu menjadi perhatian dalam bertindak</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Setia Dan Peduli</h3>
+            <p>Kakatua dikenal sangat setia pada pasangannya dan merawat anaknya dengan baik. para rimbawan Penting untuk setia, peduli, dan menjaga hubungan dengan orang-orang di sekitar kita</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Rajin Dan Pantang Menyerah</h3>
+            <p>Mereka terus mencari makanan setiap hari, bahkan saat sulit. para rimbawan Dalam hidup, kita harus rajin berusaha dan tidak cepat putus asa, karena hasil tidak datang begitu saja</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Menjaga Keseimbangan Hidup</h3>
+            <p>Kakatua tidak merusak hutan tempat tinggalnya. mereka hanya mengambil secukupnya. para rimbawan harus selalu berkesinambungan dengan ekosistem, Kita harus hidup seimbang dengan alam dan sesama, tidak serakah atau merusak lingkungan</p>
+          </div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
+    </div>
+  </div>
+
+  <!-- ========== ARTIKEL 3: MATERI SURVIVAL ========== -->
+  <div id="artikel3" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <h1>Materi Survival</h1>
+        <p style="text-align: center; font-size: 18px;"><strong>Materi Survival Dasar untuk Petualangan di Hutan</strong></p>
+
+        <div class="video-container">
+          <video autoplay muted controls loop playsinline>
+            <source src="videos/survival.mp4" type="video/mp4">
+            Browser Anda tidak mendukung pemutaran video.
+          </video>
+          <p class="video-caption">📽️ Video materi cara bertahan hidup di hutan.</p>
+        </div>
+
+        <h2>Teknik Dasar Survival</h2>
+        <div class="content-grid">
+          <div class="content-card">
+            <h3>Mencari Sumber Air</h3>
+            <p>Pelajari cara menemukan dan memurnikan air di alam bebas</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Membangun Shelter</h3>
+            <p>Teknik membuat tempat berlindung darurat</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Membuat Api</h3>
+            <p>Metode tradisional dan modern untuk membuat api</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Navigasi Alam</h3>
+            <p>Menggunakan kompas dan tanda alam untuk menentukan arah</p>
+          </div>
+          
+          <div class="content-card">
+            <h3>Pertolongan Pertama</h3>
+            <p>Penanganan dasar untuk luka dan keadaan darurat</p>
+          </div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
+    </div>
+  </div>
+
+  <!-- ========== ARTIKEL 4: PERATURAN & PERLENGKAPAN ========== -->
+  <div id="artikel4" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <h1>Peraturan, Perlengkapan & Tugas Peserta</h1>
+        <p style="text-align: center;">Ketentuan yang harus dipatuhi dan perlengkapan yang perlu disiapkan untuk mengikuti Jelajah Hutan 2025</p>
+
+        <!-- PERATURAN PRA DAN PASCA -->
+        <h2>📋 Peraturan Saat Pra dan Pasca Jelajah Hutan</h2>
+        <div class="content-card">
+          <ul class="info-list">
+            <li><strong>Datang 10 menit sebelum acara dimulai</strong></li>
+            <li><strong>Memakai baju Fakultas, Sepatu, dan Celana kain hitam (Tidak robek-robek)</strong></li>
+            <li><strong>Dilarang menggunakan aksesoris (anting, tindik, gelang, kalung)</strong></li>
+            <li><strong>Dilarang merokok selama kegiatan</strong></li>
+            <li><strong>Wajib mengikuti kegiatan dari awal sampai akhir</strong></li>
+            <li><strong>Dilarang menggunakan HP (HP Wajib di Silent)</strong></li>
+            <li><strong>Peserta dilarang meninggalkan ruangan tanpa izin dari panitia</strong></li>
+            <li><strong>Peserta diwajibkan berlaku sopan dan menjaga ketertiban</strong></li>
+          </ul>
+        </div>
+
+        <!-- PERATURAN HARI-H -->
+        <h2>🌲 Peraturan Saat Hari-H Jelajah Hutan</h2>
+        <div class="content-card">
+          <ul class="info-list">
+            <li><strong>Datang 10 menit sebelum acara dimulai</strong></li>
+            <li><strong>Memakai baju Fakultas, Sepatu, dan Celana kain hitam (Tidak robek-robek)</strong></li>
+            <li><strong>Dilarang menggunakan aksesoris (anting, tindik, gelang, kalung, make up)</strong></li>
+            <li><strong>Dilarang membawa: rokok, vape, korek api, skincare (kecuali sunscreen), parfum, Hp/kelompok satu HP, alat elektronik lainnya</strong></li>
+            <li><strong>Wajib mengikuti kegiatan dari awal sampai akhir</strong></li>
+            <li><strong>Peserta dilarang meninggalkan kegiatan tanpa izin dari panitia</strong></li>
+            <li><strong>Peserta diwajibkan berlaku sopan dan menjaga ketertiban</strong></li>
+          </ul>
+        </div>
+
+        <!-- PERLENGKAPAN PRA -->
+        <h2>🎒 Perlengkapan Pra Jelajah Hutan</h2>
+        <div class="content-card">
+          <ul class="info-list">
+            <li><strong>Alat tulis</strong></li>
+            <li><strong>Buku</strong></li>
+            <li><strong>Botol Minum</strong></li>
+            <li><strong>Permen (tidak boleh permen karet)</strong></li>
+            <li><strong>Baju Fakultas Kehutanan INSTIPER Yogyakarta</strong></li>
+            <li><strong>Celana bahan panjang hitam</strong></li>
+          </ul>
+        </div>
+
+        <!-- PERLENGKAPAN HARI-H -->
+        <h2>🌿 Perlengkapan Hari-H Jelajah Hutan</h2>
+        <div class="content-card">
+          <ul class="info-list">
+            <li><strong>Alat tulis</strong></li>
+            <li><strong>Buku</strong></li>
+            <li><strong>Botol Minum</strong></li>
+            <li><strong>Baju Fakultas Kehutanan INSTIPER Yogyakarta</strong></li>
+            <li><strong>Celana bahan panjang hitam</strong></li>
+            <li><strong>Perlengkapan lainnya akan diinformasikan lebih lanjut</strong></li>
+          </ul>
+        </div>
+
+        <!-- TUGAS PESERTA -->
+        <h2>📝 Tugas Peserta</h2>
+        
+        <h3>Tugas Kelompok</h3>
+        <div class="content-card">
+          <ul class="info-list">
+            <li><strong>Membuat Yel-yel Angkatan</strong> - Dibuat oleh satu angkatan dan minimal 5 yang memimpin yel-yel angkatan</li>
+            <li><strong>Membuat Yel-yel di tiap kelompok</strong></li>
+            <li><strong>Membuat essay filosofi dari nama kelompok di buat Powerpoint</strong></li>
+            <li><strong>Membuat dan menghias pot dari bahan daur ulang</strong></li>
+          </ul>
+        </div>
+
+        <h3>Tugas Individu</h3>
+        <div class="content-card">
+          <ul class="info-list">
+            <li>
+              <strong>Tanda Tangan Angkatan:</strong>
+              <br>- Angkatan 21, 20, 19, 18 (15 tanda tangan)
+              <br>- Angkatan 22 (15 tanda tangan regular dan 15 tanda tangan RAPP)
+              <br>- Angkatan 23 (15 tanda tangan regular dan 15 tanda tangan RAPP)
+              <br>- Angkatan 24 (15 tanda tangan regular)
+            </li>
+            <li>
+              <strong>Membuat Biodata seluruh individu Angkatan 25:</strong>
+              <br>Foto, Nama, Asal daerah, Tempat dan tanggal lahir, Cita cita, Hobi, Motto hidup
+            </li>
+            <li><strong>Menyatat materi pra Jelajah Hutan dan materi saat kegiatan hari-H jelajah hutan</strong></li>
+          </ul>
+        </div>
+
+        <div class="highlight-box">
+          <h3 style="color: var(--gold); margin-bottom: 10px;">📢 Informasi Penting</h3>
+          <p style="margin: 0; font-weight: 500;">Segala peraturan dan ketentuan di atas wajib dipatuhi oleh seluruh peserta Jelajah Hutan 2025. Pelanggaran terhadap peraturan dapat berakibat pada sanksi sesuai ketentuan yang berlaku.</p>
+        </div>
+      </div>
+      <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
+    </div>
+  </div>
+
+  <!-- ========== ARTIKEL 5: SUSUNAN KEPANITIAAN ========== -->
+  <div id="artikel5" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <h1>Susunan Kepanitiaan Jelajah Hutan 2025</h1>
+        <p style="text-align: center;">Berikut susunan panitia Jelajah Hutan 2025 berdasarkan divisi masing-masing 🌿</p>
+
+        <!-- Ketua Panitia -->
+        <div class="divisi">
+          <h2>Ketua Panitia</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/poto panitia  - Arif Maulana.jpg" alt="Ketua">
+              <h4>Ketua</h4>
+              <p>Ahmad Arif Maulana</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sekretaris -->
+        <div class="divisi">
+          <h2>Sekretaris</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/1761398390672 - Hardian bima.JPG" alt="Sekretaris I">
+              <h4>Sekretaris I</h4>
+              <p>Moch Hardian Bima</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/Poto pitrii - FITRIANI ANI.JPG" alt="Sekretaris II">
+              <h4>Sekretaris II</h4>
+              <p>Fitriani</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bendahara -->
+        <div class="divisi">
+          <h2>Bendahara</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/IMG-20251025-WA0065 - jessica salim.jpg" alt="Bendahara I">
+              <h4>Bendahara I</h4>
+              <p>Jessica Mery Salim</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/DEL - delima sitorus.jpg" alt="Bendahara II">
+              <h4>Bendahara II</h4>
+              <p>Delima Sitorus</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi SC -->
+        <div class="divisi">
+          <h2>Divisi SC</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/1761378095338 - Adiweno Iza Mashuri.jpg" alt="Koordinator SC">
+              <h4>Koordinator</h4>
+              <p>Adiweno Iza Mashuri</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/brendy" alt="Anggota SC">
+              <h4>Anggota</h4>
+              <p>Brendy Suranta G.S.</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/F754C89F-16CB-424B-A916-5BC675BB1195 - Pedro Leonard Siregar.jpeg" alt="Anggota SC">
+              <h4>Anggota</h4>
+              <p>Pedro Leonard Siregar</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG_3086 - Adrian Wiza saputra.jpeg" alt="Anggota SC">
+              <h4>Anggota</h4>
+              <p>Adrian Wiza Syaputra</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi Acara -->
+        <div class="divisi">
+          <h2>Divisi Acara</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/IMG-20250927-WA0088 - Bryan Hanief.jpg" alt="Koordinator Acara">
+              <h4>Koordinator</h4>
+              <p>Bryan hanief</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/IMG_2581 - Yoshua Tanggang.JPG" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Yosua Marulitua S.</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/dwi" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Dwi Angeline</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG-20251025-WA0034 - Rubi Manullang.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Rubi Angrid br Manullang</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi Korlap -->
+        <div class="divisi">
+          <h2>Divisi Korlap</h2>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/IMG_20251031_211358 - Firman Syah.jpg" alt="Korlap I">
+              <h4>Korlap I</h4>
+              <p>Firman</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/cel" alt="Korlap II">
+              <h4>Korlap II</h4>
+              <p>Cello</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG-20251025-WA0020 - Mangihut Simbolon12.jpg" alt="Korlap III">
+              <h4>Korlap III</h4>
+              <p>Mangihut Pandopatan Simbolon </p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/chris" alt="Korlap IV">
+              <h4>Korlap IV</h4>
+              <p>Christian</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi PDD -->
+        <div class="divisi">
+          <h2>Divisi PDD</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/1761296890087 - Muhammad Daffa.jpg" alt="Koordinator PDD">
+              <h4>Koordinator</h4>
+              <p>Muhammad Daffa Nugraha</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="images/anggota-pdd1.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Ahmad Zulkifli</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Niccolas Gultom</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/foto - Frederick Hasan.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Frederick Hasan</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/del" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Delima Klaudia T.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi Humas -->
+        <div class="divisi">
+          <h2>Divisi Humas</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/1000577499 - Muhammad Taufik.jpg" alt="Koordinator Humas">
+              <h4>Koordinator</h4>
+              <p>Taufik</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Pram</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG-20251024-WA0016 - Dafid Joko.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Dafid Joko Purwanto</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/Aji.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Alfa Sunu Pranata Aji</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi Konsumsi -->
+        <div class="divisi">
+          <h2>Divisi Konsumsi</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/IMG-20250710-WA0548 - Iffah Nuring.jpg" alt="Koordinator Konsumsi">
+              <h4>Koordinator</h4>
+              <p>Iffah Nuring Sanuminu</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/IMG_2096 - Tiara Dwi.jpeg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Tiara Dwi Jelita</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/20251019_144124 - Dina Rizky Arfiyanti.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Dina Rizky Arfiyanti </p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG_0942 - Sean Adelar Siahaan.jpeg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Sean Adelar S.</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/Screenshot_2025-10-26-21-15-51-311_com.miui.gallery - Humphrey Ignatius.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Humprey Ignatius P.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi TimKes -->
+        <div class="divisi">
+          <h2>Divisi Timkes</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/64da1d4c-e02a-4869-b0f5-15ba6130628d - Syadza Salsabillah Putri.jpeg" alt="Koordinator Timkes">
+              <h4>Koordinator</h4>
+              <p>Syadza Salsabillah Putri</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/jer" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Jeremia Juranza S.</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/A29832BC-9D78-4163-8AC4-FB85C5DBF37C - Timothy Manurung.jpeg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Timothy Petra Yabes M.</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG_1974 - Rafael Butar.heic" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Rafael Butar-butar</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG-20251026-WA0003 - Angkatan 12.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Ade Setiawan</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi Perkab -->
+        <div class="divisi">
+          <h2>Divisi Perkab</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/wahy" alt="Koordinator Perkab">
+              <h4>Koordinator</h4>
+              <p>Wahyu</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/IMG_3049 - fawaz abyan.jpeg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Fawaz Abyan Syah </p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG-20250210-WA0061 - Sandro Wadha.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Sandro</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/Screenshot_2025-10-20-23-35-47-986_com.miui.videoplayer - Sulaiman rasabou.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Sulaiman</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG_20251026_192834_411 - Juan Umbu.webp" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Juan Kenith Umbu Wunu Sabatudung </p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG-20250906-WA0057 - Sukeal Leonardo.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Syukeal Leonardo </p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG_1141 - Verda Muzaffarr.jpeg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Muh Verda Muzaffar Tsaqib</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisi USDA -->
+        <div class="divisi">
+          <h2>Divisi USDA</h2>
+          <div class="koordinator">
+            <div class="item">
+              <img src="FotoPanitia/IMG_3848 - Dwi cahya Ajeng lestari.JPG" alt="Koordinator USDA">
+              <h4>Koordinator</h4>
+              <p>Dwi Cahya Ajeng Lestari</p>
+            </div>
+          </div>
+          <div class="anggota">
+            <div class="item">
+              <img src="FotoPanitia/gina" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Gina</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/gepeng.jpg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Elia Mangara Tua P.</p>
+            </div>
+            <div class="item">
+              <img src="FotoPanitia/IMG_0965 - Henjelina Sagala.jpeg" alt="Anggota">
+              <h4>Anggota</h4>
+              <p>Henjelina Sagala</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
+    </div>
+  </div>
+
+  <!-- ========== ARTIKEL 6: MERCHANDISE ========== -->
+  <div id="artikel6" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <h1>Merchandise Resmi</h1>
+        <p style="text-align: center; font-size: 18px;">Berbagai merchandise resmi Jelajah Hutan 2025 Akan Segera Hadir!🌲</p>
+        <div class="gallery">
+          <div class="item">
+            <img src="images/kaos.jpg" alt="Kaos Jelajah Hutan">
+            <h4>Coming Soon!!!.</h4>
+            <p>-</p>
+            <button class="buy-btn" onclick="order('Kaos Jelajah Hutan')">🛒 Beli Sekarang</button>
+          </div>
+          <div class="item">
+            <img src="images/topi.jpg" alt="Topi Petualang">
+            <h4>Coming Soon!!!.</h4>
+            <p>-</p>
+            <button class="buy-btn" onclick="order('Topi Petualang')">🛒 Beli Sekarang</button>
+          </div>
+          <div class="item">
+            <img src="images/tumbler.jpg" alt="Tumbler Ramah Lingkungan">
+            <h4>Coming Soon!!!.</h4>
+            <p>-</p>
+            <button class="buy-btn" onclick="order('Tumbler Ramah Lingkungan')">🛒 Beli Sekarang</button>
+          </div>
+          <div class="item">
+            <img src="images/pin.jpg" alt="Coming Soon!!!.">
+            <h4>Coming Soon!!!.</h4>
+            <p>-</p>
+            <button class="buy-btn" onclick="order('Pin Eksklusif')">🛒 Beli Sekarang</button>
+          </div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
+    </div>
+  </div>
+
+  <!-- ========== EVENT 1-4 ========== -->
+<div id="event1" class="content">
+  <div class="inner">
+    <div class="content-section">
+      <div class="slide-container">
+        <div class="slide active">
+          <h1>Sosialisasi Jelajah Hutan</h1>
+          <img src="Sosialisasi/BG.jpg" alt="Sosialisasi Jelajah Hutan" width="400">
+          <img src="foto kegiatan" alt="sosialisasi" width="200">
+          <p class="video-caption" style="text-align: center;">📸 Para peserta sedang mendengarkan penjelasan dari panitia</p>
+        </div>
+      </div>
+    </div>
+    <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
+  </div>
+</div>
+
+<div id="event21" class="content">
+  <div class="inner">
+    <div class="content-section">
+      <div class="slide-container">
+        <div class="slide active">
+          <h1>PRA-Jelajah Hutan</h1>
+          <img src="images/pra-jelajah1.jpg" alt="Pembukaan PRA Jelajah Hutan" width="400">
+          <p><strong>Tanggal:</strong> 6-7 Desember 2025</p>
+          <p><strong>Lokasi:</strong> Kampus dan Sekitar Yogyakarta</p>
+          <p><strong>Update Hari 1:</strong> Pembukaan PRA-Jelajah Hutan dimulai dengan apel pagi dan pembagian kelompok. Peserta terlihat semangat meski cuaca sedikit mendung.</p>
+          <p class="video-caption">📸 Apel pembukaan PRA-Jelajah Hutan</p>
+        </div>
+        <div class="slide">
+          <h1>PRA-Jelajah Hutan - Materi Navigasi</h1>
+          <img src="images/pra-jelajah2.jpg" alt="Materi Navigasi Darat" width="400">
+          <p><strong>Materi Navigasi Darat</strong></p>
+          <p>Peserta belajar menggunakan kompas dan peta untuk navigasi di alam bebas. Instruktur dari angkatan senior memberikan panduan praktis.</p>
+          <p class="video-caption">📸 Praktik penggunaan kompas oleh peserta</p>
+        </div>
+        <div class="slide">
+          <h1>PRA-Jelajah Hutan - Survival Skills</h1>
+          <img src="images/pra-jelajah3.jpg" alt="Teknik Membuat Shelter" width="400">
+          <p><strong>Teknik Membuat Shelter</strong></p>
+          <p>Peserta praktik langsung membuat shelter darurat menggunakan bahan-bahan alam yang tersedia di sekitar kampus.</p>
+          <p class="video-caption">📸 Hasil shelter yang dibuat peserta</p>
+        </div>
+        <div class="slide">
+          <h1>PRA-Jelajah Hutan - Team Building</h1>
+          <img src="images/pra-jelajah4.jpg" alt="Games Team Building" width="400">
+          <p><strong>Games Team Building</strong></p>
+          <p>Berbagai permainan team building dilakukan untuk memperkuat ikatan antar anggota kelompok sebelum hari-H.</p>
+          <p class="video-caption">📸 Moment seru selama games team building</p>
+        </div>
+      </div>
+      <div style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+        <button class="back-btn" onclick="prevSlide('event2')">⬅ Sebelumnya</button>
+        <button class="back-btn" onclick="nextSlide('event2')">Berikutnya ➡</button>
+      </div>
+    </div>
+    <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
+  </div>
+</div>
+
+<div id="event31" class="content">
+  <div class="inner">
+    <div class="content-section">
+      <div class="slide-container">
+        <div class="slide active">
+          <h1>Hari-H Jelajah Hutan</h1>
+          <h2>Hari ke-1: Pembukaan & Perjalanan Menuju Basecamp</h2>
+          <img src="images/hari1.jpg" alt="Perjalanan Menuju Basecamp" width="400">
+          <p><strong>Tanggal:</strong> 12 Desember 2025</p>
+          <p><strong>Update:</strong> Perjalanan menuju basecamp di kawasan hutan Gunung Merapi berjalan lancar. Peserta tiba di lokasi pukul 10.00 WIB dan langsung mempersiapkan camp.</p>
+          <p class="video-caption">📸 Perjalanan menuju basecamp dengan semangat 45!</p>
+        </div>
+        <div class="slide">
+          <h1>Hari-H Jelajah Hutan</h1>
+          <h2>Hari ke-1: Pendirian Camp dan Materi Pertama</h2>
+          <img src="images/hari1-2.jpg" alt="Pendirian Camp" width="400">
+          <p><strong>Pendirian Camp</strong></p>
+          <p>Setiap kelompok mendirikan tenda dan mengatur perlengkapan. Materi pertama tentang etika berkemah di kawasan hutan diberikan setelah makan siang.</p>
+          <p class="video-caption">📸 Kerjasama tim dalam mendirikan tenda</p>
+        </div>
+        <div class="slide">
+          <h1>Hari-H Jelajah Hutan</h1>
+          <h2>Hari ke-2: Eksplorasi & Pembelajaran Lapangan</h2>
+          <img src="images/hari2.jpg" alt="Tracking Pagi Hari" width="400">
+          <p><strong>Tanggal:</strong> 13 Desember 2025</p>
+          <p><strong>Tracking Pagi Hari:</strong> Peserta melakukan tracking menyusuri jalur hutan sambil belajar mengidentifikasi jenis-jenis pohon dan satwa liar.</p>
+          <p class="video-caption">📸 Suasana tracking pagi di antara pepohonan</p>
+        </div>
+        <div class="slide">
+          <h1>Hari-H Jelajah Hutan</h1>
+          <h2>Hari ke-2: Praktek Survival Skills</h2>
+          <img src="images/hari2-2.jpg" alt="Praktek Membuat Api" width="400">
+          <p><strong>Praktek Membuat Api</strong></p>
+          <p>Peserta belajar berbagai teknik membuat api tanpa korek, termasuk menggunakan lensa dan busur kayu. Semua kelompok berhasil menyalakan api!</p>
+          <p class="video-caption">📸 Moment bahagia ketika api berhasil dinyalakan</p>
+        </div>
+        <div class="slide">
+          <h1>Hari-H Jelajah Hutan</h1>
+          <h2>Hari ke-3: Refleksi & Penutupan</h2>
+          <img src="images/hari3.jpg" alt="Api Unggun Malam Refleksi" width="400">
+          <p><strong>Tanggal:</strong> 14 Desember 2025</p>
+          <p><strong>Api Unggun Malam Refleksi:</strong> Malam terakhir diisi dengan api unggun dan sesi refleksi. Setiap peserta berbagi pengalaman dan pelajaran selama Jelajah Hutan.</p>
+          <p class="video-caption">📸 Suasana hangat di sekitar api unggun</p>
+        </div>
+        <div class="slide">
+          <h1>Hari-H Jelajah Hutan</h1>
+          <h2>Hari ke-3: Penutupan dan Kepulangan</h2>
+          <img src="images/hari3-2.jpg" alt="Foto Bersama Penutupan" width="400">
+          <p><strong>Penutupan dan Kepulangan</strong></p>
+          <p>Acara ditutup dengan pembacaan ikrar rimbawan dan foto bersama. Peserta pulang dengan membawa pengalaman berharga dan semangat baru sebagai calon rimbawan.</p>
+          <p class="video-caption">📸 Foto bersama sebagai kenang-kenangan</p>
+        </div>
+      </div>
+      <div style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+        <button class="back-btn" onclick="prevSlide('event3')">⬅ Sebelumnya</button>
+        <button class="back-btn" onclick="nextSlide('event3')">Berikutnya ➡</button>
+      </div>
+    </div>
+    <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
+  </div>
+</div>
+
+<div id="event41" class="content">
+  <div class="inner">
+    <div class="content-section">
+      <div class="slide-container">
+        <div class="slide active">
+          <h1>Pasca-Jelajah Hutan</h1>
+          <img src="images/pasca1.jpg" alt="Reuni dan Refleksi Akhir" width="400">
+          <p><strong>Tanggal:</strong> 20 Desember 2025</p>
+          <p><strong>Lokasi:</strong> Kampus Fakultas Kehutanan</p>
+          <p><strong>Reuni dan Refleksi Akhir:</strong> Pertemuan pertama setelah Jelajah Hutan diisi dengan berbagi cerita dan evaluasi kegiatan. Peserta menunjukkan perkembangan yang positif.</p>
+          <p class="video-caption">📸 Suasana hangat reuni antar peserta</p>
+        </div>
+        <div class="slide">
+          <h1>Pasca-Jelajah Hutan - Penyerahan Sertifikat</h1>
+          <img src="images/pasca2.jpg" alt="Penyerahan Sertifikat" width="400">
+          <p><strong>Penyerahan Sertifikat</strong></p>
+          <p>Penyerahan sertifikat peserta kepada seluruh mahasiswa yang telah menyelesaikan Jelajah Hutan 2025 dengan baik.</p>
+          <p class="video-caption">📸 Moment kebanggaan menerima sertifikat</p>
+        </div>
+        <div class="slide">
+          <h1>Pasca-Jelajah Hutan - Komitmen Ke depan</h1>
+          <img src="images/pasca3.jpg" alt="Penyusunan Rencana Tindak Lanjut" width="400">
+          <p><strong>Penyusunan Rencana Tindak Lanjut</strong></p>
+          <p>Peserta bersama-sama menyusun rencana tindak lanjut untuk mengaplikasikan ilmu yang didapat dalam kehidupan kampus dan pelestarian lingkungan.</p>
+          <p class="video-caption">📸 Diskusi kelompok untuk rencana ke depan</p>
+        </div>
+        <div class="slide">
+          <h1>Pasca-Jelajah Hutan - Penanaman Pohon</h1>
+          <img src="images/pasca4.jpg" alt="Aksi Penanaman Pohon" width="400">
+          <p><strong>Aksi Penanaman Pohon</strong></p>
+          <p>Sebagai bentuk komitmen nyata, dilakukan aksi penanaman pohon di area kampus sebagai tanda dimulainya peran sebagai rimbawan sejati.</p>
+          <p class="video-caption">📸 Aksi nyata penanaman pohon oleh peserta</p>
+        </div>
+      </div>
+      <div style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+        <button class="back-btn" onclick="prevSlide('event4')">⬅ Sebelumnya</button>
+        <button class="back-btn" onclick="nextSlide('event4')">Berikutnya ➡</button>
+      </div>
+    </div>
+    <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
+  </div>
+</div>
+
+  <!-- ========== ORDER FORM POPUP ========== -->
+  <div id="orderForm">
+    <div class="form-inner">
+      <h3>Formulir Pembelian</h3>
+      <input type="text" id="buyerName" placeholder="Nama Lengkap">
+      <input type="text" id="buyerClass" placeholder="Kelas">
+      <input type="text" id="buyerYear" placeholder="Angkatan">
+      <input type="number" id="buyerQty" placeholder="Jumlah" value="1" min="1">
+      <div style="display:flex; gap:12px; justify-content:center;">
+        <button class="btn-send" onclick="submitOrder()">Kirim WA</button>
+        <button class="btn-cancel" onclick="closeForm()">Batal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div>©2025 Jelajah Hutan 🌿 | Cinta Alam, Lestarikan Hutan.</div>
+    <div class="social-row">
+      <a href="https://wa.me/6281378347148" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/jelajah_hutan25/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="mailto:jelajahhutanfahutan@gmail.com" target="_blank" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="#" id="shareWebsiteBtn" title="Bagikan"><i class="fa-solid fa-share-from-square"></i></a>
+    </div>
+  </footer>
+
+  <!-- ========== FALLING LEAVES EFFECT ========== -->
+  <div id="falling-leaves"></div>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // ========== FALLING LEAVES ANIMATION ==========
+    const leafEmojis = ["🍃", "🍂", "🍁", "🌿", "🍀"];
+    const leafContainer = document.getElementById('falling-leaves');
+    let currentItem = '';
+
+    function createLeaf() {
+      const leaf = document.createElement('div');
+      leaf.classList.add('leaf');
+      leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.fontSize = (12 + Math.random() * 8) + 'px';
+
+      const duration = 6 + Math.random() * 10;
+      const direction = Math.random() < 0.5 ? -1 : 1;
+      const sway = 40 + Math.random() * 60;
+
+      leaf.animate([
+        { transform: `translateX(0px) translateY(-50px) rotate(0deg)`, opacity: 0 },
+        { transform: `translateX(${direction * sway}px) translateY(50vh) rotate(180deg)`, opacity: 0.7 },
+        { transform: `translateX(${direction * -sway}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
+      ], {
+        duration: duration * 1000,
+        easing: 'linear',
+        fill: 'forwards'
+      });
+
+      leafContainer.appendChild(leaf);
+      setTimeout(() => leaf.remove(), duration * 1000);
+    }
+
+    setInterval(createLeaf, 2500);
+
+    // ========== CLICK BURST EFFECT ==========
+    document.addEventListener("pointerdown", function(e) {
+      const burst = document.createElement("div");
+      burst.style.position = "fixed";
+      burst.style.left = e.clientX + "px";
+      burst.style.top = e.clientY + "px";
+      burst.style.pointerEvents = "none";
+      burst.style.zIndex = "9999";
+
+      for (let i = 0; i < 10; i++) {
+        const leaf = document.createElement("span");
+        leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+        leaf.style.position = "absolute";
+        leaf.style.fontSize = (12 + Math.random() * 12) + "px";
+        leaf.style.opacity = "0.9";
+        
+        const x = (Math.random() - 0.5) * 250;
+        const y = (Math.random() - 0.5) * 250;
+        
+        leaf.animate([
+          { transform: 'translate(0, 0) scale(1) rotate(0deg)', opacity: 1 },
+          { transform: `translate(${x}px, ${y}px) scale(0.4) rotate(720deg)`, opacity: 0 }
+        ], { duration: 1200, easing: 'ease-out' });
+        
+        burst.appendChild(leaf);
+      }
+
+      document.body.appendChild(burst);
+      setTimeout(() => burst.remove(), 1200);
+    });
+
+    // ========== COUNTDOWN TIMER YANG MENYESUAIKAN DENGAN ACARA ==========
+    function countdown() {
+      const now = new Date().getTime();
+      
+      // Daftar acara dan tanggalnya
+      const events = [
+        { id: 'sosialisasi', date: new Date("2025-11-03T15:00:00"), name: "Sosialisasi Jelajah Hutan" },
+        { id: 'pra', date: new Date("2025-12-06T08:00:00"), name: "PRA-Jelajah Hutan" },
+        { id: 'harih', date: new Date("2025-12-12T08:00:00"), name: "Hari-H Jelajah Hutan" },
+        { id: 'pasca', date: new Date("2025-12-20T15:00:00"), name: "Pasca-Jelajah Hutan" }
+      ];
+
+      // Cari acara berikutnya yang belum dimulai
+      let nextEvent = null;
+      let nextEventIndex = -1;
+
+      for (let i = 0; i < events.length; i++) {
+        if (events[i].date.getTime() > now) {
+          nextEvent = events[i];
+          nextEventIndex = i;
+          break;
+        }
+      }
+
+      // Jika semua acara sudah lewat
+      if (!nextEvent) {
+        document.getElementById("countdown").innerHTML = `
+          <div class="time-box" style="min-width: 250px;">
+            <div class="time-number">SELESAI</div>
+            <div class="time-label">Semua Acara Telah Berakhir</div>
+          </div>
+        `;
+        document.querySelector('.countdown-title').textContent = "🎉 Semua Acara Jelajah Hutan 2025 Telah Selesai!";
+        return;
+      }
+
+      const targetDate = nextEvent.date.getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Update judul countdown
+      document.querySelector('.countdown-title').textContent = `⏰ Hitung Mundur ${nextEvent.name}`;
+
+      // Update timer
+      document.getElementById("countdown").innerHTML = `
+        <div class="time-box">
+          <div class="time-number">${days}</div>
+          <div class="time-label">Hari</div>
+        </div>
+        <div class="time-box">
+          <div class="time-number">${hours}</div>
+          <div class="time-label">Jam</div>
+        </div>
+        <div class="time-box">
+          <div class="time-number">${minutes}</div>
+          <div class="time-label">Menit</div>
+        </div>
+        <div class="time-box">
+          <div class="time-number">${seconds}</div>
+          <div class="time-label">Detik</div>
+        </div>
+      `;
+
+      // Jika acara akan dimulai dalam 24 jam, tambahkan efek berkedip
+      if (distance < 24 * 60 * 60 * 1000) {
+        document.querySelector('.countdown-title').classList.add('blink-text');
+      } else {
+        document.querySelector('.countdown-title').classList.remove('blink-text');
+      }
+    }
+
+    // ========== CHECK EVENT STATUS YANG LEBIH AKURAT ==========
+    function checkEventStatus() {
+      const now = new Date();
+      
+      // Sosialisasi - 3 Nov 2025
+      const sosialisasiStart = new Date("2025-11-03T15:00:00");
+      const sosialisasiEnd = new Date("2025-11-03T18:00:00");
+      const sosialisasiElement = document.getElementById('event-sosialisasi');
+      
+      if (now >= sosialisasiStart && now <= sosialisasiEnd) {
+        sosialisasiElement.classList.add('ongoing');
+        sosialisasiElement.classList.remove('completed');
+      } else if (now > sosialisasiEnd) {
+        sosialisasiElement.classList.add('completed');
+        sosialisasiElement.classList.remove('ongoing');
+      } else {
+        sosialisasiElement.classList.remove('ongoing', 'completed');
+      }
+      
+      // PRA Jelajah - 6-7 Des 2025 (2 hari)
+      const praStart = new Date("2025-12-06T08:00:00");
+      const praEnd = new Date("2025-12-07T23:59:59");
+      const praElement = document.getElementById('event-pra');
+      
+      if (now >= praStart && now <= praEnd) {
+        praElement.classList.add('ongoing');
+        praElement.classList.remove('completed');
+      } else if (now > praEnd) {
+        praElement.classList.add('completed');
+        praElement.classList.remove('ongoing');
+      } else {
+        praElement.classList.remove('ongoing', 'completed');
+      }
+      
+      // Hari-H - 12-14 Des 2025 (3 hari)
+      const harihStart = new Date("2025-12-12T08:00:00");
+      const harihEnd = new Date("2025-12-14T23:59:59");
+      const harihElement = document.getElementById('event-harih');
+      
+      if (now >= harihStart && now <= harihEnd) {
+        harihElement.classList.add('ongoing');
+        harihElement.classList.remove('completed');
+      } else if (now > harihEnd) {
+        harihElement.classList.add('completed');
+        harihElement.classList.remove('ongoing');
+      } else {
+        harihElement.classList.remove('ongoing', 'completed');
+      }
+      
+      // Pasca - 20 Des 2025
+      const pascaStart = new Date("2025-12-20T15:00:00");
+      const pascaEnd = new Date("2025-12-20T18:00:00");
+      const pascaElement = document.getElementById('event-pasca');
+      
+      if (now >= pascaStart && now <= pascaEnd) {
+        pascaElement.classList.add('ongoing');
+        pascaElement.classList.remove('completed');
+      } else if (now > pascaEnd) {
+        pascaElement.classList.add('completed');
+        pascaElement.classList.remove('ongoing');
+      } else {
+        pascaElement.classList.remove('ongoing', 'completed');
+      }
+    }
+
+// ========== SPONSOR DATA ==========
+  const sponsors = [
+    { name: "Sponsor 1", logo: "images/sponsor1.jpg", ig: "" },
+    { name: "Sponsor 2", logo: "images/sponsor2.jpg", ig: "" },
+    { name: "Sponsor 3", logo: "images/sponsor3.jpg", ig: "" },
+    { name: "Sponsor 4", logo: "images/sponsor4.jpg", ig: "" }
+  ];
+
+  function renderSponsors() {
+    const sponsorContainer = document.querySelector('.sponsor-logos');
+    sponsorContainer.innerHTML = '';
+    
+    sponsors.forEach(sponsor => {
+      const sponsorLogo = document.createElement('img');
+      sponsorLogo.src = sponsor.logo;
+      sponsorLogo.alt = sponsor.name;
+      sponsorLogo.className = 'sponsor-logo';
+      sponsorLogo.onclick = () => window.open(sponsor.ig, '_blank');
+      sponsorContainer.appendChild(sponsorLogo);
+    });
+  }
+
+// Panggil fungsi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', renderSponsors);
+
+    // ========== ARTICLE/POPUP FUNCTIONS ==========
+    function showArticle(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.display = 'block';
+        setTimeout(() => el.classList.add('active'), 50);
+        document.body.style.overflow = 'hidden';
+        history.pushState({popup: id}, '', `#${id}`);
+      }
+    }
+
+    function closeArticle() {
+      document.querySelectorAll('.content.active').forEach(el => {
+        el.classList.remove('active');
+        setTimeout(() => el.style.display = 'none', 500);
+      });
+      document.body.style.overflow = 'auto';
+      
+      if (window.location.hash) {
+        history.pushState('', document.title, window.location.pathname);
+      }
+    }
+
+    // ========== BROWSER HISTORY HANDLING ==========
+    window.addEventListener('popstate', (event) => {
+      const activePopup = document.querySelector('.content.active');
+      if (activePopup) {
+        closeArticle();
+      } else if (window.location.hash) {
+        const id = window.location.hash.substring(1);
+        const el = document.getElementById(id);
+        if (el && el.classList.contains('content')) {
+          showArticle(id);
+        }
+      }
+    });
+
+    // ========== SLIDER FUNCTIONS ==========
+    function nextSlide(id) {
+      const container = document.querySelector('#' + id + ' .slide-container');
+      if (!container) return;
+      
+      const slides = container.querySelectorAll('.slide');
+      let currentIndex = [...slides].findIndex(s => s.classList.contains('active'));
+      
+      slides[currentIndex].classList.remove('active');
+      let nextIndex = (currentIndex + 1) % slides.length;
+      slides[nextIndex].classList.add('active');
+    }
+
+    function prevSlide(id) {
+      const container = document.querySelector('#' + id + ' .slide-container');
+      if (!container) return;
+      
+      const slides = container.querySelectorAll('.slide');
+      let currentIndex = [...slides].findIndex(s => s.classList.contains('active'));
+      
+      slides[currentIndex].classList.remove('active');
+      let prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      slides[prevIndex].classList.add('active');
+    }
+
+    // ========== ORDER FORM FUNCTIONS ==========
+    function order(item) {
+      currentItem = item;
+      document.getElementById('orderForm').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeForm() {
+      document.getElementById('orderForm').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function submitOrder() {
+      const name = document.getElementById('buyerName').value.trim();
+      const kelas = document.getElementById('buyerClass').value.trim();
+      const angkatan = document.getElementById('buyerYear').value.trim();
+      const qty = document.getElementById('buyerQty').value.trim();
+
+      if (!name || !kelas || !angkatan || !qty) {
+        alert('Harap isi semua data!');
+        return;
+      }
+
+      const phone = '6281393288135';
+      const text = encodeURIComponent(
+        `Halo, saya ingin membeli: ${currentItem}\n\nNama: ${name}\nKelas: ${kelas}\nAngkatan: ${angkatan}\nJumlah: ${qty}`
+      );
+      const url = `https://wa.me/${phone}?text=${text}`;
+      window.open(url, '_blank');
+      closeForm();
+      
+      document.getElementById('buyerName').value = '';
+      document.getElementById('buyerClass').value = '';
+      document.getElementById('buyerYear').value = '';
+      document.getElementById('buyerQty').value = '1';
+    }
+
+    // ========== SHARE WEBSITE ==========
+    document.getElementById('shareWebsiteBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const url = window.location.href.split('#')[0];
+      const title = "Jelajah Hutan 2025 🌿";
+
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          url: url
+        }).catch(err => console.log('Error sharing:', err));
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Link website telah disalin! Bagikan ke temanmu 😊');
+        }).catch(err => {
+          alert('Gagal menyalin link. Silakan salin secara manual: ' + url);
+        });
+      }
+    });
+
+    // ========== LOAD FROM URL HASH ==========
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const id = window.location.hash.substring(1);
+        const el = document.getElementById(id);
+        if (el && el.classList.contains('content')) {
+          setTimeout(() => showArticle(id), 100);
+        }
+      }
+      
+      // Check event status on page load
+      checkEventStatus();
+    });
+
+    // ========== CLOSE ON BACKGROUND CLICK ==========
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('content')) {
+        closeArticle();
+      }
+    });
+
+    document.querySelectorAll('.content .inner').forEach(inner => {
+      inner.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+
+    document.getElementById('orderForm').addEventListener('click', (e) => {
+      if (e.target.id === 'orderForm') {
+        closeForm();
+      }
+    });
+
+    // Jalankan fungsi countdown dan status event
+    setInterval(countdown, 1000);
+    setInterval(checkEventStatus, 60000); // Cek status setiap menit
+    countdown();
+    checkEventStatus();
+  </script>
+</body>
+</html>
