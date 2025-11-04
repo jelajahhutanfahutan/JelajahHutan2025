@@ -1129,6 +1129,54 @@
       font-weight: bold;
     }
 
+    /* ========== COLLAGE PHOTO STYLES ========== */
+    .collage-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .collage-item:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .collage-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .collage-item-small {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .collage-item-small:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 15px;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .collage-item:hover .photo-overlay {
+      transform: translateY(0);
+    }
+
     /* ========== RESPONSIVE DESIGN ========== */
     @media (max-width: 980px) {
       header {
@@ -1261,6 +1309,36 @@
         font-size: 14px;
         top: 15px;
         left: 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .photo-collage {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      
+      .photo-collage-small {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      
+      .collage-item img {
+        height: 150px;
+      }
+      
+      .collage-item-small img {
+        height: 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .photo-collage {
+        grid-template-columns: 1fr;
+      }
+      
+      .photo-collage-small {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -1777,7 +1855,7 @@
           </div>
           <div class="anggota">
             <div class="item">
-              <img src="FotoPanitia/brendy" alt="Anggota SC">
+              <img src="FotoPanitia/Brendy.jpg" alt="Anggota SC">
               <h4>Anggota</h4>
               <p>Brendy Suranta G.S.</p>
             </div>
@@ -2095,214 +2173,384 @@
     </div>
   </div>
 
-  <!-- ========== EVENT 1-4 ========== -->
+  <!-- ========== EVENT 1: SOSIALISASI JELAJAH HUTAN ========== -->
+ <!-- ========== EVENT 1: SOSIALISASI JELAJAH HUTAN ========== -->
 <div id="event1" class="content">
   <div class="inner">
     <div class="content-section">
       <div class="slide-container">
         <div class="slide active">
+          <!-- HEADER SOSIALISASI -->
+          <div class="highlight-box" style="text-align: center; margin-bottom: 40px;">
+            <h1 style="color: var(--gold); margin-bottom: 15px;">🌿 Sosialisasi Jelajah Hutan 2025</h1>
+            <p style="font-size: 18px; margin: 0; color: var(--muted);">
+              Pembukaan Resmi Program Pengkaderan Mahasiswa Baru Fakultas Kehutanan
+            </p>
+          </div>
+
+          <!-- GAMBAR UTAMA -->
+          <div style="text-align: center; margin-bottom: 30px;">
+            <img src="Sosialisasi/BG.jpg" alt="Sosialisasi Jelajah Hutan" style="width: 100%; max-width: 600px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.4);">
+          </div>
+
+          <!-- INFORMASI ACARA -->
+          <div class="content-grid" style="margin-bottom: 30px;">
             <div class="content-card">
-            <h1>Sosialisasi Jelajah Hutan</h1>
-            <img src="Sosialisasi/BG.jpg" alt="Sosialisasi Jelajah Hutan" width="400">
-            <p>Program pengkaderan mahasiswa baru Fakultas Kehutanan INSTIPER Yogyakarta kembali digelar dengan kegiatan Sosialisasi Jelajah Hutan sebagai tahap awal. kegiatan ini bertujuan untuk memperkenalkan kepada mahasiswa baru mengenai program Jelajah Hutan yang akan dilaksanakan. </p>
+              <h3>📅 Tanggal</h3>
+              <p style="font-size: 20px; font-weight: 700; color: var(--leaf);">3 November 2025</p>
             </div>
+            <div class="content-card">
+              <h3>⏰ Waktu</h3>
+              <p style="font-size: 20px; font-weight: 700; color: var(--leaf);">15:00 - 18:00 WIB</p>
+            </div>
+            <div class="content-card">
+              <h3>🎯 Tujuan</h3>
+              <p>Pengenalan Program Jelajah Hutan kepada Mahasiswa Baru</p>
+            </div>
+          </div>
+
+          <!-- PROSES KEGIATAN -->
+          <h2 style="text-align: center; color: var(--gold); margin: 40px 0 20px;">🎵 Pembukaan dengan Lagu Kebangsaan</h2>
+          <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
+            <div class="content-card" style="text-align: center; width: 280px;">
+              <img src="Sosialisasi/lagu.jpg" alt="Menyanyikan Lagu" style="width: 100%; height: 180px; object-fit: cover; border-radius: 15px; margin-bottom: 15px;">
+              <h4>Lagu Pembuka</h4>
+              <p>Indonesia Raya, Mars INSTIPER, dan Mars Rimbawan</p>
+            </div>
+          </div>
+          <div class="content-card">
+            <p style="text-align: center; font-size: 16px; line-height: 1.8;">
+              Kegiatan diawali dengan menyanyikan lagu Indonesia Raya, Mars INSTIPER, dan Mars Rimbawan untuk membangkitkan semangat nasionalisme dan kecintaan terhadap almamater serta profesi rimbawan.
+            </p>
+          </div>
+
+          <!-- SAMBUTAN-SAMBUTAN -->
+          <h2 style="text-align: center; color: var(--gold); margin: 40px 0 20px;">🎤 Sambutan dan Motivasi</h2>
+          
+          <div class="content-grid">
+            <!-- Ketua Panitia -->
+            <div class="content-card" style="text-align: center;">
+              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px; border: 3px solid var(--gold);">
+                <img src="Sosialisasi/KETUPAT.jpg" alt="Ketua Panitia" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h4>Ahmad Arif Maulana</h4>
+              <p style="color: var(--leaf); font-weight: 600;">Ketua Panitia Jelajah Hutan 2025</p>
+              <p style="font-size: 14px; margin-top: 10px;">
+                "Jelajah Hutan bukan hanya kegiatan fisik, tetapi sarana pembentukan karakter dan jiwa kepemimpinan calon rimbawan."
+              </p>
+            </div>
+
+            <!-- Kepala Suku -->
+            <div class="content-card" style="text-align: center;">
+              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px; border: 3px solid var(--gold);">
+                <img src="Sosialisasi/kepsuk.jpg" alt="Kepala Suku" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h4>Azriel Ibrani Tarigan</h4>
+              <p style="color: var(--leaf); font-weight: 600;">Kepala Suku HimaSylva</p>
+              <p style="font-size: 14px; margin-top: 10px;">
+                "Mari ikuti Jelajah Hutan dengan semangat dan antusiasme untuk membangun solidaritas yang kuat."
+              </p>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <!-- Gubernur BEM -->
+            <div class="content-card" style="text-align: center;">
+              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px; border: 3px solid var(--gold);">
+                <img src="Sosialisasi/gubernur.jpg" alt="Gubernur BEM" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h4>Charles Pirandelo</h4>
+              <p style="color: var(--leaf); font-weight: 600;">Gubernur BEM Fakultas Kehutanan</p>
+              <p style="font-size: 14px; margin-top: 10px;">
+                "Kegiatan ini adalah wadah untuk membentuk karakter dan kepemimpinan mahasiswa baru."
+              </p>
+            </div>
+
+            <!-- Ketum Senat -->
+            <div class="content-card" style="text-align: center;">
+              <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 15px; border: 3px solid var(--gold);">
+                <img src="Sosialisasi/ketum.jpg" alt="Ketum Senat" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h4>Ericho</h4>
+              <p style="color: var(--leaf); font-weight: 600;">Ketua Umum Senat Mahasiswa</p>
+              <p style="font-size: 14px; margin-top: 10px;">
+                "Pengkaderan ini bebas dari perpeloncoan, fokus pada pendidikan karakter yang positif."
+              </p>
+            </div>
+          </div>
+
+          <!-- MATERI DAN TEMA -->
+          <h2 style="text-align: center; color: var(--gold); margin: 40px 0 20px;">📚 Penyampaian Materi dan Tema</h2>
+          
+          <div style="text-align: center; margin-bottom: 30px;">
+            <img src="Sosialisasi/materi.jpg" alt="Penyampaian Materi" style="width: 100%; max-width: 500px; border-radius: 15px;">
+          </div>
+
+          <div class="content-card">
+            <h3 style="text-align: center; color: var(--leaf);">🌳 Tema Utama: "SOLID DI AKAR, KUAT DI BATANG, DAN LESTARI DI DAUN"</h3>
             
-            <img src="Sosialisasi/lagu.jpg" alt="Menyanyikan lagu Indonesia Raya, Mars INSTIPER dan Mars Rimbawan" width="150px">
-            <p class="video-caption" style="text-align: center;">Menyanyikan lagu Indonesia Raya, Mars INSTIPER dan Mars Rimbawan</p>
-
-            <div class="content-card">
-            <p>Kegiatan ini diawali dengan menyanyikan lagu Indonesia Raya, Mars INSTIPER dan Mars Rimbawan. Hal ini bertujuan untuk membangkitkan semangat perserta.</p>
+            <div class="content-grid" style="margin-top: 20px;">
+              <div class="content-card">
+                <h4>🏛️ Nilai Dasar</h4>
+                <p>Penekanan pada 9 Nilai Dasar Rimbawan dan integritas moral dalam setiap aktivitas</p>
+              </div>
+              <div class="content-card">
+                <h4>🚫 Anti Kekerasan</h4>
+                <p>Komitmen bebas dari perpeloncoan, perundungan, dan segala bentuk kekerasan</p>
+              </div>
+              <div class="content-card">
+                <h4>🌱 Pendidikan Karakter</h4>
+                <p>Fokus pada pembentukan karakter, kepemimpinan, dan kecintaan lingkungan</p>
+              </div>
             </div>
 
-            <img src="Sosialisasi/KETUPAT.jpg" alt="Sambutan Dari Ketua Panitia" width="150px">
-            <p class="video-caption" style="text-align: center;">Sambutan dari Ketua Panitia Jelajah Hutan 2025</p>
-            <div class="content-card">
-            <p>Sambutan dari Ketua Panitia Jelajah Hutan 2025, Ahmad Arif Maulana, yang menyampaikan pentingnya kegiatan ini sebagai bagian dari pengkaderan mahasiswa baru Fakultas Kehutanan INSTIPER Yogyakarta.</p>
-            <P>Dalam sambutannya, Arif menekankan bahwa Jelajah Hutan bukan hanya sekadar kegiatan fisik, tetapi juga sebagai sarana untuk membentuk karakter, jiwa kepemimpinan, dan rasa cinta terhadap alam bagi para peserta.</p>
+            <div style="background: linear-gradient(135deg, rgba(147,209,124,0.1), rgba(27,119,63,0.05)); padding: 20px; border-radius: 15px; margin-top: 20px;">
+              <h4 style="color: var(--gold); text-align: center; margin-bottom: 15px;">📋 Informasi Penting untuk Peserta</h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div>
+                  <h5 style="color: var(--leaf); margin-bottom: 8px;">✅ Tugas Peserta</h5>
+                  <ul style="text-align: left; font-size: 14px;">
+                    <li>Yel-yel kelompok dan angkatan</li>
+                    <li>Essay filosofi nama kelompok</li>
+                    <li>Pot daur ulang</li>
+                    <li>Tanda tangan angkatan</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 style="color: var(--leaf); margin-bottom: 8px;">🎒 Perlengkapan</h5>
+                  <ul style="text-align: left; font-size: 14px;">
+                    <li>Alat tulis dan buku</li>
+                    <li>Botol minum</li>
+                    <li>Baju fakultas</li>
+                    <li>Celana bahan hitam</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <img src="Sosialisasi/kepsuk.jpg" alt="Sambutan Dari Kepala Suku HimaSylva" width="150px">
-            <p class="video-caption" style="text-align: center;">Sambutan dari Kepala Suku HimaSylva</p>
-            <div class="content-card">
-            <p>Sambutan dari Kepala Suku HimaSylva, Azriel Ibrani Tarigan, yang memberikan motivasi kepada peserta untuk mengikuti kegiatan Jelajah Hutan dengan penuh semangat dan antusiasme.</p>
-            <p>Azriel menekankan pentingnya kegiatan ini dalam membentuk karakter dan jiwa kepemimpinan mahasiswa baru, serta mengajak peserta untuk menjaga kekompakan dan solidaritas selama kegiatan berlangsung.</p>
+            <div class="content-card" style="margin-top: 25px;">
+              <h4 style="color: var(--gold); text-align: center; margin-bottom: 15px;">📖 Detail Materi yang Disampaikan</h4>
+              <div class="content-grid">
+                <div class="content-card">
+                  <h5>🎯 Tujuan Kegiatan</h5>
+                  <ul style="text-align: left; font-size: 14px;">
+                    <li>Pengenalan nilai-nilai kehutanan</li>
+                    <li>Pembentukan karakter rimbawan</li>
+                    <li>Peningkatan solidaritas angkatan</li>
+                    <li>Pengembangan kepemimpinan</li>
+                  </ul>
+                </div>
+                <div class="content-card">
+                  <h5>📅 Timeline Kegiatan</h5>
+                  <ul style="text-align: left; font-size: 14px;">
+                    <li>Sosialisasi: 3 Nov 2025</li>
+                    <li>PRA-Jelajah: 6-7 Des 2025</li>
+                    <li>Hari-H: 12-14 Des 2025</li>
+                    <li>Pasca-Jelajah: 20 Des 2025</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SESI TANYA JAWAB DENGAN KOLASE FOTO -->
+          <h2 style="text-align: center; color: var(--gold); margin: 40px 0 20px;">💬 Sesi Interaktif & Tanya Jawab</h2>
+
+          <div class="content-card">
+            <div style="text-align: center; margin-bottom: 25px;">
+              <div style="font-size: 48px; margin-bottom: 15px;">🎤</div>
+              <h3 style="color: var(--leaf); margin-bottom: 15px;">Dialog Interaktif dengan Panitia</h3>
+              <p style="font-size: 16px; line-height: 1.7;">
+                Setelah penyampaian materi, mahasiswa baru diberikan kesempatan untuk bertanya langsung mengenai kegiatan Jelajah Hutan. 
+                Sesi ini berlangsung sangat interaktif dengan berbagai pertanyaan menarik dari peserta.
+              </p>
             </div>
 
-            <img src="Sosialisasi/gubernur.jpg" alt="GUBERNUR BEM" width="150px">
-            <p class="video-caption" style="text-align: center;">Sambutan dari Gubernur BEM Fakultas Kehutanan INSTIPER Yogyakarta</p>
-            <div class="content-card">
-            <p>Sambutan dari Gubernur BEM Fakultas Kehutanan INSTIPER Yogyakarta, Charles Pirandelo, yang menekankan pentingnya kegiatan ini dalam membentuk karakter dan jiwa kepemimpinan mahasiswa baru.</p>
-            <p>Dalam sambutannya, Gubernur BEM Fakultas Kehutanan menekankan bahwa kegiatan ini tidak hanya sekadar acara seremonial, tetapi juga sebagai wadah untuk membentuk karakter dan kepemimpinan mahasiswa baru.</p>
+            <!-- KOLASE FOTO PESERTA TANYA JAWAB -->
+            <div style="margin: 30px 0;">
+              <h4 style="text-align: center; color: var(--gold); margin-bottom: 20px;">📸 Moment Seru Sesi Tanya Jawab</h4>
+              
+              <!-- KOLASE FOTO BESAR -->
+              <div class="photo-collage" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px;">
+                <!-- Foto 1 - Peserta Bertanya -->
+                <div class="collage-item" style="position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                  <img src="Sosialisasi/DSC04757.jpg" alt="Peserta Bertanya" 
+                       style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                  <div class="photo-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 15px; color: white;">
+                    <p style="margin: 0; font-size: 12px; font-weight: 600;">Peserta aktif bertanya</p>
+                  </div>
+                </div>
+                
+                <!-- Foto 2 - Panitia Menjawab -->
+                <div class="collage-item" style="position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                  <img src="Sosialisasi/fotopanitia.jpg" alt="Panitia Menjawab" 
+                       style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                  <div class="photo-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 15px; color: white;">
+                    <p style="margin: 0; font-size: 12px; font-weight: 600;">Panitia memberikan penjelasan</p>
+                  </div>
+                </div>
+                
+                <!-- Foto 3 - Diskusi Kelompok -->
+                <div class="collage-item" style="position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                  <img src="Sosialisasi/DSC04702.jpg" alt="Diskusi Kelompok" 
+                       style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                  <div class="photo-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 15px; color: white;">
+                    <p style="margin: 0; font-size: 12px; font-weight: 600;">Peserta bertanya</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- KOLASE FOTO KECIL (BARIS KEDUA) -->
+              <div class="photo-collage-small" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+                <div class="collage-item-small" style="border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+                  <img src="Sosialisasi/foto3.jpg" alt="Moment 1" style="width: 100%; height: 120px; object-fit: cover;">
+                </div>
+                <div class="collage-item-small" style="border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+                  <img src="Sosialisasi/2.jpg" alt="Moment 2" style="width: 100%; height: 120px; object-fit: cover;">
+                </div>
+                <div class="collage-item-small" style="border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+                  <img src="Sosialisasi/DSC04750.jpg" alt="Moment 3" style="width: 100%; height: 120px; object-fit: cover;">
+                </div>
+                <div class="collage-item-small" style="border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
+                  <img src="Sosialisasi/DSC04731.jpg" alt="Moment 4" style="width: 100%; height: 120px; object-fit: cover;">
+                </div>
+              </div>
             </div>
 
-            <img src="Sosialisasi/ketum.jpg" alt="Ketum Senat" width="150px">
-            <p class="video-caption" style="text-align: center;">Sambutan dari Ketua Umum Senat Mahasiswa Fakultas Kehutanan</p>
-            <div class="content-card">
-            <p>Sambutan dari Ketua Umum Senat Mahasiswa Fakultas Kehutanan, Ericho, yang mengajak seluruh peserta untuk aktif berpartisipasi dalam kegiatan Jelajah Hutan dan menjadikannya sebagai pengalaman berharga selama masa studi di INSTIPER Yogyakarta.</p>
-            <p>Dalam sambutannya, Ericho menekankan bahwa kegiatan pengkaderan ini tidak boleh ada perpelocoan didalamnya.</p>
+            <!-- STATISTIK PARTISIPASI -->
+            <div class="content-grid" style="margin-top: 30px;">
+              <div class="content-card" style="text-align: center;">
+                <div style="font-size: 32px; color: var(--gold); margin-bottom: 10px;">❓</div>
+                <h4 style="color: var(--leaf);">Pertanyaan Terjawab</h4>
+                <p style="font-size: 24px; font-weight: 800; color: var(--gold); margin: 10px 0;">10+</p>
+                <p style="font-size: 14px;">Berbagai pertanyaan dari peserta</p>
+              </div>
+              
+              <div class="content-card" style="text-align: center;">
+                <div style="font-size: 32px; color: var(--gold); margin-bottom: 10px;">👥</div>
+                <h4 style="color: var(--leaf);">Peserta Aktif</h4>
+                <p style="font-size: 24px; font-weight: 800; color: var(--gold); margin: 10px 0;">100+</p>
+                <p style="font-size: 14px;">Mahasiswa berpartisipasi</p>
+              </div>
+              
+              <div class="content-card" style="text-align: center;">
+                <div style="font-size: 32px; color: var(--gold); margin-bottom: 10px;">⏱️</div>
+                <h4 style="color: var(--leaf);">Durasi Sesi</h4>
+                <p style="font-size: 24px; font-weight: 800; color: var(--gold); margin: 10px 0;">60 Menit</p>
+                <p style="font-size: 14px;">Dialog interaktif</p>
+              </div>
             </div>
 
+            <!-- JENIS PERTANYAAN -->
+            <div style="background: linear-gradient(135deg, rgba(27,119,63,0.1), rgba(147,209,124,0.05)); padding: 25px; border-radius: 18px; margin-top: 25px;">
+              <h4 style="text-align: center; color: var(--gold); margin-bottom: 20px;">📝 Topik Pertanyaan yang Diajukan</h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div style="text-align: center;">
+                  <div style="width: 50px; height: 50px; background: var(--leaf); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                    <span style="color: white; font-size: 20px;">🎒</span>
+                  </div>
+                  <p style="font-weight: 600; color: var(--muted); margin: 0;">Perlengkapan</p>
+                </div>
+                <div style="text-align: center;">
+                  <div style="width: 50px; height: 50px; background: var(--leaf); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                    <span style="color: white; font-size: 20px;">📋</span>
+                  </div>
+                  <p style="font-weight: 600; color: var(--muted); margin: 0;">Tugas Peserta</p>
+                </div>
+                <div style="text-align: center;">
+                  <div style="width: 50px; height: 50px; background: var(--leaf); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                    <span style="color: white; font-size: 20px;">🌲</span>
+                  </div>
+                  <p style="font-weight: 600; color: var(--muted); margin: 0;">Kegiatan Lapangan</p>
+                </div>
+                <div style="text-align: center;">
+                  <div style="width: 50px; height: 50px; background: var(--leaf); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                    <span style="color: white; font-size: 20px;">🛡️</span>
+                  </div>
+                  <p style="font-weight: 600; color: var(--muted); margin: 0;">Keamanan & K3</p>
+                </div>
+              </div>
+            </div>
 
-            <img src="Sosialisasi/materi.jpg" alt="Penyampaian Tema Jelajah Hutan" width="150px">
-            <p class="video-caption" style="text-align: center;">Penyampaian Tema Jelajah Hutan 2025</p>
-            <div class="content-card">
-            <p>Dalam penyampaian tema Jelajah Hutan 2025, panitia menekankan pentingnya pelestarian alam dan keberlanjutan ekosistem. Tema ini diharapkan dapat membangkitkan kesadaran peserta akan tanggung jawab mereka terhadap lingkungan. Panitia juga menekankan bahwa dalam kegiatan Jelajah Hutan ini tidak akan ada yang namanya perpeloncoan, pembulian ataupun kekerasan. Seluruh panitia akan bertanggung jawab penuh apa bila terdapat kekerasan dalam kegiatan Jelajah Hutan ini.</p>
-            <p>Selain itu, panitia juga menyampaikan mengenai tugas peserta serta perlengkapan peserta dalam kegiatan Jelajah Hutan. Diharapkan para peserta dapat mempersiapkannya dengan baik dan dapat menjalankan tugas-tugasnya juga, baik tugas kelompok maupun tugas individu. Dalam Kegiatan ini juga diadakan sesi tanya jawab oleh panitia untuk mahasiswa baru yang penasaran mengenai kegiatan jelajah hutan.</p>
+          <!-- PENUTUP -->
+          <div class="highlight-box" style="margin-top: 40px;">
+            <h3 style="text-align: center; color: var(--gold); margin-bottom: 15px;">🎉 Suasana Kegiatan</h3>
+            <p style="text-align: center; font-size: 16px; line-height: 1.8;">
+              Sosialisasi berlangsung dengan penuh semangat dan antusiasme dari mahasiswa baru. 
+              Setelah mendapatkan penjelasan lengkap tentang materi dan tema, peserta terlihat aktif 
+              berpartisipasi dalam sesi tanya jawab dan menunjukkan ketertarikan yang besar terhadap 
+              program Jelajah Hutan 2025.
+            </p>
+            <p style="text-align: center; font-size: 16px; line-height: 1.8; margin-top: 15px;">
+              <strong>Hasil:</strong> Peserta memahami dengan jelas tujuan, aturan, dan manfaat mengikuti 
+              Jelajah Hutan, serta siap mengikuti tahapan selanjutnya dengan penuh semangat.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    
+    <!-- BACK BUTTON -->
+    <button class="back-btn" style="margin-top: 20px; display: block; margin-left: auto; margin-right: auto;" onclick="closeArticle()">
+      <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+    </button>
+  </div>
+</div>
+
+  <!-- ========== EVENT 2-4 (SINGLE SLIDE VERSI) ========== -->
+  <div id="event21" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <div class="slide-container">
+          <div class="slide active">
+            <h1>PRA-Jelajah Hutan</h1>
+            <img src="images/pra-jelajah1.jpg" alt="Pembukaan PRA Jelajah Hutan" width="400">
+            <p><strong>Tanggal:</strong> 6-7 Desember 2025</p>
+            <p><strong>Lokasi:</strong> Kampus dan Sekitar Yogyakarta</p>
+            <p><strong>Update Hari 1:</strong> Pembukaan PRA-Jelajah Hutan dimulai dengan apel pagi dan pembagian kelompok. Peserta terlihat semangat meski cuaca sedikit mendung.</p>
+            <p class="video-caption">📸 Apel pembukaan PRA-Jelajah Hutan</p>
           </div>
         </div>
       </div>
+      <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
     </div>
-    <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
   </div>
-</div>
 
-<div id="event21" class="content">
-  <div class="inner">
-    <div class="content-section">
-      <div class="slide-container">
-        <div class="slide active">
-          <h1>PRA-Jelajah Hutan</h1>
-          <img src="images/pra-jelajah1.jpg" alt="Pembukaan PRA Jelajah Hutan" width="400">
-          <p><strong>Tanggal:</strong> 6-7 Desember 2025</p>
-          <p><strong>Lokasi:</strong> Kampus dan Sekitar Yogyakarta</p>
-          <p><strong>Update Hari 1:</strong> Pembukaan PRA-Jelajah Hutan dimulai dengan apel pagi dan pembagian kelompok. Peserta terlihat semangat meski cuaca sedikit mendung.</p>
-          <p class="video-caption">📸 Apel pembukaan PRA-Jelajah Hutan</p>
-        </div>
-        <div class="slide">
-          <h1>PRA-Jelajah Hutan - Materi Navigasi</h1>
-          <img src="images/pra-jelajah2.jpg" alt="Materi Navigasi Darat" width="400">
-          <p><strong>Materi Navigasi Darat</strong></p>
-          <p>Peserta belajar menggunakan kompas dan peta untuk navigasi di alam bebas. Instruktur dari angkatan senior memberikan panduan praktis.</p>
-          <p class="video-caption">📸 Praktik penggunaan kompas oleh peserta</p>
-        </div>
-        <div class="slide">
-          <h1>PRA-Jelajah Hutan - Survival Skills</h1>
-          <img src="images/pra-jelajah3.jpg" alt="Teknik Membuat Shelter" width="400">
-          <p><strong>Teknik Membuat Shelter</strong></p>
-          <p>Peserta praktik langsung membuat shelter darurat menggunakan bahan-bahan alam yang tersedia di sekitar kampus.</p>
-          <p class="video-caption">📸 Hasil shelter yang dibuat peserta</p>
-        </div>
-        <div class="slide">
-          <h1>PRA-Jelajah Hutan - Team Building</h1>
-          <img src="images/pra-jelajah4.jpg" alt="Games Team Building" width="400">
-          <p><strong>Games Team Building</strong></p>
-          <p>Berbagai permainan team building dilakukan untuk memperkuat ikatan antar anggota kelompok sebelum hari-H.</p>
-          <p class="video-caption">📸 Moment seru selama games team building</p>
+  <div id="event31" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <div class="slide-container">
+          <div class="slide active">
+            <h1>Hari-H Jelajah Hutan</h1>
+            <h2>Hari ke-1: Pembukaan & Perjalanan Menuju Basecamp</h2>
+            <img src="images/hari1.jpg" alt="Perjalanan Menuju Basecamp" width="400">
+            <p><strong>Tanggal:</strong> 12 Desember 2025</p>
+            <p><strong>Update:</strong> Perjalanan menuju basecamp di kawasan hutan Gunung Merapi berjalan lancar. Peserta tiba di lokasi pukul 10.00 WIB dan langsung mempersiapkan camp.</p>
+            <p class="video-caption">📸 Perjalanan menuju basecamp dengan semangat 45!</p>
+          </div>
         </div>
       </div>
-      <div style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-        <button class="back-btn" onclick="prevSlide('event2')">⬅ Sebelumnya</button>
-        <button class="back-btn" onclick="nextSlide('event2')">Berikutnya ➡</button>
-      </div>
+      <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
     </div>
-    <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
   </div>
-</div>
 
-<div id="event31" class="content">
-  <div class="inner">
-    <div class="content-section">
-      <div class="slide-container">
-        <div class="slide active">
-          <h1>Hari-H Jelajah Hutan</h1>
-          <h2>Hari ke-1: Pembukaan & Perjalanan Menuju Basecamp</h2>
-          <img src="images/hari1.jpg" alt="Perjalanan Menuju Basecamp" width="400">
-          <p><strong>Tanggal:</strong> 12 Desember 2025</p>
-          <p><strong>Update:</strong> Perjalanan menuju basecamp di kawasan hutan Gunung Merapi berjalan lancar. Peserta tiba di lokasi pukul 10.00 WIB dan langsung mempersiapkan camp.</p>
-          <p class="video-caption">📸 Perjalanan menuju basecamp dengan semangat 45!</p>
-        </div>
-        <div class="slide">
-          <h1>Hari-H Jelajah Hutan</h1>
-          <h2>Hari ke-1: Pendirian Camp dan Materi Pertama</h2>
-          <img src="images/hari1-2.jpg" alt="Pendirian Camp" width="400">
-          <p><strong>Pendirian Camp</strong></p>
-          <p>Setiap kelompok mendirikan tenda dan mengatur perlengkapan. Materi pertama tentang etika berkemah di kawasan hutan diberikan setelah makan siang.</p>
-          <p class="video-caption">📸 Kerjasama tim dalam mendirikan tenda</p>
-        </div>
-        <div class="slide">
-          <h1>Hari-H Jelajah Hutan</h1>
-          <h2>Hari ke-2: Eksplorasi & Pembelajaran Lapangan</h2>
-          <img src="images/hari2.jpg" alt="Tracking Pagi Hari" width="400">
-          <p><strong>Tanggal:</strong> 13 Desember 2025</p>
-          <p><strong>Tracking Pagi Hari:</strong> Peserta melakukan tracking menyusuri jalur hutan sambil belajar mengidentifikasi jenis-jenis pohon dan satwa liar.</p>
-          <p class="video-caption">📸 Suasana tracking pagi di antara pepohonan</p>
-        </div>
-        <div class="slide">
-          <h1>Hari-H Jelajah Hutan</h1>
-          <h2>Hari ke-2: Praktek Survival Skills</h2>
-          <img src="images/hari2-2.jpg" alt="Praktek Membuat Api" width="400">
-          <p><strong>Praktek Membuat Api</strong></p>
-          <p>Peserta belajar berbagai teknik membuat api tanpa korek, termasuk menggunakan lensa dan busur kayu. Semua kelompok berhasil menyalakan api!</p>
-          <p class="video-caption">📸 Moment bahagia ketika api berhasil dinyalakan</p>
-        </div>
-        <div class="slide">
-          <h1>Hari-H Jelajah Hutan</h1>
-          <h2>Hari ke-3: Refleksi & Penutupan</h2>
-          <img src="images/hari3.jpg" alt="Api Unggun Malam Refleksi" width="400">
-          <p><strong>Tanggal:</strong> 14 Desember 2025</p>
-          <p><strong>Api Unggun Malam Refleksi:</strong> Malam terakhir diisi dengan api unggun dan sesi refleksi. Setiap peserta berbagi pengalaman dan pelajaran selama Jelajah Hutan.</p>
-          <p class="video-caption">📸 Suasana hangat di sekitar api unggun</p>
-        </div>
-        <div class="slide">
-          <h1>Hari-H Jelajah Hutan</h1>
-          <h2>Hari ke-3: Penutupan dan Kepulangan</h2>
-          <img src="images/hari3-2.jpg" alt="Foto Bersama Penutupan" width="400">
-          <p><strong>Penutupan dan Kepulangan</strong></p>
-          <p>Acara ditutup dengan pembacaan ikrar rimbawan dan foto bersama. Peserta pulang dengan membawa pengalaman berharga dan semangat baru sebagai calon rimbawan.</p>
-          <p class="video-caption">📸 Foto bersama sebagai kenang-kenangan</p>
+  <div id="event41" class="content">
+    <div class="inner">
+      <div class="content-section">
+        <div class="slide-container">
+          <div class="slide active">
+            <h1>Pasca-Jelajah Hutan</h1>
+            <img src="images/pasca1.jpg" alt="Reuni dan Refleksi Akhir" width="400">
+            <p><strong>Tanggal:</strong> 20 Desember 2025</p>
+            <p><strong>Lokasi:</strong> Kampus Fakultas Kehutanan</p>
+            <p><strong>Reuni dan Refleksi Akhir:</strong> Pertemuan pertama setelah Jelajah Hutan diisi dengan berbagi cerita dan evaluasi kegiatan. Peserta menunjukkan perkembangan yang positif.</p>
+            <p class="video-caption">📸 Suasana hangat reuni antar peserta</p>
+          </div>
         </div>
       </div>
-      <div style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-        <button class="back-btn" onclick="prevSlide('event3')">⬅ Sebelumnya</button>
-        <button class="back-btn" onclick="nextSlide('event3')">Berikutnya ➡</button>
-      </div>
+      <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
     </div>
-    <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
   </div>
-</div>
-
-<div id="event41" class="content">
-  <div class="inner">
-    <div class="content-section">
-      <div class="slide-container">
-        <div class="slide active">
-          <h1>Pasca-Jelajah Hutan</h1>
-          <img src="images/pasca1.jpg" alt="Reuni dan Refleksi Akhir" width="400">
-          <p><strong>Tanggal:</strong> 20 Desember 2025</p>
-          <p><strong>Lokasi:</strong> Kampus Fakultas Kehutanan</p>
-          <p><strong>Reuni dan Refleksi Akhir:</strong> Pertemuan pertama setelah Jelajah Hutan diisi dengan berbagi cerita dan evaluasi kegiatan. Peserta menunjukkan perkembangan yang positif.</p>
-          <p class="video-caption">📸 Suasana hangat reuni antar peserta</p>
-        </div>
-        <div class="slide">
-          <h1>Pasca-Jelajah Hutan - Penyerahan Sertifikat</h1>
-          <img src="images/pasca2.jpg" alt="Penyerahan Sertifikat" width="400">
-          <p><strong>Penyerahan Sertifikat</strong></p>
-          <p>Penyerahan sertifikat peserta kepada seluruh mahasiswa yang telah menyelesaikan Jelajah Hutan 2025 dengan baik.</p>
-          <p class="video-caption">📸 Moment kebanggaan menerima sertifikat</p>
-        </div>
-        <div class="slide">
-          <h1>Pasca-Jelajah Hutan - Komitmen Ke depan</h1>
-          <img src="images/pasca3.jpg" alt="Penyusunan Rencana Tindak Lanjut" width="400">
-          <p><strong>Penyusunan Rencana Tindak Lanjut</strong></p>
-          <p>Peserta bersama-sama menyusun rencana tindak lanjut untuk mengaplikasikan ilmu yang didapat dalam kehidupan kampus dan pelestarian lingkungan.</p>
-          <p class="video-caption">📸 Diskusi kelompok untuk rencana ke depan</p>
-        </div>
-        <div class="slide">
-          <h1>Pasca-Jelajah Hutan - Penanaman Pohon</h1>
-          <img src="images/pasca4.jpg" alt="Aksi Penanaman Pohon" width="400">
-          <p><strong>Aksi Penanaman Pohon</strong></p>
-          <p>Sebagai bentuk komitmen nyata, dilakukan aksi penanaman pohon di area kampus sebagai tanda dimulainya peran sebagai rimbawan sejati.</p>
-          <p class="video-caption">📸 Aksi nyata penanaman pohon oleh peserta</p>
-        </div>
-      </div>
-      <div style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-        <button class="back-btn" onclick="prevSlide('event4')">⬅ Sebelumnya</button>
-        <button class="back-btn" onclick="nextSlide('event4')">Berikutnya ➡</button>
-      </div>
-    </div>
-    <button class="back-btn" style="margin-top:15px;" onclick="closeArticle()">⬅ Kembali</button>
-  </div>
-</div>
 
   <!-- ========== ORDER FORM POPUP ========== -->
   <div id="orderForm">
@@ -2538,30 +2786,30 @@
       }
     }
 
-// ========== SPONSOR DATA ==========
-  const sponsors = [
-    { name: "Sponsor 1", logo: "images/sponsor1.jpg", ig: "" },
-    { name: "Sponsor 2", logo: "images/sponsor2.jpg", ig: "" },
-    { name: "Sponsor 3", logo: "images/sponsor3.jpg", ig: "" },
-    { name: "Sponsor 4", logo: "images/sponsor4.jpg", ig: "" }
-  ];
+    // ========== SPONSOR DATA ==========
+    const sponsors = [
+      { name: "Sponsor 1", logo: "images/sponsor1.jpg", ig: "" },
+      { name: "Sponsor 2", logo: "images/sponsor2.jpg", ig: "" },
+      { name: "Sponsor 3", logo: "images/sponsor3.jpg", ig: "" },
+      { name: "Sponsor 4", logo: "images/sponsor4.jpg", ig: "" }
+    ];
 
-  function renderSponsors() {
-    const sponsorContainer = document.querySelector('.sponsor-logos');
-    sponsorContainer.innerHTML = '';
-    
-    sponsors.forEach(sponsor => {
-      const sponsorLogo = document.createElement('img');
-      sponsorLogo.src = sponsor.logo;
-      sponsorLogo.alt = sponsor.name;
-      sponsorLogo.className = 'sponsor-logo';
-      sponsorLogo.onclick = () => window.open(sponsor.ig, '_blank');
-      sponsorContainer.appendChild(sponsorLogo);
-    });
-  }
+    function renderSponsors() {
+      const sponsorContainer = document.querySelector('.sponsor-logos');
+      sponsorContainer.innerHTML = '';
+      
+      sponsors.forEach(sponsor => {
+        const sponsorLogo = document.createElement('img');
+        sponsorLogo.src = sponsor.logo;
+        sponsorLogo.alt = sponsor.name;
+        sponsorLogo.className = 'sponsor-logo';
+        sponsorLogo.onclick = () => window.open(sponsor.ig, '_blank');
+        sponsorContainer.appendChild(sponsorLogo);
+      });
+    }
 
-// Panggil fungsi saat halaman dimuat
-document.addEventListener('DOMContentLoaded', renderSponsors);
+    // Panggil fungsi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', renderSponsors);
 
     // ========== ARTICLE/POPUP FUNCTIONS ==========
     function showArticle(id) {
