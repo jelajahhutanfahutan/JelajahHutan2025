@@ -647,33 +647,45 @@
     }
 
     /* ========== link dokumentasi ========== */
-    .link-dokumentasi { 
-      background: linear-gradient(135deg, var(--leaf), var(--forest));
-      padding: 12px 20px;
-      border-radius: 16px;
-      display: inline-block;
-      font-size: 15px;
-      color: var(--bg-deep);
-      font-weight: 700;
-      box-shadow: 0 6px 20px rgba(147,209,124,0.4);
-    }
+    .container-link {
+  display: flex;
+  flex-direction: column; /* sejajar vertikal */
+  align-items: center; /* biar di tengah */
+  gap: 16px; /* jarak antar tombol/link */
+  padding: 20px;
+}
 
-    .link-dokumentasi:hover {
-      transform: translateY(-3px) scale(1.05);
-      transition: 0.3s;
-      box-shadow: 0 10px 30px rgba(147,209,124,0.5);
+/* Tombol atau link */
+.link-dokumentasi {
+  background: linear-gradient(135deg, var(--leaf), var(--forest));
+  padding: 12px 20px;
+  border-radius: 16px;
+  display: inline-block;
+  font-size: 15px;
+  color: var(--bg-deep);
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(147, 209, 124, 0.4);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    }
+.link-dokumentasi:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(147, 209, 124, 0.6);
+}
 
-    .link-dokumentasi li {
-      list-style: none;
-      text-align: center;
-    }
+/* Responsif di semua device */
+@media (max-width: 600px) {
+  .link-dokumentasi {
+    width: 100%;
+    font-size: 14px;
+  }
 
-    .link-dokumentasi li a {
-      text-decoration: none;
-      color: black;
-    }
+  .container-link {
+    padding: 10px;
+  }
+}
+
 
     /* ========== CONTENT POPUP ========== */
     .content {
