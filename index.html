@@ -2289,41 +2289,79 @@
   </div>
 
   <!-- ========== ARTIKEL 6: MERCHANDISE ========== -->
-  <div id="artikel6" class="content">
-    <div class="inner">
-      <div class="content-section">
-        <h1>Merchandise Resmi</h1>
-        <p style="text-align: center; font-size: 18px;">Berbagai merchandise resmi Jelajah Hutan 2025 Akan Segera Hadir!🌲</p>
-        <div class="gallery">
-          <div class="item">
-            <img src="images/kaos.jpg" alt="Kaos Jelajah Hutan">
-            <h4>Coming Soon!!!.</h4>
-            <p>-</p>
-            <button class="buy-btn" onclick="order('Kaos Jelajah Hutan')">🛒 Beli Sekarang</button>
-          </div>
-          <div class="item">
-            <img src="images/topi.jpg" alt="Topi Petualang">
-            <h4>Coming Soon!!!.</h4>
-            <p>-</p>
-            <button class="buy-btn" onclick="order('Topi Petualang')">🛒 Beli Sekarang</button>
-          </div>
-          <div class="item">
-            <img src="images/tumbler.jpg" alt="Tumbler Ramah Lingkungan">
-            <h4>Coming Soon!!!.</h4>
-            <p>-</p>
-            <button class="buy-btn" onclick="order('Tumbler Ramah Lingkungan')">🛒 Beli Sekarang</button>
-          </div>
-          <div class="item">
-            <img src="images/pin.jpg" alt="Coming Soon!!!.">
-            <h4>Coming Soon!!!.</h4>
-            <p>-</p>
-            <button class="buy-btn" onclick="order('Pin Eksklusif')">🛒 Beli Sekarang</button>
-          </div>
+  <!-- ========== ARTIKEL 6: MERCHANDISE ========== -->
+<div id="artikel6" class="content">
+  <div class="inner">
+    <div class="content-section">
+      <h1>Merchandise Resmi Jelajah Hutan 2025</h1>
+      <p style="text-align: center; font-size: 18px;">Berbagai merchandise resmi Jelajah Hutan 2025 yang dapat dipesan! 🌲</p>
+      
+      <!-- GALLERY MERCHANDISE -->
+      <div class="gallery">
+        <!-- Kaos Jelajah Hutan -->
+        <div class="item">
+          <img src="images/kaos.jpg" alt="Kaos Jelajah Hutan">
+          <h4>Kaos Jelajah Hutan</h4>
+          <p>Rp 85.000</p>
+          <button class="buy-btn" onclick="showProductDetail('kaos')">🛒 Detail & Beli</button>
+        </div>
+        
+        <!-- Topi Petualang -->
+        <div class="item">
+          <img src="images/topi.jpg" alt="Topi Petualang">
+          <h4>Topi Petualang</h4>
+          <p>Rp 45.000</p>
+          <button class="buy-btn" onclick="showProductDetail('topi')">🛒 Detail & Beli</button>
+        </div>
+        
+        <!-- Tumbler Ramah Lingkungan -->
+        <div class="item">
+          <img src="images/tumbler.jpg" alt="Tumbler Ramah Lingkungan">
+          <h4>Tumbler Ramah Lingkungan</h4>
+          <p>Rp 65.000</p>
+          <button class="buy-btn" onclick="showProductDetail('tumbler')">🛒 Detail & Beli</button>
+        </div>
+        
+        <!-- Pin Eksklusif -->
+        <div class="item">
+          <img src="images/pin.jpg" alt="Pin Eksklusif">
+          <h4>Pin Eksklusif</h4>
+          <p>Rp 25.000</p>
+          <button class="buy-btn" onclick="showProductDetail('pin')">🛒 Detail & Beli</button>
+        </div>
+        
+        <!-- Totebag -->
+        <div class="item">
+          <img src="images/totebag.jpg" alt="Totebag">
+          <h4>Totebag</h4>
+          <p>Rp 55.000</p>
+          <button class="buy-btn" onclick="showProductDetail('totebag')">🛒 Detail & Beli</button>
+        </div>
+        
+        <!-- Sticker Pack -->
+        <div class="item">
+          <img src="images/sticker.jpg" alt="Sticker Pack">
+          <h4>Sticker Pack</h4>
+          <p>Rp 15.000</p>
+          <button class="buy-btn" onclick="showProductDetail('sticker')">🛒 Detail & Beli</button>
         </div>
       </div>
-      <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
     </div>
+    <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
   </div>
+</div>
+
+<!-- ========== PRODUCT DETAIL POPUP ========== -->
+<div id="productDetail" class="content">
+  <div class="inner">
+    <div class="content-section">
+      <div id="productContent">
+        <!-- Konten produk akan dimuat dinamis di sini -->
+      </div>
+    </div>
+    <button class="back-btn" onclick="closeProductDetail()">⬅ Kembali ke Merchandise</button>
+  </div>
+</div>
 
 <!-- ========== ARTIKEL 7: Pendaftaran ========== -->
 <div id="artikel7" class="content">
