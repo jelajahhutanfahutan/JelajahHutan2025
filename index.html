@@ -655,36 +655,36 @@
   padding: 20px;
 }
 
-/* Tombol atau link */
-.link-dokumentasi {
-  background: linear-gradient(135deg, var(--leaf), var(--forest));
-  padding: 12px 20px;
-  border-radius: 16px;
-  display: inline-block;
-  font-size: 15px;
-  color: var(--bg-deep);
-  font-weight: 700;
-  box-shadow: 0 6px 20px rgba(147, 209, 124, 0.4);
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.link-dokumentasi:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(147, 209, 124, 0.6);
-}
-
-/* Responsif di semua device */
-@media (max-width: 600px) {
+  /*======= Dokumentasi ======= */
   .link-dokumentasi {
-    width: 100%;
-    font-size: 14px;
+    background: linear-gradient(135deg, var(--leaf), var(--forest));
+    padding: 12px 20px;
+    border-radius: 16px;
+    display: inline-block;
+    font-size: 15px;
+    color: var(--bg-deep);
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(147, 209, 124, 0.4);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .container-link {
-    padding: 10px;
+  .link-dokumentasi:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(147, 209, 124, 0.6);
   }
-}
+
+  /* Responsif di semua device */
+  @media (max-width: 600px) {
+    .link-dokumentasi {
+      width: 100%;
+      font-size: 14px;
+    }
+
+    .container-link {
+      padding: 10px;
+    }
+  }
 
 
     /* ========== CONTENT POPUP ========== */
@@ -2345,20 +2345,12 @@
     <div class="content-section">
       <h1>Dokumentasi Kegiatan Jelajah Hutan 2025</h1>
        <p style="text-align: center; font-size: 18px;">Abadikan momen-momen seru  selama Jelajah Hutan 2025 melalui dokumentasi berikut! 📸🌿</p>
-        <ul>
-          <div class="link-dokumentasi">
-            <li><a href="https://drive.google.com/drive/folders/1bonb2mD-0JGqGn34kg61kSNXijlSRmVP" target="_blank">Sosialisasi Jelajah Hutan</a></li>
-          </div> 
-           <div class="link-dokumentasi">
-          <li><a href="images/dokumentasi2.jpg" target="_blank">PRA-Jelajah Hutan</a></li>
-          </div>
-           <div class="link-dokumentasi">
-          <li><a href="images/dokumentasi3.jpg" target="_blank">Hari-H-Jelajah Hutan</a></li>
-          </div>
-           <div class="link-dokumentasi">
-          <li><a href="images/dokumentasi4.jpg" target="_blank">Pasca-Jelajah Hutan</a></li>
-          </div>
-        </ul>
+       <div class="container-link">
+         <a href="#" class="link-dokumentasi">Dokumentasi 1</a>
+         <a href="#" class="link-dokumentasi">Dokumentasi 2</a>
+  <a href="#" class="link-dokumentasi">Dokumentasi 3</a>
+</div>
+
      </div>
     <button class="back-btn" onclick="closeArticle()">⬅ Kembali</button>
   </div>
