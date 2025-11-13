@@ -3352,42 +3352,317 @@
       slides[prevIndex].classList.add('active');
     }
 
-    // ========== ORDER FORM FUNCTIONS ==========
-    function order(item) {
-      currentItem = item;
-      document.getElementById('orderForm').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+    // ========== PRODUCT DATA ==========
+const products = {
+  kaos: {
+    name: "Kaos Jelajah Hutan 2025",
+    price: 85000,
+    images: ["images/kaos.jpg", "images/kaos-back.jpg", "images/kaos-detail.jpg"],
+    description: "Kaos resmi Jelajah Hutan 2025 dengan desain eksklusif yang mencerminkan semangat petualangan dan kecintaan terhadap alam. Terbuat dari bahan cotton combed 30s yang nyaman dan menyerap keringat.",
+    features: [
+      "Bahan cotton combed 30s premium",
+      "Sablon plastisol yang tahan lama",
+      "Desain eksklusif maskot kakatua maluku",
+      "Tersedia ukuran S, M, L, XL",
+      "Warna dasar hijau hutan dengan aksen emas"
+    ],
+    specs: {
+      "Bahan": "Cotton Combed 30s",
+      "Ukuran": "S, M, L, XL",
+      "Warna": "Hijau Hutan",
+      "Sablon": "Plastisol",
+      "Perawatan": "Cuci dengan air dingin, jangan disetrika langsung pada sablon"
     }
-
-    function closeForm() {
-      document.getElementById('orderForm').style.display = 'none';
-      document.body.style.overflow = 'auto';
+  },
+  topi: {
+    name: "Topi Petualang Rimbawan",
+    price: 45000,
+    images: ["images/topi.jpg", "images/topi-side.jpg", "images/topi-back.jpg"],
+    description: "Topi petualang dengan desain outdoor yang cocok untuk kegiatan lapangan. Dilengkapi dengan adjustable strap untuk kenyamanan maksimal.",
+    features: [
+      "Bahan kanvas waterproof",
+      "Adjustable strap untuk semua ukuran kepala",
+      "Desain logo Jelajah Hutan 2025",
+      "Cocok untuk kegiatan outdoor",
+      "Ringan dan mudah dibawa"
+    ],
+    specs: {
+      "Bahan": "Kanvas Waterproof",
+      "Ukuran": "Adjustable (One Size)",
+      "Warna": "Khaki",
+      "Jenis": "Baseball Cap",
+      "Fitur": "Adjustable Strap"
     }
+  },
+  tumbler: {
+    name: "Tumbler Ramah Lingkungan",
+    price: 65000,
+    images: ["images/tumbler.jpg", "images/tumbler-open.jpg"],
+    description: "Tumbler stainless steel ramah lingkungan dengan desain khusus Jelajah Hutan 2025. Dapat menjaga suhu minuman hingga 8 jam.",
+    features: [
+      "Material stainless steel 304 food grade",
+      "Dapat menjaga suhu panas/dingin hingga 8 jam",
+      "Desain eksklusif dengan logo resmi",
+      "Kapasitas 500ml",
+      "Ramah lingkungan dan reusable"
+    ],
+    specs: {
+      "Material": "Stainless Steel 304",
+      "Kapasitas": "500ml",
+      "Isolasi": "Double Wall Vacuum",
+      "Tutup": "Screw-on Lid",
+      "Dimensi": "Φ7.5cm x 21cm"
+    }
+  },
+  pin: {
+    name: "Pin Koleksi Eksklusif",
+    price: 25000,
+    images: ["images/pin.jpg", "images/pin-back.jpg"],
+    description: "Pin koleksi eksklusif dengan desain maskot kakatua maluku. Perfect untuk menghiasi tas, jaket, atau sebagai koleksi.",
+    features: [
+      "Material enamel dengan lapisan emas",
+      "Desain detail maskot kakatua maluku",
+      "Backing pin yang aman",
+      "Limited edition 2025",
+      "Cocok untuk koleksi atau hadiah"
+    ],
+    specs: {
+      "Material": "Enamel & Metal",
+      "Ukuran": "3cm x 3cm",
+      "Finishing": "Gold Plated",
+      "Backing": "Butterfly Clutch",
+      "Edisi": "Limited 2025"
+    }
+  },
+  totebag: {
+    name: "Totebag Rimbawan",
+    price: 55000,
+    images: ["images/totebag.jpg", "images/totebag-inside.jpg"],
+    description: "Totebag praktis dengan desain rimbawan yang stylish. Cocok untuk kegiatan sehari-hari maupun kegiatan kampus.",
+    features: [
+      "Bahan kanvas tebal dan kuat",
+      "Handle yang nyaman dan kokoh",
+      "Desain minimalis dengan logo resmi",
+      "Saku dalam untuk barang kecil",
+      "Ramah lingkungan dan reusable"
+    ],
+    specs: {
+      "Bahan": "Kanvas 12oz",
+      "Dimensi": "35cm x 40cm x 10cm",
+      "Handle": "60cm (panjang total)",
+      "Kapasitas": "Sampai 10kg",
+      "Warna": "Natural Canvas"
+    }
+  },
+  sticker: {
+    name: "Sticker Pack Eksklusif",
+    price: 15000,
+    images: ["images/sticker.jpg", "images/sticker-individual.jpg"],
+    description: "Paket sticker eksklusif dengan berbagai desain bertema Jelajah Hutan 2025. Perfect untuk menghiasi laptop, buku, atau botol minum.",
+    features: [
+      "5 desain sticker yang berbeda",
+      "Material vinyl waterproof",
+      "Tahan lama dan mudah ditempel",
+      "Desain unik bertema kehutanan",
+      "Cocok untuk dekorasi personal"
+    ],
+    specs: {
+      "Jumlah": "5 Sticker/Pack",
+      "Material": "Vinyl Waterproof",
+      "Ukuran": "Berbagai ukuran (5-10cm)",
+      "Finishing": "Matte/Glossy",
+      "Ketahanan": "Waterproof & UV Resistant"
+    }
+  }
+};
 
-    function submitOrder() {
-      const name = document.getElementById('buyerName').value.trim();
-      const kelas = document.getElementById('buyerClass').value.trim();
-      const angkatan = document.getElementById('buyerYear').value.trim();
-      const qty = document.getElementById('buyerQty').value.trim();
+// ========== PRODUCT DETAIL FUNCTIONS ==========
+let currentProduct = null;
+let currentQuantity = 1;
 
-      if (!name || !kelas || !angkatan || !qty) {
-        alert('Harap isi semua data!');
-        return;
-      }
+function showProductDetail(productId) {
+  currentProduct = products[productId];
+  currentQuantity = 1;
+  
+  if (!currentProduct) return;
+  
+  const productContent = document.getElementById('productContent');
+  productContent.innerHTML = generateProductDetailHTML(currentProduct);
+  
+  document.getElementById('productDetail').style.display = 'block';
+  setTimeout(() => document.getElementById('productDetail').classList.add('active'), 50);
+  document.body.style.overflow = 'hidden';
+}
 
-      const phone = '6281393288135';
-      const text = encodeURIComponent(
-        `Halo, saya ingin membeli: ${currentItem}\n\nNama: ${name}\nKelas: ${kelas}\nAngkatan: ${angkatan}\nJumlah: ${qty}`
-      );
-      const url = `https://wa.me/${phone}?text=${text}`;
-      window.open(url, '_blank');
-      closeForm();
+function generateProductDetailHTML(product) {
+  return `
+    <div class="product-detail">
+      <div class="product-header">
+        <h1>${product.name}</h1>
+        <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
+      </div>
       
-      document.getElementById('buyerName').value = '';
-      document.getElementById('buyerClass').value = '';
-      document.getElementById('buyerYear').value = '';
-      document.getElementById('buyerQty').value = '1';
+      <div class="product-main">
+        <div class="product-image">
+          <img src="${product.images[0]}" alt="${product.name}" id="mainProductImage">
+        </div>
+        
+        <div class="product-info">
+          <div class="product-description">
+            ${product.description}
+          </div>
+          
+          <div class="product-features">
+            <h3>Fitur Produk:</h3>
+            <ul class="feature-list">
+              ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+          </div>
+          
+          <div class="product-specs">
+            <h3>Spesifikasi:</h3>
+            <div class="specs-grid">
+              ${Object.entries(product.specs).map(([key, value]) => `
+                <div class="spec-item">
+                  <span class="spec-label">${key}:</span>
+                  <span class="spec-value">${value}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div class="quantity-selector">
+            <span style="color: var(--muted); font-weight: 600;">Jumlah:</span>
+            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+            <span class="quantity-display" id="quantityDisplay">${currentQuantity}</span>
+            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+          </div>
+          
+          <div class="product-actions">
+            <button class="btn-primary" onclick="orderProduct('${Object.keys(products).find(key => products[key] === product)}')">
+              🛒 Beli Sekarang - Rp ${(product.price * currentQuantity).toLocaleString('id-ID')}
+            </button>
+            <button class="btn-secondary" onclick="addToCart('${Object.keys(products).find(key => products[key] === product)}')">
+              💾 Simpan untuk Nanti
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      ${product.images.length > 1 ? `
+        <div class="product-gallery">
+          <h3>Galeri Produk</h3>
+          <div class="gallery-thumbnails">
+            ${product.images.map((img, index) => `
+              <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeProductImage('${img}')">
+                <img src="${img}" alt="${product.name} ${index + 1}">
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function changeQuantity(amount) {
+  const newQuantity = currentQuantity + amount;
+  if (newQuantity >= 1 && newQuantity <= 10) {
+    currentQuantity = newQuantity;
+    document.getElementById('quantityDisplay').textContent = currentQuantity;
+    
+    // Update harga total
+    const buyButton = document.querySelector('.btn-primary');
+    if (buyButton && currentProduct) {
+      const totalPrice = currentProduct.price * currentQuantity;
+      buyButton.textContent = `🛒 Beli Sekarang - Rp ${totalPrice.toLocaleString('id-ID')}`;
     }
+  }
+}
+
+function changeProductImage(imageSrc) {
+  document.getElementById('mainProductImage').src = imageSrc;
+  
+  // Update active thumbnail
+  document.querySelectorAll('.thumbnail').forEach(thumb => {
+    thumb.classList.remove('active');
+  });
+  event.target.closest('.thumbnail').classList.add('active');
+}
+
+function closeProductDetail() {
+  const productDetail = document.getElementById('productDetail');
+  productDetail.classList.remove('active');
+  setTimeout(() => productDetail.style.display = 'none', 500);
+  document.body.style.overflow = 'auto';
+}
+
+function orderProduct(productId) {
+  const product = products[productId];
+  if (!product) return;
+  
+  const totalPrice = product.price * currentQuantity;
+  currentItem = `${product.name} (${currentQuantity} pcs)`;
+  
+  document.getElementById('orderForm').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  // Pre-fill quantity in order form
+  document.getElementById('buyerQty').value = currentQuantity;
+}
+
+function addToCart(productId) {
+  const product = products[productId];
+  if (!product) return;
+  
+  // Simpan ke localStorage (simulasi cart sederhana)
+  let cart = JSON.parse(localStorage.getItem('jelajahHutanCart')) || [];
+  const existingItem = cart.find(item => item.id === productId);
+  
+  if (existingItem) {
+    existingItem.quantity += currentQuantity;
+  } else {
+    cart.push({
+      id: productId,
+      name: product.name,
+      price: product.price,
+      quantity: currentQuantity,
+      image: product.images[0]
+    });
+  }
+  
+  localStorage.setItem('jelajahHutanCart', JSON.stringify(cart));
+  
+  // Tampilkan konfirmasi
+  alert(`✅ ${product.name} (${currentQuantity} pcs) telah ditambahkan ke keranjang!`);
+}
+
+// Update fungsi submitOrder untuk menangani produk dengan quantity
+function submitOrder() {
+  const name = document.getElementById('buyerName').value.trim();
+  const kelas = document.getElementById('buyerClass').value.trim();
+  const angkatan = document.getElementById('buyerYear').value.trim();
+  const qty = document.getElementById('buyerQty').value.trim();
+
+  if (!name || !kelas || !angkatan || !qty) {
+    alert('Harap isi semua data!');
+    return;
+  }
+
+  const phone = '6281393288135';
+  const text = encodeURIComponent(
+    `Halo, saya ingin membeli:\n${currentItem}\n\nNama: ${name}\nKelas: ${kelas}\nAngkatan: ${angkatan}\nJumlah: ${qty}`
+  );
+  const url = `https://wa.me/${phone}?text=${text}`;
+  window.open(url, '_blank');
+  closeForm();
+  
+  document.getElementById('buyerName').value = '';
+  document.getElementById('buyerClass').value = '';
+  document.getElementById('buyerYear').value = '';
+  document.getElementById('buyerQty').value = '1';
+}
+    
 
     // ========== SHARE WEBSITE ==========
     document.getElementById('shareWebsiteBtn').addEventListener('click', function(e) {
