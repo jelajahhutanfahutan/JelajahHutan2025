@@ -2721,9 +2721,13 @@
 
   <!-- ========== JAVASCRIPT ========== -->
   <script>
-
-
-
+    // ========== LOADING SCREEN ==========
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loadingScreen').classList.add('hidden');
+      }, 1500);
+    });
+    
     // ========== FALLING LEAVES ANIMATION ==========
     const leafEmojis = ["🍃", "🍂", "🍁", "🌿", "🍀"];
     const leafContainer = document.getElementById('falling-leaves');
