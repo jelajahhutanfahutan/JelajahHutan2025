@@ -1355,6 +1355,13 @@
 </head>
 
 <body>
+
+  <!-- ========== LOADING SCREEN ========== -->
+  <div class="loading-screen" id="loadingScreen">
+    <img src="images/logo-instiper-removebg-preview.png" alt="Logo Instiper" class="loading-logo">
+    <div class="loading-text">Loading Jelajah Hutan...</div>
+  </div>
+
   <!-- ========== HEADER ========== -->
   <header>
     <div class="brand">
@@ -2705,6 +2712,7 @@
 
     setInterval(createLeaf, 2500);
 
+//============ LOADING SCREEN =============//
      window.addEventListener('load', function() {
       setTimeout(function() {
         document.getElementById('loadingScreen').classList.add('hidden');
