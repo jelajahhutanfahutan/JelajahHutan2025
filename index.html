@@ -2768,10 +2768,10 @@
   <!-- ========== JAVASCRIPT ========== -->
   <script>
     // ========== LOADING SCREEN ==========
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loadingScreen').classList.add('hidden');
-      }, 1500);
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+      document.getElementById('loadingScreen').classList.add('hidden');
+    }, 500);
     });
 
     // ========== FALLING LEAVES ANIMATION ==========
