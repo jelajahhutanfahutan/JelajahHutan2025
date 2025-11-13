@@ -2705,6 +2705,12 @@
 
     setInterval(createLeaf, 2500);
 
+     window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loadingScreen').classList.add('hidden');
+      }, 1500);
+    });
+
     // ========== CLICK BURST EFFECT ==========
     document.addEventListener("pointerdown", function(e) {
       const burst = document.createElement("div");
