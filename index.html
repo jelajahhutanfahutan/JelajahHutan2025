@@ -1400,7 +1400,7 @@
   <!-- ========== LOADING SCREEN ========== -->
   <div class="loading-screen" id="loadingScreen">
     <img src="images/logo-instiper-removebg-preview.png" alt="Logo Instiper" class="loading-logo">
-    <div class="loading-text">Loading Jelajah Hutan...</div>
+    <div class="loading-text">Loading Jelajah Hutan 2025...</div>
   </div>
 
   <!-- ========== HEADER ========== -->
@@ -2721,6 +2721,14 @@
 
   <!-- ========== JAVASCRIPT ========== -->
   <script>
+
+    //============ LOADING SCREEN =============//
+     window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loadingScreen').classList.add('hidden');
+      }, 1500);
+    });
+
     // ========== FALLING LEAVES ANIMATION ==========
     const leafEmojis = ["🍃", "🍂", "🍁", "🌿", "🍀"];
     const leafContainer = document.getElementById('falling-leaves');
