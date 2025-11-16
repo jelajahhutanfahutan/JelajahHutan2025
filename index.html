@@ -2677,62 +2677,116 @@
       <h1>Merchandise Resmi Jelajah Hutan 2025</h1>
       <p style="text-align: center; font-size: 18px;">Berbagai merchandise resmi Jelajah Hutan 2025 yang dapat dipesan! 🌲</p>
       
-      <!-- GALLERY MERCHANDISE -->
+      <!-- GALLERY MERCHANDISE INDIVIDUAL -->
+      <h2 style="text-align: center; color: var(--gold); margin: 40px 0 20px;">🛍️ Produk Individual</h2>
       <div class="gallery">
         <!-- Kaos Tipe 1: Kaos Reguler -->
         <div class="item">
-          <img src="images/kaos-reguler.jpg" alt="Kaos Jelajah Hutan Reguler">
-          <h4>Kaos Jelajah Hutan Reguler</h4>
-          <p>Rp 85.000</p>
+          <img src="merchandise/A.jpeg" alt="Kaos Jelajah Hutan Reguler">
+          <h4>Kaos A</h4>
+          <p>Rp 115.000</p>
           <button class="buy-btn" onclick="showProductDetail('kaos-reguler')">🛒 Detail & Beli</button>
         </div>
         
         <!-- Kaos Tipe 2: Kaos Premium -->
         <div class="item">
-          <img src="images/kaos-premium.jpg" alt="Kaos Jelajah Hutan Premium">
-          <h4>Kaos Jelajah Hutan Premium</h4>
-          <p>Rp 120.000</p>
+          <img src="merchandise/B.jpeg" alt="Kaos Jelajah Hutan Premium">
+          <h4>Kaos B</h4>
+          <p>Rp 115.000</p>
           <button class="buy-btn" onclick="showProductDetail('kaos-premium')">🛒 Detail & Beli</button>
         </div>
         
         <!-- Kaos Tipe 3: Kaos Limited Edition -->
         <div class="item">
-          <img src="images/kaos-limited.jpg" alt="Kaos Jelajah Hutan Limited Edition">
-          <h4>Kaos Limited Edition</h4>
-          <p>Rp 150.000</p>
+          <img src="merchandise/C.jpeg" alt="Kaos Jelajah Hutan Limited Edition">
+          <h4>Kaos C</h4>
+          <p>Rp 115.000</p>
           <button class="buy-btn" onclick="showProductDetail('kaos-limited')">🛒 Detail & Beli</button>
         </div>
         
         <!-- Tumbler Ramah Lingkungan -->
         <div class="item">
-          <img src="merchandise/11-removebg-preview.png" alt="Tumbler Ramah Lingkungan">
+          <img src="merchandise/tumbler.jpeg" alt="Tumbler Ramah Lingkungan">
           <h4>Tumbler Ramah Lingkungan</h4>
-          <p>Rp 65.000</p>
+          <p>Rp 80.000</p>
           <button class="buy-btn" onclick="showProductDetail('tumbler')">🛒 Detail & Beli</button>
         </div>
         
         <!-- Gantungan Kunci -->
         <div class="item">
-          <img src="images/pin.jpg" alt="Gantungan Kunci">
-          <h4>Gantungan Kunci</h4>
-          <p>Rp 25.000</p>
+          <img src="merchandise/ganci.jpeg" alt="Gantungan Kunci">
+          <h4>Keychains Reguler</h4>
+          <p>Rp 8.500</p>
           <button class="buy-btn" onclick="showProductDetail('ganci')">🛒 Detail & Beli</button>
+        </div>
+
+        <!-- Gantungan Kunci -->
+        <div class="item">
+          <img src="merchandise/gancile.jpeg" alt="Gantungan Kunci">
+          <h4>Keychains Secret and Limited Edition</h4>
+          <p>Rp 8.500</p>
+          <button class="buy-btn" onclick="showProductDetail('ganci1')">🛒 Detail & Beli</button>
         </div>
         
         <!-- Totebag -->
         <div class="item">
-          <img src="images/totebag.jpg" alt="Totebag">
+          <img src="merchandise/totebag.jpeg" alt="Totebag">
           <h4>Totebag</h4>
-          <p>Rp 55.000</p>
+          <p>Rp 56.000</p>
           <button class="buy-btn" onclick="showProductDetail('totebag')">🛒 Detail & Beli</button>
         </div>
         
         <!-- Rompi -->
         <div class="item">
-          <img src="images/sticker.jpg" alt="Rompi">
+          <img src="merchandise/Rompi.jpeg" alt="Rompi">
           <h4>Rompi</h4>
-          <p>Rp 15.000</p>
+          <p>Rp 135.000</p>
           <button class="buy-btn" onclick="showProductDetail('rompi')">🛒 Detail & Beli</button>
+        </div>
+      </div>
+
+      <!-- BUNDLING SECTION -->
+      <h2 style="text-align: center; color: var(--gold); margin: 60px 0 20px;">🎁 Paket Bundling Hemat</h2>
+      <p style="text-align: center; margin-bottom: 30px;">Dapatkan harga spesial dengan membeli paket bundling!</p>
+      
+      <div class="gallery">
+        <!-- Bundling 1 -->
+        <div class="item" style="background: linear-gradient(135deg, rgba(244,208,63,0.1), rgba(244,208,63,0.05)); border: 2px solid var(--gold);">
+          <div style="font-size: 48px; margin-bottom: 15px;">🎊</div>
+          <h4>Bundling 1: All Item</h4>
+          <p style="font-size: 24px; color: var(--gold); font-weight: 800;">Rp 388.000</p>
+          <p style="font-size: 14px; color: var(--muted); margin: 10px 0;">Tumbler + Kaos + Keychains + Totebag + Rompi</p>
+          <p style="font-size: 12px; color: var(--leaf); margin-bottom: 15px;">Hemat Rp 107.500 dari harga normal!</p>
+          <button class="buy-btn" onclick="orderBundling('bundling1')">🛒 Pesan Sekarang</button>
+        </div>
+
+        <!-- Bundling 2 -->
+        <div class="item" style="background: linear-gradient(135deg, rgba(147,209,124,0.1), rgba(27,119,63,0.05)); border: 2px solid var(--leaf);">
+          <div style="font-size: 48px; margin-bottom: 15px;">⭐</div>
+          <h4>Bundling 2: Tumbler + Kaos + Keychains</h4>
+          <p style="font-size: 24px; color: var(--leaf); font-weight: 800;">Rp 200.000</p>
+          <p style="font-size: 14px; color: var(--muted); margin: 10px 0;">Tumbler + Kaos + Keychains</p>
+          <p style="font-size: 12px; color: var(--leaf); margin-bottom: 15px;">Hemat Rp 18.500 dari harga normal!</p>
+          <button class="buy-btn" onclick="orderBundling('bundling2')">🛒 Pesan Sekarang</button>
+        </div>
+
+        <!-- Bundling 3 -->
+        <div class="item" style="background: linear-gradient(135deg, rgba(123,79,47,0.1), rgba(90,58,34,0.05)); border: 2px solid var(--earth);">
+          <div style="font-size: 48px; margin-bottom: 15px;">🔥</div>
+          <h4>Bundling 3: Totebag + Kaos + Keychains</h4>
+          <p style="font-size: 24px; color: var(--earth); font-weight: 800;">Rp 176.000</p>
+          <p style="font-size: 14px; color: var(--muted); margin: 10px 0;">Totebag + Kaos + Keychains</p>
+          <p style="font-size: 12px; color: var(--earth); margin-bottom: 15px;">Hemat Rp 3.500 dari harga normal!</p>
+          <button class="buy-btn" onclick="orderBundling('bundling3')">🛒 Pesan Sekarang</button>
+        </div>
+      </div>
+
+      <!-- INFO HARGA NORMAL -->
+      <div class="highlight-box" style="margin-top: 40px;">
+        <h3 style="text-align: center; color: var(--gold); margin-bottom: 15px;">💡 Informasi Harga</h3>
+        <div style="text-align: center;">
+          <p><strong>Harga Normal Individual:</strong> Rp 495.500</p>
+          <p><strong>Hemat hingga Rp 107.500 dengan bundling!</strong></p>
         </div>
       </div>
     </div>
@@ -3424,177 +3478,251 @@
     }
 
     document.addEventListener('DOMContentLoaded', renderSponsors);
-
-    // ========== PRODUCT DATA ==========
+    
+        // ========== PRODUCT DATA ==========
     const products = {
       'kaos-reguler': {
-        name: "Kaos Jelajah Hutan Reguler 2025",
-        price: 85000,
-        images: ["images/kaos-reguler.jpg"],
-        description: "Kaos reguler Jelajah Hutan 2025 dengan desain eksklusif yang mencerminkan semangat petualangan dan kecintaan terhadap alam. Terbuat dari bahan cotton combed 30s yang nyaman dan menyerap keringat.",
+        name: "Kaos Jelajah Hutan 2025",
+        price: 115000,
+        images: ["merchandise/A.jpeg", "merchandise/A1.jpeg"],
+        description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
         features: [
-          "Bahan cotton combed 30s premium",
-          "Sablon plastisol yang tahan lama",
-          "Desain eksklusif maskot kakatua maluku",
+          "Bahan cotted combed 24s premium",
+          "Sablon DTF yang tebal dan tahan lama", 
+          "Desain menarik dan kekinian namun tetap berbau forrester",
           "Tersedia ukuran S, M, L, XL",
-          "Warna dasar hijau hutan dengan aksen emas",
-          "Nyaman untuk kegiatan sehari-hari"
+          "Warna dasar hitam disandingkan dengan desain yang trendy",
+          "Nyaman dipakai sehari-hari",
+          "FREE stiker untuk setiap pembelian"
         ],
         specs: {
-          "Bahan": "Cotton Combed 30s",
+          "Bahan": "Cotted Combed 24s Premium",
           "Ukuran": "S, M, L, XL",
-          "Warna": "Hijau Hutan",
-          "Sablon": "Plastisol",
-          "Gramasi": "180 gsm",
-          "Perawatan": "Cuci dengan air dingin, jangan disetrika langsung pada sablon"
+          "Warna": "Hitam",
+          "Sablon": "DTF (Direct to Film)",
+          "Fitur": "Free Stiker",
+          "Kenyamanan": "Nyaman dipakai sehari-hari"
         },
         sizes: ["S", "M", "L", "XL"],
-        colors: ["Hijau Hutan"]
+        colors: ["Hitam"]
       },
+      
       'kaos-premium': {
-        name: "Kaos Jelajah Hutan Premium 2025",
-        price: 120000,
-        images: ["images/kaos-premium.jpg"],
-        description: "Kaos premium dengan kualitas terbaik untuk para rimbawan sejati. Menggunakan bahan cotton combed 24s yang lebih tebal dan nyaman, dengan teknik sablon rubber yang memberikan kesan mewah dan tahan lama.",
+        name: "Kaos Jelajah Hutan 2025",
+        price: 115000,
+        images: ["merchandise/B.jpeg", "merchandise/B1.jpeg"],
+        description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
         features: [
-          "Bahan cotton combed 24s premium",
-          "Sablon rubber yang mewah dan tahan lama",
-          "Desain eksklusif dengan detail emboss",
-          "Tersedia ukuran S, M, L, XL, XXL",
-          "Warna navy blue dengan aksen silver foil",
-          "Daya serap keringat optimal"
+          "Bahan cotted combed 24s premium",
+          "Sablon DTF yang tebal dan tahan lama",
+          "Desain menarik dan kekinian namun tetap berbau forrester", 
+          "Tersedia ukuran S, M, L, XL",
+          "Warna dasar hitam disandingkan dengan desain yang trendy",
+          "Nyaman dipakai sehari-hari",
+          "FREE stiker untuk setiap pembelian"
         ],
         specs: {
-          "Bahan": "Cotton Combed 24s",
-          "Ukuran": "S, M, L, XL, XXL",
-          "Warna": "Navy Blue",
-          "Sablon": "Rubber dengan Silver Foil",
-          "Gramasi": "220 gsm",
-          "Perawatan": "Cuci terbalik dengan air dingin"
+          "Bahan": "Cotted Combed 24s Premium",
+          "Ukuran": "S, M, L, XL", 
+          "Warna": "Hitam",
+          "Sablon": "DTF (Direct to Film)",
+          "Fitur": "Free Stiker",
+          "Kenyamanan": "Nyaman dipakai sehari-hari"
         },
-        sizes: ["S", "M", "L", "XL", "XXL"],
-        colors: ["Navy Blue"]
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Hitam"]
       },
+
       'kaos-limited': {
-        name: "Kaos Jelajah Hutan Limited Edition 2025",
-        price: 150000,
-        images: ["images/kaos-limited.jpg"],
-        description: "Kaos limited edition dengan desain eksklusif dan nomor seri khusus. Hanya diproduksi dalam jumlah terbatas untuk kolektor sejati. Menggunakan bahan cotton pima premium dengan finishing bordir yang mewah.",
+        name: "Kaos Jelajah Hutan 2025",
+        price: 115000,
+        images: ["merchandise/C.jpeg", "merchandise/C1.jpeg"],
+        description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
         features: [
-          "Bahan cotton pima premium import",
-          "Kombinasi sablon dan bordir eksklusif",
-          "Nomor seri khusus di setiap kaos",
-          "Tersedia ukuran M, L, XL (limited stock)",
-          "Edisi terbatas hanya 250 pieces",
-          "Sertifikat keaslian included",
-          "Packaging eksklusif"
+          "Bahan cotted combed 24s premium",
+          "Sablon DTF yang tebal dan tahan lama",
+          "Desain menarik dan kekinian namun tetap berbau forrester",
+          "Tersedia ukuran S, M, L, XL", 
+          "Warna dasar hitam disandingkan dengan desain yang trendy",
+          "Nyaman dipakai sehari-hari",
+          "FREE stiker untuk setiap pembelian"
         ],
         specs: {
-          "Bahan": "Cotton Pima Premium",
-          "Ukuran": "M, L, XL (Limited)",
-          "Warna": "Black Forest",
-          "Teknik": "Sablon + Bordir",
-          "Gramasi": "250 gsm",
-          "Edisi": "Limited 250 Pieces",
-          "Fitur": "Nomor Seri & Sertifikat"
+          "Bahan": "Cotted Combed 24s Premium",
+          "Ukuran": "S, M, L, XL",
+          "Warna": "Hitam",
+          "Sablon": "DTF (Direct to Film)", 
+          "Fitur": "Free Stiker",
+          "Kenyamanan": "Nyaman dipakai sehari-hari"
         },
-        sizes: ["M", "L", "XL"],
-        colors: ["Black Forest"]
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Hitam"]
       },
+
       'tumbler': {
         name: "Tumbler Ramah Lingkungan",
-        price: 65000,
-        images: ["merchandise/11-removebg-preview.png",],
-        description: "Tumbler stainless steel ramah lingkungan dengan desain khusus Jelajah Hutan 2025. Dapat menjaga suhu minuman hingga 8 jam, cocok untuk kegiatan lapangan.",
+        price: 80000,
+        images: ["merchandise/tumbler.jpeg"],
+        description: "Tumbler stainless steel premium dengan desain elegan bernuansa kehutanan. Tahan terhadap panas dan es batu hingga ±satu hari.",
         features: [
-          "Material stainless steel 304 food grade",
-          "Dapat menjaga suhu panas/dingin hingga 8 jam",
-          "Desain eksklusif dengan logo resmi",
-          "Kapasitas 500ml",
-          "Ramah lingkungan dan reusable",
-          "Anti bocor dan tahan banting"
+          "Bahan stainless steel premium",
+          "Sablon laser UV sehingga tidak mudah luntur", 
+          "Tahan terhadap panas dan tahan es batu ±satu hari",
+          "Warna dasar putih disandingkan dengan desain 'forester' berwarna hijau sehingga tampak elegan",
+          "Nyaman dipakai sehari hari",
+          "Kapasitas yang optimal untuk kebutuhan harian"
         ],
         specs: {
-          "Material": "Stainless Steel 304",
-          "Kapasitas": "500ml",
-          "Isolasi": "Double Wall Vacuum",
-          "Tutup": "Screw-on Lid",
-          "Dimensi": "Φ7.5cm x 21cm",
-          "Berat": "380 gram"
+          "Bahan": "Stainless Steel Premium",
+          "Kapasitas": "Standard Tumbler",
+          "Sablon": "Laser UV (Tahan Luntur)",
+          "Ketahanan": "Tahan Panas & Es Batu (±1 hari)",
+          "Warna": "Putih dengan desain hijau",
+          "Desain": "Forester - Elegan"
         },
-        sizes: ["500ml"],
-        colors: ["Silver", "Matte Black"]
+        sizes: ["One Size"],
+        colors: ["Putih-Hijau"]
       },
+
       'ganci': {
-        name: "Pin Koleksi Eksklusif",
-        price: 25000,
-        images: ["images/pin.jpg"],
-        description: "Pin koleksi eksklusif dengan desain maskot kakatua maluku. Perfect untuk menghiasi tas, jaket, atau sebagai koleksi bernilai.",
+        name: "Keychains Reguler",
+        price: 8500,
+        images: ["merchandise/ganci.jpeg"],
+        description: "Gantungan kunci acrylic dengan desain trendy dan aesthetic bernuansa kehutanan. Cocok dipakai dimana saja.",
         features: [
-          "Material enamel dengan lapisan emas",
-          "Desain detail maskot kakatua maluku",
-          "Backing pin yang aman",
-          "Limited edition 2025",
-          "Cocok untuk koleksi atau hadiah",
-          "Packaging khusus"
+          "Bahan acrylic 1 sisi dilengkapi gantungan yang kokoh",
+          "Desain yang trendy dan aesthetic bernuansa kehutanan", 
+          "Berukuran 25cm²",
+          "Cocok dipakai dimana saja",
+          "Kualitas bahan yang tahan lama",
+          "Desain eksklusif Jelajah Hutan 2025"
         ],
         specs: {
-          "Material": "Enamel & Metal",
-          "Ukuran": "3cm x 3cm",
-          "Finishing": "Gold Plated",
-          "Backing": "Butterfly Clutch",
-          "Edisi": "Limited 2025",
-          "Ketebalan": "2mm"
+          "Bahan": "Acrylic 1 Sisi",
+          "Ukuran": "25cm²",
+          "Fitur": "Gantungan Kokoh", 
+          "Desain": "Trendy & Aesthetic Nuansa Kehutanan",
+          "Kegunaan": "Cocok dipakai dimana saja"
         },
         sizes: ["One Size"],
-        colors: ["Gold"]
+        colors: ["Acrylic Clear"]
       },
+
+      'ganci1': {
+        name: "Keychains Secret and Limited Edition", 
+        price: 8500,
+        images: ["merchandise/gancile.jpeg"],
+        description: "Gantungan kunci acrylic limited edition dengan desain rahasia yang eksklusif. Cocok untuk kolektor.",
+        features: [
+          "Bahan acrylic 1 sisi dilengkapi gantungan yang kokoh",
+          "Desain secret dan limited edition yang eksklusif",
+          "Berukuran 25cm²", 
+          "Cocok dipakai dimana saja",
+          "Edisi terbatas dengan desain spesial",
+          "Nilai koleksi yang tinggi"
+        ],
+        specs: {
+          "Bahan": "Acrylic 1 Sisi",
+          "Ukuran": "25cm²",
+          "Fitur": "Gantungan Kokoh",
+          "Edisi": "Secret & Limited Edition", 
+          "Kegunaan": "Cocok dipakai dimana saja"
+        },
+        sizes: ["One Size"],
+        colors: ["Acrylic Clear"]
+      },
+
       'totebag': {
-        name: "Totebag Rimbawan",
-        price: 55000,
-        images: ["images/totebag.jpg"],
-        description: "Totebag praktis dengan desain rimbawan yang stylish. Cocok untuk kegiatan sehari-hari maupun kegiatan kampus dengan kapasitas yang cukup besar.",
+        name: "Totebag Premium",
+        price: 56000,
+        images: ["merchandise/totebag.jpeg"],
+        description: "Totebag dengan bahan Ribstop premium yang kuat dan tahan lama. Desain menarik dan simple dengan kantong fungsional.",
         features: [
-          "Bahan kanvas tebal dan kuat",
-          "Handle yang nyaman dan kokoh",
-          "Desain minimalis dengan logo resmi",
-          "Saku dalam untuk barang kecil",
-          "Ramah lingkungan dan reusable",
-          "Tali yang dapat disesuaikan"
+          "Bahan Ribstop premium sehingga totebag memiliki kekuatan dan ketahanan yang tinggi",
+          "Bordir yang rapi dan kuat",
+          "Desain menarik dan simple disertai 2 kantong depan yang fungsional", 
+          "Warna hitam disertai kancing dan bordir putih sehingga tampak lebih elegan",
+          "Nyaman dipakai sehari-hari",
+          "Fungsional untuk berbagai keperluan"
         ],
         specs: {
-          "Bahan": "Kanvas 12oz",
-          "Dimensi": "35cm x 40cm x 10cm",
-          "Handle": "60cm (panjang total)",
-          "Kapasitas": "Sampai 10kg",
-          "Warna": "Natural Canvas",
-          "Jahitan": "Double Stitch"
+          "Bahan": "Ribstop Premium",
+          "Kekuatan": "Tinggi dan Tahan Lama",
+          "Bordir": "Rapi dan Kuat",
+          "Fitur": "2 Kantong Depan Fungsional",
+          "Warna": "Hitam dengan kancing & bordir putih", 
+          "Tampilan": "Elegan"
         },
         sizes: ["One Size"],
-        colors: ["Natural", "Army Green"]
+        colors: ["Hitam-Putih"]
       },
+
       'rompi': {
-        name: "Sticker Pack Eksklusif",
-        price: 15000,
-        images: ["images/sticker.jpg"],
-        description: "Paket sticker eksklusif dengan berbagai desain bertema Jelajah Hutan 2025. Perfect untuk menghiasi laptop, buku, atau botol minum.",
+        name: "Rompi American Drill",
+        price: 135000,
+        images: ["merchandise/Rompi.jpeg", "merchandise/brompi.jpeg"],
+        description: "Rompi premium dengan bahan American Drill yang nyaman untuk kegiatan sehari-hari maupun di lapangan.",
         features: [
-          "5 desain sticker yang berbeda",
-          "Material vinyl waterproof",
-          "Tahan lama dan mudah ditempel",
-          "Desain unik bertema kehutanan",
-          "Cocok untuk dekorasi personal",
-          "Easy to remove tanpa residu"
+          "Bahan American Drill premium",
+          "Bordir yang rapi dan kuat", 
+          "Desain menarik dan kekinian namun tetap memiliki nilai fungsi yang tinggi",
+          "Tersedia ukuran S, M, L dan XL",
+          "Warna cokelat disandingkan dengan bordir hitam sehingga tampak lebih keren",
+          "Nyaman dipakai sehari-hari maupun kegiatan di lapangan",
+          "Fungsional untuk berbagai aktivitas outdoor"
         ],
         specs: {
-          "Jumlah": "5 Sticker/Pack",
-          "Material": "Vinyl Waterproof",
-          "Ukuran": "Berbagai ukuran (5-10cm)",
-          "Finishing": "Matte/Glossy",
-          "Ketahanan": "Waterproof & UV Resistant"
+          "Bahan": "American Drill Premium",
+          "Ukuran": "S, M, L, XL",
+          "Bordir": "Rapi dan Kuat", 
+          "Warna": "Cokelat dengan bordir hitam",
+          "Desain": "Kekinian & Fungsional",
+          "Kegunaan": "Sehari-hari & Lapangan"
         },
-        sizes: ["Pack of 5"],
-        colors: ["Mixed Colors"]
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Cokelat-Hitam"]
+      }
+    };
+
+    // ========== BUNDLING FUNCTIONS ==========
+function orderBundling(bundlingId) {
+  const bundling = bundlings[bundlingId];
+  if (!bundling) {
+    alert('Paket bundling tidak ditemukan!');
+    return;
+  }
+  
+  currentItem = `${bundling.name} - ${bundling.items.join(' + ')} - Rp ${bundling.price.toLocaleString('id-ID')}`;
+  
+  document.getElementById('orderForm').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  // Pre-fill form
+  document.getElementById('buyerQty').value = 1;
+}
+
+// ========== BUNDLING DATA ==========
+    const bundlings = {
+      'bundling1': {
+        name: "Bundling 1: All Item",
+        price: 388000,
+        items: ["Tumbler", "Kaos", "Keychains", "Totebag", "Rompi"],
+        description: "Paket lengkap semua merchandise Jelajah Hutan 2025 dengan harga spesial!",
+        savings: 107500
+      },
+      'bundling2': {
+        name: "Bundling 2: Tumbler + Kaos + Keychains", 
+        price: 200000,
+        items: ["Tumbler", "Kaos", "Keychains"],
+        description: "Paket favorit dengan tumbler, kaos, dan keychains dengan harga hemat!",
+        savings: 18500
+      },
+      'bundling3': {
+        name: "Bundling 3: Totebag + Kaos + Keychains",
+        price: 176000, 
+        items: ["Totebag", "Kaos", "Keychains"],
+        description: "Paket praktis dengan totebag, kaos, dan keychains untuk kebutuhan sehari-hari!",
+        savings: 3500
       }
     };
 
@@ -3924,37 +4052,37 @@
     }
 
     function submitOrder() {
-      const name = document.getElementById('buyerName').value.trim();
-      const kelas = document.getElementById('buyerClass').value.trim();
-      const angkatan = document.getElementById('buyerYear').value.trim();
-      const qty = document.getElementById('buyerQty').value.trim();
+    const name = document.getElementById('buyerName').value.trim();
+    const kelas = document.getElementById('buyerClass').value.trim();
+    const angkatan = document.getElementById('buyerYear').value.trim();
+    const qty = document.getElementById('buyerQty').value.trim();
 
-      if (!name || !kelas || !angkatan || !qty || !currentItem) {
-        alert('Harap isi semua data dengan lengkap!');
-        return;
-      }
-
-      const phone = '6281393288135';
-      const text = encodeURIComponent(
-        `Halo, saya ingin memesan merchandise Jelajah Hutan 2025:\n\n` +
-        `📦 Produk: ${currentItem}\n` +
-        `👤 Nama: ${name}\n` +
-        `🏫 Kelas: ${kelas}\n` +
-        `🎓 Angkatan: ${angkatan}\n` +
-        `📦 Jumlah: ${qty}\n\n` +
-        `Silakan konfirmasi ketersediaan dan total pembayaran. Terima kasih! 🌿`
-      );
-      
-      const url = `https://wa.me/${phone}?text=${text}`;
-      window.open(url, '_blank');
-      closeForm();
-      
-      // Reset form
-      document.getElementById('buyerName').value = '';
-      document.getElementById('buyerClass').value = '';
-      document.getElementById('buyerYear').value = '';
-      document.getElementById('buyerQty').value = '1';
+    if (!name || !kelas || !angkatan || !qty || !currentItem) {
+      alert('Harap isi semua data dengan lengkap!');
+      return;
     }
+
+    const phone = '6285702245531';
+    const text = encodeURIComponent(
+      `Halo, saya ingin memesan merchandise Jelajah Hutan 2025:\n\n` +
+      `📦 Produk: ${currentItem}\n` +
+      `👤 Nama: ${name}\n` +
+      `🏫 Kelas: ${kelas}\n` +
+      `🎓 Angkatan: ${angkatan}\n` +
+      `📦 Jumlah: ${qty}\n\n` +
+      `Silakan konfirmasi ketersediaan dan total pembayaran. Terima kasih! 🌿`
+    );
+    
+    const url = `https://wa.me/${phone}?text=${text}`;
+    window.open(url, '_blank');
+    closeForm();
+    
+    // Reset form
+    document.getElementById('buyerName').value = '';
+    document.getElementById('buyerClass').value = '';
+    document.getElementById('buyerYear').value = '';
+    document.getElementById('buyerQty').value = '1';
+  }
 
     // ========== SHARE WEBSITE ==========
     document.getElementById('shareWebsiteBtn').addEventListener('click', function(e) {
