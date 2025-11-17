@@ -3364,965 +3364,958 @@
     // ========== LOADING SCREEN ==========
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
-      document.getElementById('loadingScreen').classList.add('hidden');
-    }, 1000);
+        document.getElementById('loadingScreen').classList.add('hidden');
+      }, 1000);
     });
 
-// ========== LOADING SCREEN ==========
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(() => {
-    document.getElementById('loadingScreen').classList.add('hidden');
-  }, 1000);
-});
+    // ========== FALLING LEAVES ANIMATION ==========
+    const leafEmojis = ["🍃", "🍂", "🍁", "🌿", "🍀"];
+    const leafContainer = document.getElementById('falling-leaves');
+    let currentItem = '';
 
-// ========== FALLING LEAVES ANIMATION ==========
-const leafEmojis = ["🍃", "🍂", "🍁", "🌿", "🍀"];
-const leafContainer = document.getElementById('falling-leaves');
-let currentItem = '';
+    function createLeaf() {
+      const leaf = document.createElement('div');
+      leaf.classList.add('leaf');
+      leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.fontSize = (12 + Math.random() * 8) + 'px';
 
-function createLeaf() {
-  const leaf = document.createElement('div');
-  leaf.classList.add('leaf');
-  leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
-  leaf.style.left = Math.random() * 100 + 'vw';
-  leaf.style.fontSize = (12 + Math.random() * 8) + 'px';
+      const duration = 6 + Math.random() * 10;
+      const direction = Math.random() < 0.5 ? -1 : 1;
+      const sway = 40 + Math.random() * 60;
 
-  const duration = 6 + Math.random() * 10;
-  const direction = Math.random() < 0.5 ? -1 : 1;
-  const sway = 40 + Math.random() * 60;
+      leaf.animate([
+        { transform: `translateX(0px) translateY(-50px) rotate(0deg)`, opacity: 0 },
+        { transform: `translateX(${direction * sway}px) translateY(50vh) rotate(180deg)`, opacity: 0.7 },
+        { transform: `translateX(${direction * -sway}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
+      ], {
+        duration: duration * 1000,
+        easing: 'linear',
+        fill: 'forwards'
+      });
 
-  leaf.animate([
-    { transform: `translateX(0px) translateY(-50px) rotate(0deg)`, opacity: 0 },
-    { transform: `translateX(${direction * sway}px) translateY(50vh) rotate(180deg)`, opacity: 0.7 },
-    { transform: `translateX(${direction * -sway}px) translateY(110vh) rotate(360deg)`, opacity: 0 }
-  ], {
-    duration: duration * 1000,
-    easing: 'linear',
-    fill: 'forwards'
-  });
-
-  leafContainer.appendChild(leaf);
-  setTimeout(() => leaf.remove(), duration * 1000);
-}
-
-setInterval(createLeaf, 2500);
-
-// ========== CLICK BURST EFFECT ==========
-document.addEventListener("pointerdown", function(e) {
-  const burst = document.createElement("div");
-  burst.style.position = "fixed";
-  burst.style.left = e.clientX + "px";
-  burst.style.top = e.clientY + "px";
-  burst.style.pointerEvents = "none";
-  burst.style.zIndex = "9999";
-
-  for (let i = 0; i < 10; i++) {
-    const leaf = document.createElement("span");
-    leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
-    leaf.style.position = "absolute";
-    leaf.style.fontSize = (12 + Math.random() * 12) + "px";
-    leaf.style.opacity = "0.9";
-    
-    const x = (Math.random() - 0.5) * 250;
-    const y = (Math.random() - 0.5) * 250;
-    
-    leaf.animate([
-      { transform: 'translate(0, 0) scale(1) rotate(0deg)', opacity: 1 },
-      { transform: `translate(${x}px, ${y}px) scale(0.4) rotate(720deg)`, opacity: 0 }
-    ], { duration: 1200, easing: 'ease-out' });
-    
-    burst.appendChild(leaf);
-  }
-
-  document.body.appendChild(burst);
-  setTimeout(() => burst.remove(), 1200);
-});
-
-// ========== COUNTDOWN TIMER ==========
-function countdown() {
-  const now = new Date().getTime();
-  
-  const events = [
-    { id: 'sosialisasi', date: new Date("2025-11-03T15:00:00"), name: "Sosialisasi Jelajah Hutan" },
-    { id: 'pra', date: new Date("2025-12-06T07:00:00"), name: "PRA-Jelajah Hutan" },
-    { id: 'harih', date: new Date("2025-12-12T08:00:00"), name: "Hari-H Jelajah Hutan" },
-    { id: 'pasca', date: new Date("2025-12-20T15:00:00"), name: "Pasca-Jelajah Hutan" }
-  ];
-
-  let nextEvent = null;
-  let nextEventIndex = -1;
-
-  for (let i = 0; i < events.length; i++) {
-    if (events[i].date.getTime() > now) {
-      nextEvent = events[i];
-      nextEventIndex = i;
-      break;
+      leafContainer.appendChild(leaf);
+      setTimeout(() => leaf.remove(), duration * 1000);
     }
-  }
 
-  if (!nextEvent) {
-    document.getElementById("countdown").innerHTML = `
-      <div class="time-box" style="min-width: 250px;">
-        <div class="time-number">SELESAI</div>
-        <div class="time-label">Semua Acara Telah Berakhir</div>
-      </div>
-    `;
-    document.querySelector('.countdown-title').textContent = "🎉 Semua Acara Jelajah Hutan 2025 Telah Selesai!";
-    return;
-  }
+    setInterval(createLeaf, 2500);
 
-  const targetDate = nextEvent.date.getTime();
-  const distance = targetDate - now;
+    // ========== CLICK BURST EFFECT ==========
+    document.addEventListener("pointerdown", function(e) {
+      const burst = document.createElement("div");
+      burst.style.position = "fixed";
+      burst.style.left = e.clientX + "px";
+      burst.style.top = e.clientY + "px";
+      burst.style.pointerEvents = "none";
+      burst.style.zIndex = "9999";
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.querySelector('.countdown-title').textContent = `⏰ Hitung Mundur ${nextEvent.name}`;
-
-  document.getElementById("countdown").innerHTML = `
-    <div class="time-box">
-      <div class="time-number">${days}</div>
-      <div class="time-label">Hari</div>
-    </div>
-    <div class="time-box">
-      <div class="time-number">${hours}</div>
-      <div class="time-label">Jam</div>
-    </div>
-    <div class="time-box">
-      <div class="time-number">${minutes}</div>
-      <div class="time-label">Menit</div>
-    </div>
-    <div class="time-box">
-      <div class="time-number">${seconds}</div>
-      <div class="time-label">Detik</div>
-    </div>
-  `;
-
-  if (distance < 24 * 60 * 60 * 1000) {
-    document.querySelector('.countdown-title').classList.add('blink-text');
-  } else {
-    document.querySelector('.countdown-title').classList.remove('blink-text');
-  }
-}
-
-// ========== CHECK EVENT STATUS ==========
-function checkEventStatus() {
-  const now = new Date();
-  
-  const sosialisasiStart = new Date("2025-11-03T15:00:00");
-  const sosialisasiEnd = new Date("2025-11-03T18:00:00");
-  const sosialisasiElement = document.getElementById('event-sosialisasi');
-  
-  if (now >= sosialisasiStart && now <= sosialisasiEnd) {
-    sosialisasiElement.classList.add('ongoing');
-    sosialisasiElement.classList.remove('completed');
-  } else if (now > sosialisasiEnd) {
-    sosialisasiElement.classList.add('completed');
-    sosialisasiElement.classList.remove('ongoing');
-  } else {
-    sosialisasiElement.classList.remove('ongoing', 'completed');
-  }
-  
-  const praStart = new Date("2025-12-06T07:00:00");
-  const praEnd = new Date("2025-12-07T18:00:00");
-  const praElement = document.getElementById('event-pra');
-  
-  if (now >= praStart && now <= praEnd) {
-    praElement.classList.add('ongoing');
-    praElement.classList.remove('completed');
-  } else if (now > praEnd) {
-    praElement.classList.add('completed');
-    praElement.classList.remove('ongoing');
-  } else {
-    praElement.classList.remove('ongoing', 'completed');
-  }
-  
-  const harihStart = new Date("2025-12-12T08:00:00");
-  const harihEnd = new Date("2025-12-14T23:59:59");
-  const harihElement = document.getElementById('event-harih');
-  
-  if (now >= harihStart && now <= harihEnd) {
-    harihElement.classList.add('ongoing');
-    harihElement.classList.remove('completed');
-  } else if (now > harihEnd) {
-    harihElement.classList.add('completed');
-    harihElement.classList.remove('ongoing');
-  } else {
-    harihElement.classList.remove('ongoing', 'completed');
-  }
-  
-  const pascaStart = new Date("2025-12-20T15:00:00");
-  const pascaEnd = new Date("2025-12-20T18:00:00");
-  const pascaElement = document.getElementById('event-pasca');
-  
-  if (now >= pascaStart && now <= pascaEnd) {
-    pascaElement.classList.add('ongoing');
-    pascaElement.classList.remove('completed');
-  } else if (now > pascaEnd) {
-    pascaElement.classList.add('completed');
-    pascaElement.classList.remove('ongoing');
-  } else {
-    pascaElement.classList.remove('ongoing', 'completed');
-  }
-}
-
-// ========== SPONSOR DATA ==========
-const sponsors = [
-  { name: "Sponsor 1", logo: "images/sponsor1.jpg", ig: "" },
-  { name: "Sponsor 2", logo: "images/sponsor2.jpg", ig: "" },
-  { name: "Sponsor 3", logo: "images/sponsor3.jpg", ig: "" },
-  { name: "Sponsor 4", logo: "images/sponsor4.jpg", ig: "" }
-];
-
-function renderSponsors() {
-  const sponsorContainer = document.querySelector('.sponsor-logos');
-  sponsorContainer.innerHTML = '';
-  
-  sponsors.forEach(sponsor => {
-    const sponsorLogo = document.createElement('img');
-    sponsorLogo.src = sponsor.logo;
-    sponsorLogo.alt = sponsor.name;
-    sponsorLogo.className = 'sponsor-logo';
-    sponsorLogo.onclick = () => window.open(sponsor.ig, '_blank');
-    sponsorContainer.appendChild(sponsorLogo);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', renderSponsors);
-
-// ========== PRODUCT DATA ==========
-const products = {
-  'kaos-reguler': {
-    name: "Kaos Jelajah Hutan 2025",
-    price: 115000,
-    images: ["merchandise/A.jpeg", "merchandise/A1.jpeg"],
-    category: "kaos",
-    description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
-    features: [
-      "Bahan cotted combed 24s premium",
-      "Sablon DTF yang tebal dan tahan lama", 
-      "Desain menarik dan kekinian namun tetap berbau forrester",
-      "Tersedia ukuran S, M, L, XL",
-      "Warna dasar hitam disandingkan dengan desain yang trendy",
-      "Nyaman dipakai sehari-hari",
-      "FREE stiker untuk setiap pembelian"
-    ],
-    specs: {
-      "Bahan": "Cotted Combed 24s Premium",
-      "Ukuran": "S, M, L, XL",
-      "Warna": "Hitam",
-      "Sablon": "DTF (Direct to Film)",
-      "Fitur": "Free Stiker",
-      "Kenyamanan": "Nyaman dipakai sehari-hari"
-    },
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Hitam"]
-  },
-  
-  'kaos-premium': {
-    name: "Kaos Jelajah Hutan 2025",
-    price: 115000,
-    images: ["merchandise/B.jpeg", "merchandise/B1.jpeg"],
-    category: "kaos",
-    description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
-    features: [
-      "Bahan cotted combed 24s premium",
-      "Sablon DTF yang tebal dan tahan lama",
-      "Desain menarik dan kekinian namun tetap berbau forrester", 
-      "Tersedia ukuran S, M, L, XL",
-      "Warna dasar hitam disandingkan dengan desain yang trendy",
-      "Nyaman dipakai sehari-hari",
-      "FREE stiker untuk setiap pembelian"
-    ],
-    specs: {
-      "Bahan": "Cotted Combed 24s Premium",
-      "Ukuran": "S, M, L, XL", 
-      "Warna": "Hitam",
-      "Sablon": "DTF (Direct to Film)",
-      "Fitur": "Free Stiker",
-      "Kenyamanan": "Nyaman dipakai sehari-hari"
-    },
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Hitam"]
-  },
-
-  'kaos-limited': {
-    name: "Kaos Jelajah Hutan 2025",
-    price: 115000,
-    images: ["merchandise/C.jpeg", "merchandise/C1.jpeg"],
-    category: "kaos",
-    description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
-    features: [
-      "Bahan cotted combed 24s premium",
-      "Sablon DTF yang tebal dan tahan lama",
-      "Desain menarik dan kekinian namun tetap berbau forrester",
-      "Tersedia ukuran S, M, L, XL", 
-      "Warna dasar hitam disandingkan dengan desain yang trendy",
-      "Nyaman dipakai sehari-hari",
-      "FREE stiker untuk setiap pembelian"
-    ],
-    specs: {
-      "Bahan": "Cotted Combed 24s Premium",
-      "Ukuran": "S, M, L, XL",
-      "Warna": "Hitam",
-      "Sablon": "DTF (Direct to Film)", 
-      "Fitur": "Free Stiker",
-      "Kenyamanan": "Nyaman dipakai sehari-hari"
-    },
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Hitam"]
-  },
-
-  'tumbler': {
-    name: "Tumbler Ramah Lingkungan",
-    price: 80000,
-    images: ["merchandise/tumbler.jpeg"],
-    category: "tumbler",
-    description: "Tumbler stainless steel premium dengan desain elegan bernuansa kehutanan. Tahan terhadap panas dan es batu hingga ±satu hari.",
-    features: [
-      "Bahan stainless steel premium",
-      "Sablon laser UV sehingga tidak mudah luntur", 
-      "Tahan terhadap panas dan tahan es batu ±satu hari",
-      "Warna dasar putih disandingkan dengan desain 'forester' berwarna hijau sehingga tampak elegan",
-      "Nyaman dipakai sehari hari",
-      "Kapasitas yang optimal untuk kebutuhan harian"
-    ],
-    specs: {
-      "Bahan": "Stainless Steel Premium",
-      "Kapasitas": "Standard Tumbler",
-      "Sablon": "Laser UV (Tahan Luntur)",
-      "Ketahanan": "Tahan Panas & Es Batu (±1 hari)",
-      "Warna": "Putih dengan desain hijau",
-      "Desain": "Forester - Elegan"
-    },
-    sizes: ["One Size"],
-    colors: ["Putih-Hijau"]
-  },
-
-  'ganci': {
-    name: "Keychains Reguler",
-    price: 8500,
-    images: ["merchandise/ganci.jpeg"],
-    category: "keychains",
-    description: "Gantungan kunci acrylic dengan desain trendy dan aesthetic bernuansa kehutanan. Cocok dipakai dimana saja.",
-    features: [
-      "Bahan acrylic 1 sisi dilengkapi gantungan yang kokoh",
-      "Desain yang trendy dan aesthetic bernuansa kehutanan", 
-      "Berukuran 25cm²",
-      "Cocok dipakai dimana saja",
-      "Kualitas bahan yang tahan lama",
-      "Desain eksklusif Jelajah Hutan 2025"
-    ],
-    specs: {
-      "Bahan": "Acrylic 1 Sisi",
-      "Ukuran": "25cm²",
-      "Fitur": "Gantungan Kokoh", 
-      "Desain": "Trendy & Aesthetic Nuansa Kehutanan",
-      "Kegunaan": "Cocok dipakai dimana saja"
-    },
-    sizes: ["One Size"],
-    colors: ["Acrylic Clear"]
-  },
-
-  'ganci1': {
-    name: "Keychains Secret and Limited Edition", 
-    price: 8500,
-    images: ["merchandise/gancile.jpeg"],
-    category: "keychains",
-    description: "Gantungan kunci acrylic limited edition dengan desain rahasia yang eksklusif. Cocok untuk kolektor.",
-    features: [
-      "Bahan acrylic 1 sisi dilengkapi gantungan yang kokoh",
-      "Desain secret dan limited edition yang eksklusif",
-      "Berukuran 25cm²", 
-      "Cocok dipakai dimana saja",
-      "Edisi terbatas dengan desain spesial",
-      "Nilai koleksi yang tinggi"
-    ],
-    specs: {
-      "Bahan": "Acrylic 1 Sisi",
-      "Ukuran": "25cm²",
-      "Fitur": "Gantungan Kokoh",
-      "Edisi": "Secret & Limited Edition", 
-      "Kegunaan": "Cocok dipakai dimana saja"
-    },
-    sizes: ["One Size"],
-    colors: ["Acrylic Clear"]
-  },
-
-  'totebag': {
-    name: "Totebag Premium",
-    price: 56000,
-    images: ["merchandise/totebag.jpeg"],
-    category: "totebag",
-    description: "Totebag dengan bahan Ribstop premium yang kuat dan tahan lama. Desain menarik dan simple dengan kantong fungsional.",
-    features: [
-      "Bahan Ribstop premium sehingga totebag memiliki kekuatan dan ketahanan yang tinggi",
-      "Bordir yang rapi dan kuat",
-      "Desain menarik dan simple disertai 2 kantong depan yang fungsional", 
-      "Warna hitam disertai kancing dan bordir putih sehingga tampak lebih elegan",
-      "Nyaman dipakai sehari-hari",
-      "Fungsional untuk berbagai keperluan"
-    ],
-    specs: {
-      "Bahan": "Ribstop Premium",
-      "Kekuatan": "Tinggi dan Tahan Lama",
-      "Bordir": "Rapi dan Kuat",
-      "Fitur": "2 Kantong Depan Fungsional",
-      "Warna": "Hitam dengan kancing & bordir putih", 
-      "Tampilan": "Elegan"
-    },
-    sizes: ["One Size"],
-    colors: ["Hitam-Putih"]
-  },
-
-  'rompi': {
-    name: "Rompi American Drill",
-    price: 135000,
-    images: ["merchandise/Rompi.jpeg", "merchandise/brompi.jpeg"],
-    category: "rompi",
-    description: "Rompi premium dengan bahan American Drill yang nyaman untuk kegiatan sehari-hari maupun di lapangan.",
-    features: [
-      "Bahan American Drill premium",
-      "Bordir yang rapi dan kuat", 
-      "Desain menarik dan kekinian namun tetap memiliki nilai fungsi yang tinggi",
-      "Tersedia ukuran S, M, L dan XL",
-      "Warna cokelat disandingkan dengan bordir hitam sehingga tampak lebih keren",
-      "Nyaman dipakai sehari-hari maupun kegiatan di lapangan",
-      "Fungsional untuk berbagai aktivitas outdoor"
-    ],
-    specs: {
-      "Bahan": "American Drill Premium",
-      "Ukuran": "S, M, L, XL",
-      "Bordir": "Rapi dan Kuat", 
-      "Warna": "Cokelat dengan bordir hitam",
-      "Desain": "Kekinian & Fungsional",
-      "Kegunaan": "Sehari-hari & Lapangan"
-    },
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Cokelat-Hitam"]
-  }
-};
-
-// ========== BUNDLING DATA ==========
-const bundlings = {
-  'bundling1': {
-    name: "Bundling 1: All Item",
-    price: 388000,
-    items: ["Tumbler", "Kaos", "Keychains", "Totebag", "Rompi"],
-    description: "Paket lengkap semua merchandise Jelajah Hutan 2025 dengan harga spesial!",
-    savings: 107500
-  },
-  'bundling2': {
-    name: "Bundling 2: Tumbler + Kaos + Keychains", 
-    price: 200000,
-    items: ["Tumbler", "Kaos", "Keychains"],
-    description: "Paket favorit dengan tumbler, kaos, dan keychains dengan harga hemat!",
-    savings: 18500
-  },
-  'bundling3': {
-    name: "Bundling 3: Totebag + Kaos + Keychains",
-    price: 176000, 
-    items: ["Totebag", "Kaos", "Keychains"],
-    description: "Paket praktis dengan totebag, kaos, dan keychains untuk kebutuhan sehari-hari!",
-    savings: 3500
-  }
-};
-
-// ========== SIZE CHART DATA ==========
-const sizeCharts = {
-  'rompi': {
-    title: "📏 Size Chart Rompi American Drill",
-    headers: ["Size", "L", "P"],
-    data: [
-      { size: "S", L: "52", P: "62" },
-      { size: "M", L: "53", P: "65" },
-      { size: "L", L: "54", P: "69" },
-      { size: "XL", L: "57", P: "71" },
-      { size: "2XL", L: "61", P: "74" },
-      { size: "3XL", L: "65", P: "78" }
-    ],
-    tolerance: "Toleransi Size ± 2 cm",
-  },
-  'kaos': {
-    title: "📏 Size Chart Kaos OVERSIZE BOXY",
-    headers: ["Ket", "Size", "S", "M", "L", "XL"],
-    data: [
-      { size: "P", description: "PANJANG", S: "60", M: "62", L: "64", XL: "66" },
-      { size: "L", description: "LEBAR", S: "55", M: "57", L: "59", XL: "61" },
-      { size: "PL", description: "PANJANG LENGAN", S: "17", M: "18", L: "19", XL: "20" }
-    ],
-    tolerance: "Toleransi Size 1-2 cm",
-  }
-};
-
-// ========== SIZE CHART FUNCTIONS ==========
-function generateSizeChart(productType) {
-  const chart = sizeCharts[productType];
-  if (!chart) return '';
-  
-  return `
-    <div class="size-chart-section">
-      <h3>${chart.title}</h3>
-      <div class="size-chart-container">
-        <table class="size-chart-table">
-          <tr class="size-header">
-            ${chart.headers.map(header => `<th>${header}</th>`).join('')}
-          </tr>
-          ${chart.data.map(row => `
-            <tr>
-              <td>${row.size}</td>
-              ${chart.headers.slice(1).map(header => `<td>${row[header] || row[header.toLowerCase()]}</td>`).join('')}
-            </tr>
-          `).join('')}
-        </table>
+      for (let i = 0; i < 10; i++) {
+        const leaf = document.createElement("span");
+        leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+        leaf.style.position = "absolute";
+        leaf.style.fontSize = (12 + Math.random() * 12) + "px";
+        leaf.style.opacity = "0.9";
         
-        <div class="tolerance-note">
-          ${chart.tolerance}
-        </div>
-      </div>
-    </div>
-  `;
-}
+        const x = (Math.random() - 0.5) * 250;
+        const y = (Math.random() - 0.5) * 250;
+        
+        leaf.animate([
+          { transform: 'translate(0, 0) scale(1) rotate(0deg)', opacity: 1 },
+          { transform: `translate(${x}px, ${y}px) scale(0.4) rotate(720deg)`, opacity: 0 }
+        ], { duration: 1200, easing: 'ease-out' });
+        
+        burst.appendChild(leaf);
+      }
 
-// ========== PRODUCT DETAIL FUNCTIONS ==========
-let currentProduct = null;
-let currentQuantity = 1;
-let currentSize = '';
-let currentColor = '';
+      document.body.appendChild(burst);
+      setTimeout(() => burst.remove(), 1200);
+    });
 
-function showProductDetail(productId) {
-  currentProduct = products[productId];
-  currentQuantity = 1;
-  currentSize = '';
-  currentColor = '';
-  
-  if (!currentProduct) {
-    console.error('Product not found:', productId);
-    return;
-  }
-  
-  const productContent = document.getElementById('productContent');
-  productContent.innerHTML = generateProductDetailHTML(currentProduct);
-  
-  // Set default size and color
-  if (currentProduct.sizes && currentProduct.sizes.length > 0) {
-    currentSize = currentProduct.sizes[0];
-    updateSizeSelection(currentSize);
-  }
-  
-  if (currentProduct.colors && currentProduct.colors.length > 0) {
-    currentColor = currentProduct.colors[0];
-    updateColorSelection(currentColor);
-  }
-  
-  document.getElementById('productDetail').style.display = 'block';
-  setTimeout(() => document.getElementById('productDetail').classList.add('active'), 50);
-  document.body.style.overflow = 'hidden';
-  
-  // Scroll to top of product detail
-  productContent.scrollTop = 0;
-}
-
-function generateProductDetailHTML(product) {
-  const hasSizes = product.sizes && product.sizes.length > 0;
-  const hasColors = product.colors && product.colors.length > 0;
-  
-  // Generate size chart if available
-  const sizeChartHTML = sizeCharts[product.category] ? generateSizeChart(product.category) : '';
-  
-  return `
-    <div class="product-detail">
-      <div class="product-header">
-        <h1>${product.name}</h1>
-        <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
-      </div>
+    // ========== COUNTDOWN TIMER ==========
+    function countdown() {
+      const now = new Date().getTime();
       
-      <div class="product-main">
-        <div class="product-image">
-          <img src="${product.images[0]}" alt="${product.name}" id="mainProductImage">
+      const events = [
+        { id: 'sosialisasi', date: new Date("2025-11-03T15:00:00"), name: "Sosialisasi Jelajah Hutan" },
+        { id: 'pra', date: new Date("2025-12-06T07:00:00"), name: "PRA-Jelajah Hutan" },
+        { id: 'harih', date: new Date("2025-12-12T08:00:00"), name: "Hari-H Jelajah Hutan" },
+        { id: 'pasca', date: new Date("2025-12-20T15:00:00"), name: "Pasca-Jelajah Hutan" }
+      ];
+
+      let nextEvent = null;
+      let nextEventIndex = -1;
+
+      for (let i = 0; i < events.length; i++) {
+        if (events[i].date.getTime() > now) {
+          nextEvent = events[i];
+          nextEventIndex = i;
+          break;
+        }
+      }
+
+      if (!nextEvent) {
+        document.getElementById("countdown").innerHTML = `
+          <div class="time-box" style="min-width: 250px;">
+            <div class="time-number">SELESAI</div>
+            <div class="time-label">Semua Acara Telah Berakhir</div>
+          </div>
+        `;
+        document.querySelector('.countdown-title').textContent = "🎉 Semua Acara Jelajah Hutan 2025 Telah Selesai!";
+        return;
+      }
+
+      const targetDate = nextEvent.date.getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.querySelector('.countdown-title').textContent = `⏰ Hitung Mundur ${nextEvent.name}`;
+
+      document.getElementById("countdown").innerHTML = `
+        <div class="time-box">
+          <div class="time-number">${days}</div>
+          <div class="time-label">Hari</div>
         </div>
-        
-        <div class="product-info">
-          <div class="product-description">
-            ${product.description}
-          </div>
-          
-          ${hasSizes ? `
-            <div class="size-selector">
-              <h4>Pilih Ukuran:</h4>
-              <div class="size-options" id="sizeOptions">
-                ${product.sizes.map(size => `
-                  <button class="size-btn ${size === (product.sizes[0] || '') ? 'active' : ''}" 
-                          onclick="selectSize('${size}')">${size}</button>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
-          
-          ${hasColors ? `
-            <div class="color-selector">
-              <h4>Pilih Warna:</h4>
-              <div class="color-options" id="colorOptions">
-                ${product.colors.map(color => `
-                  <button class="color-btn ${color === (product.colors[0] || '') ? 'active' : ''}" 
-                          onclick="selectColor('${color}')">${color}</button>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
-          
-          <div class="product-features">
-            <h3>Fitur Produk:</h3>
-            <ul class="feature-list">
-              ${product.features.map(feature => `<li>${feature}</li>`).join('')}
-            </ul>
-          </div>
-          
-          <div class="product-specs">
-            <h3>Spesifikasi:</h3>
-            <div class="specs-grid">
-              ${Object.entries(product.specs).map(([key, value]) => `
-                <div class="spec-item">
-                  <span class="spec-label">${key}:</span>
-                  <span class="spec-value">${value}</span>
-                </div>
+        <div class="time-box">
+          <div class="time-number">${hours}</div>
+          <div class="time-label">Jam</div>
+        </div>
+        <div class="time-box">
+          <div class="time-number">${minutes}</div>
+          <div class="time-label">Menit</div>
+        </div>
+        <div class="time-box">
+          <div class="time-number">${seconds}</div>
+          <div class="time-label">Detik</div>
+        </div>
+      `;
+
+      if (distance < 24 * 60 * 60 * 1000) {
+        document.querySelector('.countdown-title').classList.add('blink-text');
+      } else {
+        document.querySelector('.countdown-title').classList.remove('blink-text');
+      }
+    }
+
+    // ========== CHECK EVENT STATUS ==========
+    function checkEventStatus() {
+      const now = new Date();
+      
+      const sosialisasiStart = new Date("2025-11-03T15:00:00");
+      const sosialisasiEnd = new Date("2025-11-03T18:00:00");
+      const sosialisasiElement = document.getElementById('event-sosialisasi');
+      
+      if (now >= sosialisasiStart && now <= sosialisasiEnd) {
+        sosialisasiElement.classList.add('ongoing');
+        sosialisasiElement.classList.remove('completed');
+      } else if (now > sosialisasiEnd) {
+        sosialisasiElement.classList.add('completed');
+        sosialisasiElement.classList.remove('ongoing');
+      } else {
+        sosialisasiElement.classList.remove('ongoing', 'completed');
+      }
+      
+      const praStart = new Date("2025-12-06T07:00:00");
+      const praEnd = new Date("2025-12-07T18:00:00");
+      const praElement = document.getElementById('event-pra');
+      
+      if (now >= praStart && now <= praEnd) {
+        praElement.classList.add('ongoing');
+        praElement.classList.remove('completed');
+      } else if (now > praEnd) {
+        praElement.classList.add('completed');
+        praElement.classList.remove('ongoing');
+      } else {
+        praElement.classList.remove('ongoing', 'completed');
+      }
+      
+      const harihStart = new Date("2025-12-12T08:00:00");
+      const harihEnd = new Date("2025-12-14T23:59:59");
+      const harihElement = document.getElementById('event-harih');
+      
+      if (now >= harihStart && now <= harihEnd) {
+        harihElement.classList.add('ongoing');
+        harihElement.classList.remove('completed');
+      } else if (now > harihEnd) {
+        harihElement.classList.add('completed');
+        harihElement.classList.remove('ongoing');
+      } else {
+        harihElement.classList.remove('ongoing', 'completed');
+      }
+      
+      const pascaStart = new Date("2025-12-20T15:00:00");
+      const pascaEnd = new Date("2025-12-20T18:00:00");
+      const pascaElement = document.getElementById('event-pasca');
+      
+      if (now >= pascaStart && now <= pascaEnd) {
+        pascaElement.classList.add('ongoing');
+        pascaElement.classList.remove('completed');
+      } else if (now > pascaEnd) {
+        pascaElement.classList.add('completed');
+        pascaElement.classList.remove('ongoing');
+      } else {
+        pascaElement.classList.remove('ongoing', 'completed');
+      }
+    }
+
+    // ========== SPONSOR DATA ==========
+    const sponsors = [
+      { name: "Sponsor 1", logo: "images/sponsor1.jpg", ig: "" },
+      { name: "Sponsor 2", logo: "images/sponsor2.jpg", ig: "" },
+      { name: "Sponsor 3", logo: "images/sponsor3.jpg", ig: "" },
+      { name: "Sponsor 4", logo: "images/sponsor4.jpg", ig: "" }
+    ];
+
+    function renderSponsors() {
+      const sponsorContainer = document.querySelector('.sponsor-logos');
+      sponsorContainer.innerHTML = '';
+      
+      sponsors.forEach(sponsor => {
+        const sponsorLogo = document.createElement('img');
+        sponsorLogo.src = sponsor.logo;
+        sponsorLogo.alt = sponsor.name;
+        sponsorLogo.className = 'sponsor-logo';
+        sponsorLogo.onclick = () => window.open(sponsor.ig, '_blank');
+        sponsorContainer.appendChild(sponsorLogo);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderSponsors);
+
+    // ========== PRODUCT DATA ==========
+    const products = {
+      'kaos-reguler': {
+        name: "Kaos Jelajah Hutan 2025",
+        price: 115000,
+        images: ["merchandise/A.jpeg", "merchandise/A1.jpeg"],
+        category: "kaos",
+        description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
+        features: [
+          "Bahan cotted combed 24s premium",
+          "Sablon DTF yang tebal dan tahan lama", 
+          "Desain menarik dan kekinian namun tetap berbau forrester",
+          "Tersedia ukuran S, M, L, XL",
+          "Warna dasar hitam disandingkan dengan desain yang trendy",
+          "Nyaman dipakai sehari-hari",
+          "FREE stiker untuk setiap pembelian"
+        ],
+        specs: {
+          "Bahan": "Cotted Combed 24s Premium",
+          "Ukuran": "S, M, L, XL",
+          "Warna": "Hitam",
+          "Sablon": "DTF (Direct to Film)",
+          "Fitur": "Free Stiker",
+          "Kenyamanan": "Nyaman dipakai sehari-hari"
+        },
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Hitam"]
+      },
+      
+      'kaos-premium': {
+        name: "Kaos Jelajah Hutan 2025",
+        price: 115000,
+        images: ["merchandise/B.jpeg", "merchandise/B1.jpeg"],
+        category: "kaos",
+        description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
+        features: [
+          "Bahan cotted combed 24s premium",
+          "Sablon DTF yang tebal dan tahan lama",
+          "Desain menarik dan kekinian namun tetap berbau forrester", 
+          "Tersedia ukuran S, M, L, XL",
+          "Warna dasar hitam disandingkan dengan desain yang trendy",
+          "Nyaman dipakai sehari-hari",
+          "FREE stiker untuk setiap pembelian"
+        ],
+        specs: {
+          "Bahan": "Cotted Combed 24s Premium",
+          "Ukuran": "S, M, L, XL", 
+          "Warna": "Hitam",
+          "Sablon": "DTF (Direct to Film)",
+          "Fitur": "Free Stiker",
+          "Kenyamanan": "Nyaman dipakai sehari-hari"
+        },
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Hitam"]
+      },
+
+      'kaos-limited': {
+        name: "Kaos Jelajah Hutan 2025",
+        price: 115000,
+        images: ["merchandise/C.jpeg", "merchandise/C1.jpeg"],
+        category: "kaos",
+        description: "Kaos premium dengan bahan cotton combed 24s yang nyaman untuk dipakai sehari-hari. Desain menarik dan kekinian dengan nuansa kehutanan.",
+        features: [
+          "Bahan cotted combed 24s premium",
+          "Sablon DTF yang tebal dan tahan lama",
+          "Desain menarik dan kekinian namun tetap berbau forrester",
+          "Tersedia ukuran S, M, L, XL", 
+          "Warna dasar hitam disandingkan dengan desain yang trendy",
+          "Nyaman dipakai sehari-hari",
+          "FREE stiker untuk setiap pembelian"
+        ],
+        specs: {
+          "Bahan": "Cotted Combed 24s Premium",
+          "Ukuran": "S, M, L, XL",
+          "Warna": "Hitam",
+          "Sablon": "DTF (Direct to Film)", 
+          "Fitur": "Free Stiker",
+          "Kenyamanan": "Nyaman dipakai sehari-hari"
+        },
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Hitam"]
+      },
+
+      'tumbler': {
+        name: "Tumbler Ramah Lingkungan",
+        price: 80000,
+        images: ["merchandise/tumbler.jpeg"],
+        category: "tumbler",
+        description: "Tumbler stainless steel premium dengan desain elegan bernuansa kehutanan. Tahan terhadap panas dan es batu hingga ±satu hari.",
+        features: [
+          "Bahan stainless steel premium",
+          "Sablon laser UV sehingga tidak mudah luntur", 
+          "Tahan terhadap panas dan tahan es batu ±satu hari",
+          "Warna dasar putih disandingkan dengan desain 'forester' berwarna hijau sehingga tampak elegan",
+          "Nyaman dipakai sehari hari",
+          "Kapasitas yang optimal untuk kebutuhan harian"
+        ],
+        specs: {
+          "Bahan": "Stainless Steel Premium",
+          "Kapasitas": "Standard Tumbler",
+          "Sablon": "Laser UV (Tahan Luntur)",
+          "Ketahanan": "Tahan Panas & Es Batu (±1 hari)",
+          "Warna": "Putih dengan desain hijau",
+          "Desain": "Forester - Elegan"
+        },
+        sizes: ["One Size"],
+        colors: ["Putih-Hijau"]
+      },
+
+      'ganci': {
+        name: "Keychains Reguler",
+        price: 8500,
+        images: ["merchandise/ganci.jpeg"],
+        category: "keychains",
+        description: "Gantungan kunci acrylic dengan desain trendy dan aesthetic bernuansa kehutanan. Cocok dipakai dimana saja.",
+        features: [
+          "Bahan acrylic 1 sisi dilengkapi gantungan yang kokoh",
+          "Desain yang trendy dan aesthetic bernuansa kehutanan", 
+          "Berukuran 25cm²",
+          "Cocok dipakai dimana saja",
+          "Kualitas bahan yang tahan lama",
+          "Desain eksklusif Jelajah Hutan 2025"
+        ],
+        specs: {
+          "Bahan": "Acrylic 1 Sisi",
+          "Ukuran": "25cm²",
+          "Fitur": "Gantungan Kokoh", 
+          "Desain": "Trendy & Aesthetic Nuansa Kehutanan",
+          "Kegunaan": "Cocok dipakai dimana saja"
+        },
+        sizes: ["One Size"],
+        colors: ["Acrylic Clear"]
+      },
+
+      'ganci1': {
+        name: "Keychains Secret and Limited Edition", 
+        price: 8500,
+        images: ["merchandise/gancile.jpeg"],
+        category: "keychains",
+        description: "Gantungan kunci acrylic limited edition dengan desain rahasia yang eksklusif. Cocok untuk kolektor.",
+        features: [
+          "Bahan acrylic 1 sisi dilengkapi gantungan yang kokoh",
+          "Desain secret dan limited edition yang eksklusif",
+          "Berukuran 25cm²", 
+          "Cocok dipakai dimana saja",
+          "Edisi terbatas dengan desain spesial",
+          "Nilai koleksi yang tinggi"
+        ],
+        specs: {
+          "Bahan": "Acrylic 1 Sisi",
+          "Ukuran": "25cm²",
+          "Fitur": "Gantungan Kokoh",
+          "Edisi": "Secret & Limited Edition", 
+          "Kegunaan": "Cocok dipakai dimana saja"
+        },
+        sizes: ["One Size"],
+        colors: ["Acrylic Clear"]
+      },
+
+      'totebag': {
+        name: "Totebag Premium",
+        price: 56000,
+        images: ["merchandise/totebag.jpeg"],
+        category: "totebag",
+        description: "Totebag dengan bahan Ribstop premium yang kuat dan tahan lama. Desain menarik dan simple dengan kantong fungsional.",
+        features: [
+          "Bahan Ribstop premium sehingga totebag memiliki kekuatan dan ketahanan yang tinggi",
+          "Bordir yang rapi dan kuat",
+          "Desain menarik dan simple disertai 2 kantong depan yang fungsional", 
+          "Warna hitam disertai kancing dan bordir putih sehingga tampak lebih elegan",
+          "Nyaman dipakai sehari-hari",
+          "Fungsional untuk berbagai keperluan"
+        ],
+        specs: {
+          "Bahan": "Ribstop Premium",
+          "Kekuatan": "Tinggi dan Tahan Lama",
+          "Bordir": "Rapi dan Kuat",
+          "Fitur": "2 Kantong Depan Fungsional",
+          "Warna": "Hitam dengan kancing & bordir putih", 
+          "Tampilan": "Elegan"
+        },
+        sizes: ["One Size"],
+        colors: ["Hitam-Putih"]
+      },
+
+      'rompi': {
+        name: "Rompi American Drill",
+        price: 135000,
+        images: ["merchandise/Rompi.jpeg", "merchandise/brompi.jpeg"],
+        category: "rompi",
+        description: "Rompi premium dengan bahan American Drill yang nyaman untuk kegiatan sehari-hari maupun di lapangan.",
+        features: [
+          "Bahan American Drill premium",
+          "Bordir yang rapi dan kuat", 
+          "Desain menarik dan kekinian namun tetap memiliki nilai fungsi yang tinggi",
+          "Tersedia ukuran S, M, L dan XL",
+          "Warna cokelat disandingkan dengan bordir hitam sehingga tampak lebih keren",
+          "Nyaman dipakai sehari-hari maupun kegiatan di lapangan",
+          "Fungsional untuk berbagai aktivitas outdoor"
+        ],
+        specs: {
+          "Bahan": "American Drill Premium",
+          "Ukuran": "S, M, L, XL",
+          "Bordir": "Rapi dan Kuat", 
+          "Warna": "Cokelat dengan bordir hitam",
+          "Desain": "Kekinian & Fungsional",
+          "Kegunaan": "Sehari-hari & Lapangan"
+        },
+        sizes: ["S", "M", "L", "XL"],
+        colors: ["Cokelat-Hitam"]
+      }
+    };
+
+    // ========== BUNDLING DATA ==========
+    const bundlings = {
+      'bundling1': {
+        name: "Bundling 1: All Item",
+        price: 388000,
+        items: ["Tumbler", "Kaos", "Keychains", "Totebag", "Rompi"],
+        description: "Paket lengkap semua merchandise Jelajah Hutan 2025 dengan harga spesial!",
+        savings: 107500
+      },
+      'bundling2': {
+        name: "Bundling 2: Tumbler + Kaos + Keychains", 
+        price: 200000,
+        items: ["Tumbler", "Kaos", "Keychains"],
+        description: "Paket favorit dengan tumbler, kaos, dan keychains dengan harga hemat!",
+        savings: 18500
+      },
+      'bundling3': {
+        name: "Bundling 3: Totebag + Kaos + Keychains",
+        price: 176000, 
+        items: ["Totebag", "Kaos", "Keychains"],
+        description: "Paket praktis dengan totebag, kaos, dan keychains untuk kebutuhan sehari-hari!",
+        savings: 3500
+      }
+    };
+
+    // ========== SIZE CHART DATA ==========
+    const sizeCharts = {
+      'rompi': {
+        title: "📏 Size Chart Rompi American Drill",
+        headers: ["Size", "L", "P"],
+        data: [
+          { size: "S", L: "52", P: "62" },
+          { size: "M", L: "53", P: "65" },
+          { size: "L", L: "54", P: "69" },
+          { size: "XL", L: "57", P: "71" },
+          { size: "2XL", L: "61", P: "74" },
+          { size: "3XL", L: "65", P: "78" }
+        ],
+        tolerance: "Toleransi Size ± 2 cm",
+      },
+      'kaos': {
+        title: "📏 Size Chart Kaos OVERSIZE BOXY",
+        headers: ["Ket", "Size", "S", "M", "L", "XL"],
+        data: [
+          { size: "P", description: "PANJANG", S: "60", M: "62", L: "64", XL: "66" },
+          { size: "L", description: "LEBAR", S: "55", M: "57", L: "59", XL: "61" },
+          { size: "PL", description: "PANJANG LENGAN", S: "17", M: "18", L: "19", XL: "20" }
+        ],
+        tolerance: "Toleransi Size 1-2 cm",
+      }
+    };
+
+    // ========== SIZE CHART FUNCTIONS ==========
+    function generateSizeChart(productType) {
+      const chart = sizeCharts[productType];
+      if (!chart) return '';
+      
+      return `
+        <div class="size-chart-section">
+          <h3>${chart.title}</h3>
+          <div class="size-chart-container">
+            <table class="size-chart-table">
+              <tr class="size-header">
+                ${chart.headers.map(header => `<th>${header}</th>`).join('')}
+              </tr>
+              ${chart.data.map(row => `
+                <tr>
+                  <td>${row.size}</td>
+                  ${chart.headers.slice(1).map(header => `<td>${row[header] || row[header.toLowerCase()]}</td>`).join('')}
+                </tr>
               `).join('')}
+            </table>
+            
+            <div class="tolerance-note">
+              ${chart.tolerance}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ========== PRODUCT DETAIL FUNCTIONS ==========
+    let currentProduct = null;
+    let currentQuantity = 1;
+    let currentSize = '';
+    let currentColor = '';
+
+    function showProductDetail(productId) {
+      currentProduct = products[productId];
+      currentQuantity = 1;
+      currentSize = '';
+      currentColor = '';
+      
+      if (!currentProduct) {
+        console.error('Product not found:', productId);
+        return;
+      }
+      
+      const productContent = document.getElementById('productContent');
+      productContent.innerHTML = generateProductDetailHTML(currentProduct);
+      
+      // Set default size and color
+      if (currentProduct.sizes && currentProduct.sizes.length > 0) {
+        currentSize = currentProduct.sizes[0];
+        updateSizeSelection(currentSize);
+      }
+      
+      if (currentProduct.colors && currentProduct.colors.length > 0) {
+        currentColor = currentProduct.colors[0];
+        updateColorSelection(currentColor);
+      }
+      
+      document.getElementById('productDetail').style.display = 'block';
+      setTimeout(() => document.getElementById('productDetail').classList.add('active'), 50);
+      document.body.style.overflow = 'hidden';
+      
+      // Scroll to top of product detail
+      productContent.scrollTop = 0;
+    }
+
+    function generateProductDetailHTML(product) {
+      const hasSizes = product.sizes && product.sizes.length > 0;
+      const hasColors = product.colors && product.colors.length > 0;
+      
+      // Generate size chart if available
+      const sizeChartHTML = sizeCharts[product.category] ? generateSizeChart(product.category) : '';
+      
+      return `
+        <div class="product-detail">
+          <div class="product-header">
+            <h1>${product.name}</h1>
+            <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
+          </div>
+          
+          <div class="product-main">
+            <div class="product-image">
+              <img src="${product.images[0]}" alt="${product.name}" id="mainProductImage">
+            </div>
+            
+            <div class="product-info">
+              <div class="product-description">
+                ${product.description}
+              </div>
+              
+              ${hasSizes ? `
+                <div class="size-selector">
+                  <h4>Pilih Ukuran:</h4>
+                  <div class="size-options" id="sizeOptions">
+                    ${product.sizes.map(size => `
+                      <button class="size-btn ${size === (product.sizes[0] || '') ? 'active' : ''}" 
+                              onclick="selectSize('${size}')">${size}</button>
+                    `).join('')}
+                  </div>
+                </div>
+              ` : ''}
+              
+              ${hasColors ? `
+                <div class="color-selector">
+                  <h4>Pilih Warna:</h4>
+                  <div class="color-options" id="colorOptions">
+                    ${product.colors.map(color => `
+                      <button class="color-btn ${color === (product.colors[0] || '') ? 'active' : ''}" 
+                              onclick="selectColor('${color}')">${color}</button>
+                    `).join('')}
+                  </div>
+                </div>
+              ` : ''}
+              
+              <div class="product-features">
+                <h3>Fitur Produk:</h3>
+                <ul class="feature-list">
+                  ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+              </div>
+              
+              <div class="product-specs">
+                <h3>Spesifikasi:</h3>
+                <div class="specs-grid">
+                  ${Object.entries(product.specs).map(([key, value]) => `
+                    <div class="spec-item">
+                      <span class="spec-label">${key}:</span>
+                      <span class="spec-value">${value}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              
+              ${sizeChartHTML}
+              
+              <div class="quantity-selector">
+                <span style="color: var(--muted); font-weight: 600;">Jumlah:</span>
+                <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                <span class="quantity-display" id="quantityDisplay">${currentQuantity}</span>
+                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+              </div>
+              
+              <div class="product-actions">
+                <button class="btn-primary" onclick="orderProduct('${Object.keys(products).find(key => products[key] === product)}')">
+                  🛒 Beli Sekarang - Rp ${(product.price * currentQuantity).toLocaleString('id-ID')}
+                </button>
+              </div>
             </div>
           </div>
           
-          ${sizeChartHTML}
-          
-          <div class="quantity-selector">
-            <span style="color: var(--muted); font-weight: 600;">Jumlah:</span>
-            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-            <span class="quantity-display" id="quantityDisplay">${currentQuantity}</span>
-            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-          </div>
-          
-          <div class="product-actions">
-            <button class="btn-primary" onclick="orderProduct('${Object.keys(products).find(key => products[key] === product)}')">
-              🛒 Beli Sekarang - Rp ${(product.price * currentQuantity).toLocaleString('id-ID')}
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      ${product.images.length > 1 ? `
-        <div class="product-gallery">
-          <h3>Galeri Produk</h3>
-          <div class="gallery-thumbnails">
-            ${product.images.map((img, index) => `
-              <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeProductImage('${img}', this)">
-                <img src="${img}" alt="${product.name} ${index + 1}">
+          ${product.images.length > 1 ? `
+            <div class="product-gallery">
+              <h3>Galeri Produk</h3>
+              <div class="gallery-thumbnails">
+                ${product.images.map((img, index) => `
+                  <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeProductImage('${img}', this)">
+                    <img src="${img}" alt="${product.name} ${index + 1}">
+                  </div>
+                `).join('')}
               </div>
-            `).join('')}
-          </div>
+            </div>
+          ` : ''}
         </div>
-      ` : ''}
-    </div>
-  `;
-}
-
-function selectSize(size) {
-  currentSize = size;
-  updateSizeSelection(size);
-  
-  // Update product name if it's a kaos with size
-  if (currentProduct && currentProduct.name.includes('Kaos')) {
-    const productNameElement = document.querySelector('.product-header h1');
-    if (productNameElement) {
-      const baseName = currentProduct.name.replace(/ - Size [A-Z]+$/, '');
-      productNameElement.textContent = `${baseName} - Size ${size}`;
+      `;
     }
-  }
-}
 
-function updateSizeSelection(selectedSize) {
-  const sizeButtons = document.querySelectorAll('.size-btn');
-  sizeButtons.forEach(btn => {
-    if (btn.textContent === selectedSize) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
+    function selectSize(size) {
+      currentSize = size;
+      updateSizeSelection(size);
+      
+      // Update product name if it's a kaos with size
+      if (currentProduct && currentProduct.name.includes('Kaos')) {
+        const productNameElement = document.querySelector('.product-header h1');
+        if (productNameElement) {
+          const baseName = currentProduct.name.replace(/ - Size [A-Z]+$/, '');
+          productNameElement.textContent = `${baseName} - Size ${size}`;
+        }
+      }
     }
-  });
-}
 
-function selectColor(color) {
-  currentColor = color;
-  updateColorSelection(color);
-  
-  // Update product name if it's a kaos with color
-  if (currentProduct && currentProduct.name.includes('Kaos')) {
-    const productNameElement = document.querySelector('.product-header h1');
-    if (productNameElement) {
-      const baseName = currentProduct.name.replace(/ - Color [A-Za-z ]+$/, '');
-      productNameElement.textContent = `${baseName} - Color ${color}`;
+    function updateSizeSelection(selectedSize) {
+      const sizeButtons = document.querySelectorAll('.size-btn');
+      sizeButtons.forEach(btn => {
+        if (btn.textContent === selectedSize) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
     }
-  }
-}
 
-function updateColorSelection(selectedColor) {
-  const colorButtons = document.querySelectorAll('.color-btn');
-  colorButtons.forEach(btn => {
-    if (btn.textContent === selectedColor) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
+    function selectColor(color) {
+      currentColor = color;
+      updateColorSelection(color);
+      
+      // Update product name if it's a kaos with color
+      if (currentProduct && currentProduct.name.includes('Kaos')) {
+        const productNameElement = document.querySelector('.product-header h1');
+        if (productNameElement) {
+          const baseName = currentProduct.name.replace(/ - Color [A-Za-z ]+$/, '');
+          productNameElement.textContent = `${baseName} - Color ${color}`;
+        }
+      }
     }
-  });
-}
 
-function changeQuantity(amount) {
-  const newQuantity = currentQuantity + amount;
-  if (newQuantity >= 1 && newQuantity <= 10) {
-    currentQuantity = newQuantity;
-    document.getElementById('quantityDisplay').textContent = currentQuantity;
-    
-    const buyButton = document.querySelector('.btn-primary');
-    if (buyButton && currentProduct) {
-      const totalPrice = currentProduct.price * currentQuantity;
-      buyButton.textContent = `🛒 Beli Sekarang - Rp ${totalPrice.toLocaleString('id-ID')}`;
+    function updateColorSelection(selectedColor) {
+      const colorButtons = document.querySelectorAll('.color-btn');
+      colorButtons.forEach(btn => {
+        if (btn.textContent === selectedColor) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
     }
-  }
-}
 
-function changeProductImage(imageSrc, thumbnailElement) {
-  document.getElementById('mainProductImage').src = imageSrc;
-  
-  document.querySelectorAll('.thumbnail').forEach(thumb => {
-    thumb.classList.remove('active');
-  });
-  
-  if (thumbnailElement) {
-    thumbnailElement.classList.add('active');
-  }
-}
-
-function closeProductDetail() {
-  const productDetail = document.getElementById('productDetail');
-  productDetail.classList.remove('active');
-  setTimeout(() => {
-    productDetail.style.display = 'none';
-    currentProduct = null;
-    currentQuantity = 1;
-    currentSize = '';
-    currentColor = '';
-  }, 500);
-  document.body.style.overflow = 'auto';
-}
-
-function orderProduct(productId) {
-  const product = products[productId];
-  if (!product) {
-    alert('Produk tidak ditemukan!');
-    return;
-  }
-  
-  const totalPrice = product.price * currentQuantity;
-  
-  // Build product description with size and color
-  let productDescription = `${product.name}`;
-  if (currentSize) {
-    productDescription += ` - Size ${currentSize}`;
-  }
-  if (currentColor) {
-    productDescription += ` - Color ${currentColor}`;
-  }
-  productDescription += ` (${currentQuantity} pcs) - Rp ${totalPrice.toLocaleString('id-ID')}`;
-  
-  currentItem = productDescription;
-  
-  document.getElementById('orderForm').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  
-  // Pre-fill form
-  document.getElementById('buyerQty').value = currentQuantity;
-}
-
-// ========== BUNDLING FUNCTIONS ==========
-function orderBundling(bundlingId) {
-  const bundling = bundlings[bundlingId];
-  if (!bundling) {
-    alert('Paket bundling tidak ditemukan!');
-    return;
-  }
-  
-  currentItem = `${bundling.name} - ${bundling.items.join(' + ')} - Rp ${bundling.price.toLocaleString('id-ID')}`;
-  
-  document.getElementById('orderForm').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  
-  // Pre-fill form
-  document.getElementById('buyerQty').value = 1;
-}
-
-// ========== ARTICLE/POPUP FUNCTIONS ==========
-function showArticle(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.style.display = 'block';
-    setTimeout(() => el.classList.add('active'), 50);
-    document.body.style.overflow = 'hidden';
-    history.pushState({popup: id}, '', `#${id}`);
-  }
-}
-
-function closeArticle() {
-  document.querySelectorAll('.content.active').forEach(el => {
-    el.classList.remove('active');
-    setTimeout(() => el.style.display = 'none', 500);
-  });
-  document.body.style.overflow = 'auto';
-  
-  if (window.location.hash) {
-    history.pushState('', document.title, window.location.pathname);
-  }
-}
-
-// ========== BROWSER HISTORY HANDLING ==========
-window.addEventListener('popstate', (event) => {
-  const activePopup = document.querySelector('.content.active');
-  if (activePopup) {
-    closeArticle();
-  } else if (window.location.hash) {
-    const id = window.location.hash.substring(1);
-    const el = document.getElementById(id);
-    if (el && el.classList.contains('content')) {
-      showArticle(id);
+    function changeQuantity(amount) {
+      const newQuantity = currentQuantity + amount;
+      if (newQuantity >= 1 && newQuantity <= 10) {
+        currentQuantity = newQuantity;
+        document.getElementById('quantityDisplay').textContent = currentQuantity;
+        
+        const buyButton = document.querySelector('.btn-primary');
+        if (buyButton && currentProduct) {
+          const totalPrice = currentProduct.price * currentQuantity;
+          buyButton.textContent = `🛒 Beli Sekarang - Rp ${totalPrice.toLocaleString('id-ID')}`;
+        }
+      }
     }
-  }
-});
 
-// ========== SLIDER FUNCTIONS ==========
-function nextSlide(id) {
-  const container = document.querySelector('#' + id + ' .slide-container');
-  if (!container) return;
-  
-  const slides = container.querySelectorAll('.slide');
-  let currentIndex = [...slides].findIndex(s => s.classList.contains('active'));
-  
-  slides[currentIndex].classList.remove('active');
-  let nextIndex = (currentIndex + 1) % slides.length;
-  slides[nextIndex].classList.add('active');
-}
+    function changeProductImage(imageSrc, thumbnailElement) {
+      document.getElementById('mainProductImage').src = imageSrc;
+      
+      document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
+      });
+      
+      if (thumbnailElement) {
+        thumbnailElement.classList.add('active');
+      }
+    }
 
-function prevSlide(id) {
-  const container = document.querySelector('#' + id + ' .slide-container');
-  if (!container) return;
-  
-  const slides = container.querySelectorAll('.slide');
-  let currentIndex = [...slides].findIndex(s => s.classList.contains('active'));
-  
-  slides[currentIndex].classList.remove('active');
-  let prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-  slides[prevIndex].classList.add('active');
-}
+    function closeProductDetail() {
+      const productDetail = document.getElementById('productDetail');
+      productDetail.classList.remove('active');
+      setTimeout(() => {
+        productDetail.style.display = 'none';
+        currentProduct = null;
+        currentQuantity = 1;
+        currentSize = '';
+        currentColor = '';
+      }, 500);
+      document.body.style.overflow = 'auto';
+    }
 
-// ========== ORDER FORM FUNCTIONS ==========
-function order(item) {
-  currentItem = item;
-  document.getElementById('orderForm').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
+    function orderProduct(productId) {
+      const product = products[productId];
+      if (!product) {
+        alert('Produk tidak ditemukan!');
+        return;
+      }
+      
+      const totalPrice = product.price * currentQuantity;
+      
+      // Build product description with size and color
+      let productDescription = `${product.name}`;
+      if (currentSize) {
+        productDescription += ` - Size ${currentSize}`;
+      }
+      if (currentColor) {
+        productDescription += ` - Color ${currentColor}`;
+      }
+      productDescription += ` (${currentQuantity} pcs) - Rp ${totalPrice.toLocaleString('id-ID')}`;
+      
+      currentItem = productDescription;
+      
+      document.getElementById('orderForm').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      // Pre-fill form
+      document.getElementById('buyerQty').value = currentQuantity;
+    }
 
-function closeForm() {
-  document.getElementById('orderForm').style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
+    // ========== BUNDLING FUNCTIONS ==========
+    function orderBundling(bundlingId) {
+      const bundling = bundlings[bundlingId];
+      if (!bundling) {
+        alert('Paket bundling tidak ditemukan!');
+        return;
+      }
+      
+      currentItem = `${bundling.name} - ${bundling.items.join(' + ')} - Rp ${bundling.price.toLocaleString('id-ID')}`;
+      
+      document.getElementById('orderForm').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      // Pre-fill form
+      document.getElementById('buyerQty').value = 1;
+    }
 
-function submitOrder() {
-  const name = document.getElementById('buyerName').value.trim();
-  const kelas = document.getElementById('buyerClass').value.trim();
-  const angkatan = document.getElementById('buyerYear').value.trim();
-  const qty = document.getElementById('buyerQty').value.trim();
+    // ========== ARTICLE/POPUP FUNCTIONS ==========
+    function showArticle(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.display = 'block';
+        setTimeout(() => el.classList.add('active'), 50);
+        document.body.style.overflow = 'hidden';
+        history.pushState({popup: id}, '', `#${id}`);
+      }
+    }
 
-  if (!name || !kelas || !angkatan || !qty || !currentItem) {
-    alert('Harap isi semua data dengan lengkap!');
-    return;
-  }
+    function closeArticle() {
+      document.querySelectorAll('.content.active').forEach(el => {
+        el.classList.remove('active');
+        setTimeout(() => el.style.display = 'none', 500);
+      });
+      document.body.style.overflow = 'auto';
+      
+      if (window.location.hash) {
+        history.pushState('', document.title, window.location.pathname);
+      }
+    }
 
-  const phone = '6285702245531';
-  const text = encodeURIComponent(
-    `Halo, saya ingin memesan merchandise Jelajah Hutan 2025:\n\n` +
-    `📦 Produk: ${currentItem}\n` +
-    `👤 Nama: ${name}\n` +
-    `🏫 Kelas: ${kelas}\n` +
-    `🎓 Angkatan: ${angkatan}\n` +
-    `📦 Jumlah: ${qty}\n\n` +
-    `Silakan konfirmasi ketersediaan dan total pembayaran. Terima kasih! 🌿`
-  );
-  
-  const url = `https://wa.me/${phone}?text=${text}`;
-  window.open(url, '_blank');
-  closeForm();
-  
-  // Reset form
-  document.getElementById('buyerName').value = '';
-  document.getElementById('buyerClass').value = '';
-  document.getElementById('buyerYear').value = '';
-  document.getElementById('buyerQty').value = '1';
-}
-
-// ========== SHARE WEBSITE ==========
-document.getElementById('shareWebsiteBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  const url = window.location.href.split('#')[0];
-  const title = "Jelajah Hutan 2025 🌿";
-
-  if (navigator.share) {
-    navigator.share({
-      title: title,
-      url: url
-    }).catch(err => console.log('Error sharing:', err));
-  } else {
-    navigator.clipboard.writeText(url).then(() => {
-      alert('Link website telah disalin! Bagikan ke temanmu 😊');
-    }).catch(err => {
-      alert('Gagal menyalin link. Silakan salin secara manual: ' + url);
+    // ========== BROWSER HISTORY HANDLING ==========
+    window.addEventListener('popstate', (event) => {
+      const activePopup = document.querySelector('.content.active');
+      if (activePopup) {
+        closeArticle();
+      } else if (window.location.hash) {
+        const id = window.location.hash.substring(1);
+        const el = document.getElementById(id);
+        if (el && el.classList.contains('content')) {
+          showArticle(id);
+        }
+      }
     });
-  }
-});
 
-// ========== LOAD FROM URL HASH ==========
-window.addEventListener('DOMContentLoaded', () => {
-  if (window.location.hash) {
-    const id = window.location.hash.substring(1);
-    const el = document.getElementById(id);
-    if (el && el.classList.contains('content')) {
-      setTimeout(() => showArticle(id), 100);
+    // ========== SLIDER FUNCTIONS ==========
+    function nextSlide(id) {
+      const container = document.querySelector('#' + id + ' .slide-container');
+      if (!container) return;
+      
+      const slides = container.querySelectorAll('.slide');
+      let currentIndex = [...slides].findIndex(s => s.classList.contains('active'));
+      
+      slides[currentIndex].classList.remove('active');
+      let nextIndex = (currentIndex + 1) % slides.length;
+      slides[nextIndex].classList.add('active');
     }
-  }
-  
-  checkEventStatus();
-});
 
-// ========== CLOSE ON BACKGROUND CLICK ==========
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('content')) {
-    closeArticle();
-  }
-});
+    function prevSlide(id) {
+      const container = document.querySelector('#' + id + ' .slide-container');
+      if (!container) return;
+      
+      const slides = container.querySelectorAll('.slide');
+      let currentIndex = [...slides].findIndex(s => s.classList.contains('active'));
+      
+      slides[currentIndex].classList.remove('active');
+      let prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      slides[prevIndex].classList.add('active');
+    }
 
-document.querySelectorAll('.content .inner').forEach(inner => {
-  inner.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-});
+    // ========== ORDER FORM FUNCTIONS ==========
+    function order(item) {
+      currentItem = item;
+      document.getElementById('orderForm').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
 
-document.getElementById('orderForm').addEventListener('click', (e) => {
-  if (e.target.id === 'orderForm') {
-    closeForm();
-  }
-});
+    function closeForm() {
+      document.getElementById('orderForm').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
 
-// Jalankan fungsi countdown dan status event
-setInterval(countdown, 1000);
-setInterval(checkEventStatus, 60000);
-countdown();
-checkEventStatus();
+    function submitOrder() {
+      const name = document.getElementById('buyerName').value.trim();
+      const kelas = document.getElementById('buyerClass').value.trim();
+      const angkatan = document.getElementById('buyerYear').value.trim();
+      const qty = document.getElementById('buyerQty').value.trim();
+
+      if (!name || !kelas || !angkatan || !qty || !currentItem) {
+        alert('Harap isi semua data dengan lengkap!');
+        return;
+      }
+
+      const phone = '6285702245531';
+      const text = encodeURIComponent(
+        `Halo, saya ingin memesan merchandise Jelajah Hutan 2025:\n\n` +
+        `📦 Produk: ${currentItem}\n` +
+        `👤 Nama: ${name}\n` +
+        `🏫 Kelas: ${kelas}\n` +
+        `🎓 Angkatan: ${angkatan}\n` +
+        `📦 Jumlah: ${qty}\n\n` +
+        `Silakan konfirmasi ketersediaan dan total pembayaran. Terima kasih! 🌿`
+      );
+      
+      const url = `https://wa.me/${phone}?text=${text}`;
+      window.open(url, '_blank');
+      closeForm();
+      
+      // Reset form
+      document.getElementById('buyerName').value = '';
+      document.getElementById('buyerClass').value = '';
+      document.getElementById('buyerYear').value = '';
+      document.getElementById('buyerQty').value = '1';
+    }
+
+    // ========== SHARE WEBSITE ==========
+    document.getElementById('shareWebsiteBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const url = window.location.href.split('#')[0];
+      const title = "Jelajah Hutan 2025 🌿";
+
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          url: url
+        }).catch(err => console.log('Error sharing:', err));
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          alert('Link website telah disalin! Bagikan ke temanmu 😊');
+        }).catch(err => {
+          alert('Gagal menyalin link. Silakan salin secara manual: ' + url);
+        });
+      }
+    });
+
+    // ========== LOAD FROM URL HASH ==========
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        const id = window.location.hash.substring(1);
+        const el = document.getElementById(id);
+        if (el && el.classList.contains('content')) {
+          setTimeout(() => showArticle(id), 100);
+        }
+      }
+      
+      checkEventStatus();
+    });
+
+    // ========== CLOSE ON BACKGROUND CLICK ==========
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('content')) {
+        closeArticle();
+      }
+    });
+
+    document.querySelectorAll('.content .inner').forEach(inner => {
+      inner.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+
+    document.getElementById('orderForm').addEventListener('click', (e) => {
+      if (e.target.id === 'orderForm') {
+        closeForm();
+      }
+    });
+
+    // Jalankan fungsi countdown dan status event
+    setInterval(countdown, 1000);
+    setInterval(checkEventStatus, 60000);
+    countdown();
+    checkEventStatus();
     </script>
 </body>
 </html>
