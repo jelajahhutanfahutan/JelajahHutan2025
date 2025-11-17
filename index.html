@@ -2796,7 +2796,7 @@
   </div>
 
 <!-- ========== ARTIKEL 6: MERCHANDISE ========== -->
-<div id="artikel61" class="content">
+<div id="artikel6" class="content">
   <div class="inner">
     <div class="content-section">
       <h1>Merchandise Resmi Jelajah Hutan 2025</h1>
@@ -3368,7 +3368,7 @@
     }, 1000);
     });
 
-  // ========== LOADING SCREEN ==========
+// ========== LOADING SCREEN ==========
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(() => {
     document.getElementById('loadingScreen').classList.add('hidden');
@@ -3679,6 +3679,7 @@ const products = {
     name: "Tumbler Ramah Lingkungan",
     price: 80000,
     images: ["merchandise/tumbler.jpeg"],
+    category: "tumbler",
     description: "Tumbler stainless steel premium dengan desain elegan bernuansa kehutanan. Tahan terhadap panas dan es batu hingga ±satu hari.",
     features: [
       "Bahan stainless steel premium",
@@ -3704,6 +3705,7 @@ const products = {
     name: "Keychains Reguler",
     price: 8500,
     images: ["merchandise/ganci.jpeg"],
+    category: "keychains",
     description: "Gantungan kunci acrylic dengan desain trendy dan aesthetic bernuansa kehutanan. Cocok dipakai dimana saja.",
     features: [
       "Bahan acrylic 1 sisi dilengkapi gantungan yang kokoh",
@@ -3728,6 +3730,7 @@ const products = {
     name: "Keychains Secret and Limited Edition", 
     price: 8500,
     images: ["merchandise/gancile.jpeg"],
+    category: "keychains",
     description: "Gantungan kunci acrylic limited edition dengan desain rahasia yang eksklusif. Cocok untuk kolektor.",
     features: [
       "Bahan acrylic 1 sisi dilengkapi gantungan yang kokoh",
@@ -3752,6 +3755,7 @@ const products = {
     name: "Totebag Premium",
     price: 56000,
     images: ["merchandise/totebag.jpeg"],
+    category: "totebag",
     description: "Totebag dengan bahan Ribstop premium yang kuat dan tahan lama. Desain menarik dan simple dengan kantong fungsional.",
     features: [
       "Bahan Ribstop premium sehingga totebag memiliki kekuatan dan ketahanan yang tinggi",
@@ -3776,7 +3780,8 @@ const products = {
   'rompi': {
     name: "Rompi American Drill",
     price: 135000,
-    images: ["merchandise/Rompi.jpeg"],
+    images: ["merchandise/Rompi.jpeg", "merchandise/brompi.jpeg"],
+    category: "rompi",
     description: "Rompi premium dengan bahan American Drill yang nyaman untuk kegiatan sehari-hari maupun di lapangan.",
     features: [
       "Bahan American Drill premium",
@@ -3825,6 +3830,62 @@ const bundlings = {
   }
 };
 
+// ========== SIZE CHART DATA ==========
+const sizeCharts = {
+  'rompi': {
+    title: "📏 Size Chart Rompi American Drill",
+    headers: ["Size", "L", "P"],
+    data: [
+      { size: "S", L: "52", P: "62" },
+      { size: "M", L: "53", P: "65" },
+      { size: "L", L: "54", P: "69" },
+      { size: "XL", L: "57", P: "71" },
+      { size: "2XL", L: "61", P: "74" },
+      { size: "3XL", L: "65", P: "78" }
+    ],
+    tolerance: "Toleransi Size ± 2 cm",
+  },
+  'kaos': {
+    title: "📏 Size Chart Kaos OVERSIZE BOXY",
+    headers: ["Ket", "Size", "S", "M", "L", "XL"],
+    data: [
+      { size: "P", description: "PANJANG", S: "60", M: "62", L: "64", XL: "66" },
+      { size: "L", description: "LEBAR", S: "55", M: "57", L: "59", XL: "61" },
+      { size: "PL", description: "PANJANG LENGAN", S: "17", M: "18", L: "19", XL: "20" }
+    ],
+    tolerance: "Toleransi Size 1-2 cm",
+  }
+};
+
+// ========== SIZE CHART FUNCTIONS ==========
+function generateSizeChart(productType) {
+  const chart = sizeCharts[productType];
+  if (!chart) return '';
+  
+  return `
+    <div class="size-chart-section">
+      <h3>${chart.title}</h3>
+      <div class="size-chart-container">
+        <table class="size-chart-table">
+          <tr class="size-header">
+            ${chart.headers.map(header => `<th>${header}</th>`).join('')}
+          </tr>
+          ${chart.data.map(row => `
+            <tr>
+              <td>${row.size}</td>
+              ${chart.headers.slice(1).map(header => `<td>${row[header] || row[header.toLowerCase()]}</td>`).join('')}
+            </tr>
+          `).join('')}
+        </table>
+        
+        <div class="tolerance-note">
+          ${chart.tolerance}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 // ========== PRODUCT DETAIL FUNCTIONS ==========
 let currentProduct = null;
 let currentQuantity = 1;
@@ -3867,6 +3928,9 @@ function showProductDetail(productId) {
 function generateProductDetailHTML(product) {
   const hasSizes = product.sizes && product.sizes.length > 0;
   const hasColors = product.colors && product.colors.length > 0;
+  
+  // Generate size chart if available
+  const sizeChartHTML = sizeCharts[product.category] ? generateSizeChart(product.category) : '';
   
   return `
     <div class="product-detail">
@@ -3928,59 +3992,7 @@ function generateProductDetailHTML(product) {
             </div>
           </div>
           
-          ${product.category === 'kaos' ? `
-          <div class="size-chart-section">
-            <h3>📏 Size Chart OVERSIZE BOXY</h3>
-            <div class="size-chart-container">
-              <table class="size-chart-table">
-                <tr class="size-header">
-                  <th>Ket</th>
-                  <th>Size</th>
-                  <th>S</th>
-                  <th>M</th>
-                  <th>L</th>
-                  <th>XL</th>
-                </tr>
-                <tr>
-                  <td>P</td>
-                  <td>PANJANG</td>
-                  <td>60</td>
-                  <td>62</td>
-                  <td>64</td>
-                  <td>66</td>
-                </tr>
-                <tr>
-                  <td>L</td>
-                  <td>LEBAR</td>
-                  <td>55</td>
-                  <td>57</td>
-                  <td>59</td>
-                  <td>61</td>
-                </tr>
-                <tr>
-                  <td>PL</td>
-                  <td>PANJANG LENGAN</td>
-                  <td>17</td>
-                  <td>18</td>
-                  <td>19</td>
-                  <td>20</td>
-                </tr>
-              </table>
-              
-              <div class="tolerance-note">
-                *TOLERANSI SIZE 1-2CM
-              </div>
-              
-              <div class="size-guide-info">
-                <h4>Size Guide</h4>
-                <p><strong>P (PANJANG):</strong> Length measurement from shoulder to hem</p>
-                <p><strong>L (LEBAR):</strong> Width measurement across the chest</p>
-                <p><strong>PL (PANJANG LENGAN):</strong> Sleeve length from shoulder to cuff</p>
-                <p>All measurements are in centimeters (cm)</p>
-              </div>
-            </div>
-          </div>
-          ` : ''}
+          ${sizeChartHTML}
           
           <div class="quantity-selector">
             <span style="color: var(--muted); font-weight: 600;">Jumlah:</span>
